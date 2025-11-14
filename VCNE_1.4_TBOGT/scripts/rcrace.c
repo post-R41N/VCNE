@@ -18,7 +18,7 @@ Blip Blip_r, Blip_r2, Blip_c1, Blip_c2, Blip_c3;
 uint checkpoint;
 uint stat;
 
-float textur, skip, start, poziteon, time_m, time_s, pley_rrr, zone;
+float textur, skip, start, poziteon, time_m, time_s, play_lap, zone, pley_rrr;
 float Blip_x2, Blip_y2, Blip_z2;
 float PlayX, PlayY, PlayZ, Blip_x, Blip_y, Blip_z, PlayR, play_cord;
 float Ped1X, Ped1Y, Ped1Z, ped1B_x, ped1B_y, ped1B_z, Ped1R, ped1_cord, ped1_lap;
@@ -51,42 +51,43 @@ void SetTime(uint time)
 		}
 	}
 }
-void rc_baron(void)
+void rc_bandit(void)
 {
 	skip = 0;
 	start = 1;
-	zone = 1;
 	time_m = 0;
 	time_s = 0;
+	play_lap = 1;
+	zone = 1;
 	
-	Blip_x = 750.926;
-	Blip_y = 1752.88;
-	Blip_z = 21.554;
-	Blip_x2 = 754.35;
-	Blip_y2 = 1635.11;
-	Blip_z2 = 26.448;
+	Blip_x = 1205.39;
+	Blip_y = 1270.37;
+	Blip_z = 11.7045;
+	Blip_x2 = 1234.9;
+	Blip_y2 = 1288.16;
+	Blip_z2 = 10.0825;
 	play_cord = 1;
 
-	ped1B_x = 750.926;
-	ped1B_y = 1752.88;
-	ped1B_z = 21.554;
+	ped1B_x = 1205.39;
+	ped1B_y = 1270.37;
+	ped1B_z = 11.7045;
 	ped1_cord = 1;
 
-	ped2B_x = 750.926;
-	ped2B_y = 1752.88;
-	ped2B_z = 21.554;
+	ped2B_x = 1205.39;
+	ped2B_y = 1270.37;
+	ped2B_z = 11.7045;
 	ped2_cord = 1;
 
-	ped3B_x = 750.926;
-	ped3B_y = 1752.88;
-	ped3B_z = 21.554;
+	ped3B_x = 1205.39;
+	ped3B_y = 1270.37;
+	ped3B_z = 11.7045;
 	ped3_cord = 1;
 
 	textur = LOAD_TXD( "sunshine_race" );
 	fon = GET_TEXTURE( textur, "fon_hud" );
 	timer = GET_TEXTURE( textur, "timer_hud" );
 
-	uint CarM1 = MODEL_ADMIRAL;// байк
+	uint CarM1 = MODEL_DILETTANTE;// байк
 	uint PedM1 = MODEL_M_Y_GALB_LO_01;// байкер 1
 
 	REQUEST_MODEL(CarM1);
@@ -94,26 +95,26 @@ void rc_baron(void)
 	REQUEST_MODEL(PedM1);// Мерседес
 	while (!HAS_MODEL_LOADED(PedM1));////проверка "пед загрузился" если нет то начанаем с начало
 
-	REQUEST_CAR_RECORDING( 3066 ); // полёт Основной
-	while (!HAS_CAR_RECORDING_BEEN_LOADED( 3066 )) WAIT(0);
-	REQUEST_CAR_RECORDING( 3067 ); // полёт Основной
-	while (!HAS_CAR_RECORDING_BEEN_LOADED( 3067 )) WAIT(0);
-	REQUEST_CAR_RECORDING( 3068 ); // полёт Основной
-	while (!HAS_CAR_RECORDING_BEEN_LOADED( 3068 )) WAIT(0);
+	REQUEST_CAR_RECORDING( 3069 ); // полёт Основной
+	while (!HAS_CAR_RECORDING_BEEN_LOADED( 3069 )) WAIT(0);
+	REQUEST_CAR_RECORDING( 3070 ); // полёт Основной
+	while (!HAS_CAR_RECORDING_BEEN_LOADED( 3070 )) WAIT(0);
+	REQUEST_CAR_RECORDING( 3071 ); // полёт Основной
+	while (!HAS_CAR_RECORDING_BEEN_LOADED( 3071 )) WAIT(0);
 
-	CREATE_CAR(CarM1, 746.0, 1771.332, 21.546, &car4, TRUE);
-	CREATE_CAR(CarM1, 749.0, 1771.332, 21.554, &car1, TRUE);
-	CREATE_CAR(CarM1, 752.0, 1771.332, 21.554, &car2, TRUE);
-	CREATE_CAR(CarM1, 755.0, 1771.332, 21.554, &car3, TRUE);
-	SET_CAR_HEADING(car1, 182.2);
-	SET_CAR_HEADING(car2, 182.2);
-	SET_CAR_HEADING(car3, 182.2);
-	SET_CAR_HEADING(car4, 182.2);
-	SET_CAR_ENGINE_ON(car4, 1, 1);
-	SET_CAR_LIVERY(car1, 2);
-	SET_CAR_LIVERY(car2, 2);
-	SET_CAR_LIVERY(car3, 2);
-	SET_CAR_LIVERY(car4, 2);
+	CREATE_CAR(CarM1, 1172.924, 1245.585, 6.356184, &car4, TRUE);
+	CREATE_CAR(CarM1, 1173.218, 1248.585, 6.241642, &car1, TRUE);
+	CREATE_CAR(CarM1, 1173.547, 1251.001, 6.232541, &car2, TRUE);
+	CREATE_CAR(CarM1, 1173.833, 1254.585, 6.270547, &car3, TRUE);
+	SET_CAR_HEADING(car1, -97.0);
+	SET_CAR_HEADING(car2, -97.0);
+	SET_CAR_HEADING(car3, -97.0);
+	SET_CAR_HEADING(car4, -97.0);
+
+	CHANGE_CAR_COLOUR( car1, 133, 27 );//цвет машины
+	CHANGE_CAR_COLOUR( car2, 89, 51 );//цвет машины
+	CHANGE_CAR_COLOUR( car3, 83, 112 );//цвет машины
+	CHANGE_CAR_COLOUR( car4, 112, 89 );//цвет машины
 
 	CREATE_CHAR_INSIDE_CAR(car1, 1, PedM1, &ped1);//создаём педа за рулём автомобиля
 	CREATE_CHAR_INSIDE_CAR(car2, 1, PedM1, &ped2);//создаём педа за рулём автомобиля
@@ -127,10 +128,9 @@ void rc_baron(void)
 	SET_CHAR_VISIBLE(ped2, 0); //прозрачный игрок
 	SET_CHAR_VISIBLE(ped3, 0); //прозрачный игрок
 	TASK_ENTER_CAR_AS_DRIVER(GetPlayerPed(), car4, TRUE);//садим игрока в верталёт
-
-	START_PLAYBACK_RECORDED_CAR_WITH_OFFSET(car1, 3066, 0.0, 0.0, 0.0);
-	START_PLAYBACK_RECORDED_CAR_WITH_OFFSET(car2, 3067, 0.0, 0.0, 0.0);
-	START_PLAYBACK_RECORDED_CAR_WITH_OFFSET(car3, 3068, 0.0, 0.0, 0.0);
+	START_PLAYBACK_RECORDED_CAR_WITH_OFFSET(car1, 3069, 0.0, 0.0, -0.53);
+	START_PLAYBACK_RECORDED_CAR_WITH_OFFSET(car2, 3070, 0.0, 0.0, -0.53);
+	START_PLAYBACK_RECORDED_CAR_WITH_OFFSET(car3, 3071, 0.0, 0.0, -0.53);
 	PAUSE_PLAYBACK_RECORDED_CAR(car1);
 	PAUSE_PLAYBACK_RECORDED_CAR(car2);
 	PAUSE_PLAYBACK_RECORDED_CAR(car3);
@@ -144,29 +144,25 @@ void rc_baron(void)
 			break;
 		}
 	}
-	checkpoint = CREATE_CHECKPOINT( 4, 722.354, 1322.47, 22.426, 634.599, 1222.72, 22.896, 0.60000000 );
-	POINT_CAM_AT_COORD	( camera, 747.992, 1768.75, 22.1365 ); // куда смотрит камера
-	SET_CAM_POS			( camera, 759.072, 1777.28, 23.4156 );//расположение камеры
+	POINT_CAM_AT_COORD	( camera, 1172.28, 1243.92, 6.35618 ); // куда смотрит камера
+	SET_CAM_POS			( camera, 1178.89, 1260.78, 7.77962 );//расположение камеры
 	DO_SCREEN_FADE_IN( 250 );// убирается затемнение экрана
-	PRINT_STRING_IN_STRING("string", "NERCPL1_4", 5000, 1);//~g~Compete in a CHECKPOINT RACE with 3 other RC Plane's
+	PRINT_STRING_IN_STRING("string", "RCR1_1", 5000, 1);//~g~Compete in a checkpoint race with 3 other RC Cars.
 	SetTime(5000);
 
-	POINT_CAM_AT_COORD	( camera, 723.923, 1319.87, 22.426 ); // куда смотрит камера
-	SET_CAM_POS			( camera, 703.739, 1359.13, 27.223 );//расположение камеры
-	PRINT_STRING_IN_STRING("string", "RCPL1_5", 5000, 1);//~g~Fly through the checkpoints scattered throughout Vice City.
+	POINT_CAM_AT_COORD	( camera, 1235.38, 1295.301, 10.0825 ); // куда смотрит камера
+	SET_CAM_POS			( camera, 1396.79, 1174.541, 66.6964 );//расположение камеры
+	PRINT_STRING_IN_STRING("string", "RCR1_2", 5000, 1);//~g~Be the first to complete two laps of the track to win!
 	SetTime(5000);
 	CLEAR_AREA( 1162.67, 1225.26, 8.77136, 5.0, 1);//очещаем зону загрузки
 
-	POINT_CAM_AT_COORD	( camera, 753.116, 1773.84, 22.1365 ); // куда смотрит камера
-	SET_CAM_POS			( camera, 742.441, 1767.64, 22.6977 );//расположение камеры
-	PRINT_STRING_IN_STRING("string", "RCH1_8", 5000, 1);//~g~If you wish to quit this mission press the ~h~~k~~PED_FIREWEAPON~ ~g~button to detonate your RC Plane.
+	POINT_CAM_AT_COORD	( camera, 1172.33, 1249.89, 6.24164 ); // куда смотрит камера
+	SET_CAM_POS			( camera, 1180.86, 1238.46, 10.4531 );//расположение камеры
+	PRINT_STRING_IN_STRING("string", "RCR1_3", 5000, 1);//~g~If you wish to quit this mission press the ~h~~k~~PED_FIREWEAPON~ ~g~button to detonate your RC car.
 	SetTime(5000);
 
-	DELETE_CHECKPOINT(checkpoint);
-	checkpoint = CREATE_CHECKPOINT( 4, Blip_x, Blip_y, (Blip_z+1.5), Blip_x2, Blip_y2, Blip_z2, 0.60000000 );
-
-	CREATE_CAR(CarM2, 741.176, 1785.59, 22.1314, &car5, TRUE);
-	SET_CAR_HEADING(car5, 180.0);
+	CREATE_CAR(CarM2, 1162.67, 1225.26, 8.77136, &car5, TRUE);
+	SET_CAR_HEADING(car5, -5);
 	SET_CAR_PROOFS(car5, 1, 1, 1, 1, 1);
 	FREEZE_CAR_POSITION(car5, 1);
 
@@ -187,7 +183,7 @@ void rc_baron(void)
 	DO_SCREEN_FADE_IN( 250 );// убирается затемнение экрана
 	SetTime(1000);
 
-	SET_FOLLOW_VEHICLE_CAM_SUBMODE(2);
+	SET_FOLLOW_VEHICLE_CAM_SUBMODE(3);
 
 	PLAY_AUDIO_EVENT( "FRONTEND_OTHER_RACE_321" );
 	SETTIMERA(0);
@@ -269,27 +265,29 @@ void rc_baron(void)
 		SET_PLAYER_INVINCIBLE(GetPlayerIndex(), 1);
 		if ((!IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed())) || (GET_ENGINE_HEALTH(car4) < 200) || (IS_CAR_IN_WATER(car4)))//если игрок покинул или унечтожел вертолёт, тогда провал миссии
 		{
-			PRINT_STRING_IN_STRING_NOW("string", "RCH1_13", 7000, 1);//~r~The RC helicopter went out of range!
+			//пояснения текстом в низу экрана здесь
+			PRINT_STRING_IN_STRING_NOW("string", "RACEFA", 5000, 1);//r~You failed to win the race!
 			EXPLODE_CAR(car4, 1, 1);
 			skip = 1;
 			SetTime(1000);
 			break;
 		}
-		else if (!IS_CHAR_IN_AREA_3D( GetPlayerPed(), 1111.464, -1224.025, -15.5, 0.111, 1929.629, 133.687, 0 ))
+		else if (!IS_CHAR_IN_AREA_3D( GetPlayerPed(), 1487.23, 1031.237, -6.613, 937.23, 1581.237, 50.0, 0 ))
 		{
-			PRINT_STRING_IN_STRING_NOW("string", "RCH1_13", 7000, 1);//~r~The RC helicopter went out of range!
+			//пояснения текстом в низу экрана здесь
+			PRINT_STRING_IN_STRING_NOW("string", "RCR1_7", 5000, 1);//~r~Your RC Car went out of range!
 			EXPLODE_CAR(car4, 1, 1);
-			SetTime(1000);
 			skip = 1;
+			SetTime(1000);
 			break;
 		}
-
-		if ((!IS_CHAR_IN_AREA_3D( GetPlayerPed(), 1081.499, -1193.107, -15.0, 30.077, 1898.711, 125.0, 0 )) && (zone == 1))
+		if ((!IS_CHAR_IN_AREA_3D( GetPlayerPed(), 1412.23, 1106.237, -5.613, 1012.23, 1506.237, 45.0, 0 )) && (zone == 1))
 		{
-			PRINT_HELP_FOREVER("RCH1_12"); //~g~The RC helicopter is getting too far out of range!
+			//текст подсказки:
+			PRINT_HELP_FOREVER("RCR1_6"); //~g~Your RC Car is going out of range!
 			zone = 0;
 		}
-		else if ((IS_CHAR_IN_AREA_3D( GetPlayerPed(), 1081.499, -1193.107, -15.0, 30.077, 1898.711, 125.0, 0 )) && (zone == 0))
+		else if ((IS_CHAR_IN_AREA_3D( GetPlayerPed(), 1412.23, 1106.237, -5.613, 1012.23, 1506.237, 45.0, 0 )) && (zone == 0))
 		{
 			CLEAR_HELP(); // удаляем текст подсказки
 			zone = 1;
@@ -307,6 +305,7 @@ void rc_baron(void)
 			CHANGE_BLIP_COLOUR(Blip_r, 5);   //цвет иконка на радаре (0=белая)
 			CHANGE_BLIP_NAME_FROM_TEXT_FILE(Blip_r, "NE_RACE2");//иконка на радаре "Blip01" называние в истории карты
 			CHANGE_BLIP_SCALE(Blip_r, 0.77999990); // масштаб иконки на радаре
+			checkpoint = CREATE_CHECKPOINT( 6, Blip_x, Blip_y, (Blip_z+1.5), Blip_x2, Blip_y2, Blip_z2, 0.60000000 );
 			
 			ADD_BLIP_FOR_COORD(Blip_x2, Blip_y2, Blip_z2, &Blip_r2);//создаем иконку на радаре в переменной "Blip01"
 			CHANGE_BLIP_SPRITE(Blip_r2, BLIP_OBJECTIVE);//иконка на радаре "Blip01" равна "BLIP_FINISH_LINE"
@@ -314,9 +313,9 @@ void rc_baron(void)
 			CHANGE_BLIP_NAME_FROM_TEXT_FILE(Blip_r2, "NE_RACE3");//иконка на радаре "Blip01" называние в истории карты
 			CHANGE_BLIP_SCALE(Blip_r2, (0.77999990 / 1.50000000)); // масштаб иконки на радаре
 			CHANGE_BLIP_ALPHA(Blip_r2, 125);
-			start = 2;
-			pley_rrr = 1;
 			SETTIMERB( 0 );
+			pley_rrr = 1;
+			start = 2;
 		}
 		if (TIMERC() < 990)
 		{
@@ -329,17 +328,21 @@ void rc_baron(void)
 			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "GO", 1); // пишем "GO"
 		}
 
-		if ((TIMERB() > 1500) && (pley_rrr == 1))
+		if ((TIMERB() > 500) && (pley_rrr == 1))
 		{
 			UNPAUSE_PLAYBACK_RECORDED_CAR(car1);
-			UNPAUSE_PLAYBACK_RECORDED_CAR(car2);
 			UNPAUSE_PLAYBACK_RECORDED_CAR(car3);
 			SETTIMERB( 0 );
 			pley_rrr = 2;
 		}
+		if ((TIMERB() > 50) && (pley_rrr == 2))
+		{
+			UNPAUSE_PLAYBACK_RECORDED_CAR(car2);
+			pley_rrr = 3;
+		}
 
 		// гонка тут
-		//DRAW_SPHERE(Blip_x, Blip_y, (Blip_z-4.5), 7.0);
+		DRAW_SPHERE(Blip_x, Blip_y, (Blip_z-4.5), 7.0);
 		GET_CHAR_COORDINATES(GetPlayerPed(),  &PlayX, &PlayY, &PlayZ);//вписываем координаты игрока в переменную
 		GET_DISTANCE_BETWEEN_COORDS_3D( PlayX, PlayY, PlayZ, Blip_x, Blip_y, Blip_z, &PlayR);//проверка "игрок на координатах"
 		if ( PlayR < 8.5 )
@@ -350,180 +353,169 @@ void rc_baron(void)
 			Blip_z = Blip_z2;
 			PLAY_AUDIO_EVENT( "FRONTEND_OTHER_RACE_321" );
 
-			if (play_cord == 2)
+			if ((play_cord == 2) || (play_cord == 26))
 			{
-				Blip_x2 = 750.778;
-				Blip_y2 = 1482.34;
-				Blip_z2 = 24.25;
+				Blip_x2 = 1251.44;
+				Blip_y2 = 1256.45;
+				Blip_z2 = 9.9452;
+				if (play_cord == 26)
+				{
+					play_lap = 2;
+				}
 			}
-			else if (play_cord == 3)
+			else if ((play_cord == 3) || (play_cord == 27))
 			{
-				Blip_x2 = 722.354;
-				Blip_y2 = 1322.47;
-				Blip_z2 = 22.426;
+				Blip_x2 = 1222.74;
+				Blip_y2 = 1222.7;
+				Blip_z2 = 9.73822;
 			}
-			else if (play_cord == 4)
+			else if ((play_cord == 4) || (play_cord == 28))
 			{
-				Blip_x2 = 634.599;
-				Blip_y2 = 1222.72;
-				Blip_z2 = 22.896;
+				Blip_x2 = 1273.73;
+				Blip_y2 = 1206.79;
+				Blip_z2 = 8.06065;
 			}
-			else if (play_cord == 5)
+			else if ((play_cord == 5) || (play_cord == 29))
 			{
-				Blip_x2 = 811.602;
-				Blip_y2 = 1097.23;
-				Blip_z2 = 15.846;
+				Blip_x2 = 1314.61;
+				Blip_y2 = 1227.43;
+				Blip_z2 = 7.53068;
 			}
-			else if (play_cord == 6)
+			else if ((play_cord == 6) || (play_cord == 30))
 			{
-				Blip_x2 = 779.553;
-				Blip_y2 = 978.865;
-				Blip_z2 = 14.168;
+				Blip_x2 = 1302.67;
+				Blip_y2 = 1267.16;
+				Blip_z2 = 14.09;
 			}
-			else if (play_cord == 7)
+			else if ((play_cord == 7) || (play_cord == 31))
 			{
-				Blip_x2 = 764.891;
-				Blip_y2 = 877.459;
-				Blip_z2 = 13.385;
+				Blip_x2 = 1290.41;
+				Blip_y2 = 1308.23;
+				Blip_z2 = 7.81097;
 			}
-			else if (play_cord == 8)
+			else if ((play_cord == 8) || (play_cord == 32))
 			{
-				Blip_x2 = 770.064;
-				Blip_y2 = 776.41;
-				Blip_z2 = 19.428;
+				Blip_x2 = 1312.89;
+				Blip_y2 = 1337.47;
+				Blip_z2 = 8.78701;
 			}
-			else if (play_cord == 9)
+			else if ((play_cord == 9) || (play_cord == 33))
 			{
-				Blip_x2 = 840.542;
-				Blip_y2 = 635.447;
-				Blip_z2 = 19.134;
+				Blip_x2 = 1321.08;
+				Blip_y2 = 1371.53;
+				Blip_z2 = 9.74834;
 			}
-			else if (play_cord == 10)
+			else if ((play_cord == 10) || (play_cord == 34))
 			{
-				Blip_x2 = 765.597;
-				Blip_y2 = 520.781;
-				Blip_z2 = 20.134;
+				Blip_x2 = 1307.35;
+				Blip_y2 = 1399.94;
+				Blip_z2 = 9.18205;
 			}
-			else if (play_cord == 11)
+			else if ((play_cord == 11) || (play_cord == 35))
 			{
-				Blip_x2 = 717.866;
-				Blip_y2 = 388.471;
-				Blip_z2 = 17.046;
+				Blip_x2 = 1248.8;
+				Blip_y2 = 1414.5;
+				Blip_z2 = 7.94941;
 			}
-			else if (play_cord == 12)
+			else if ((play_cord == 12) || (play_cord == 36))
 			{
-				Blip_x2 = 658.013;
-				Blip_y2 = 261.482;
-				Blip_z2 = 14.929;
+				Blip_x2 = 1241.5;
+				Blip_y2 = 1384.38;
+				Blip_z2 = 5.77478;
 			}
-			else if (play_cord == 13)
+			else if ((play_cord == 13) || (play_cord == 37))
 			{
-				Blip_x2 = 627.309;
-				Blip_y2 = 167.991;
-				Blip_z2 = 14.146;
+				Blip_x2 = 1257.74;
+				Blip_y2 = 1360.11;
+				Blip_z2 = 4.69158;
 			}
-			else if (play_cord == 14)
+			else if ((play_cord == 14) || (play_cord == 38))
 			{
-				Blip_x2 = 612.89;
-				Blip_y2 = 32.968;
-				Blip_z2 = 12.304;
+				Blip_x2 = 1228.35;
+				Blip_y2 = 1354.6;
+				Blip_z2 = 6.52973;
 			}
-			else if (play_cord == 15)
+			else if ((play_cord == 15) || (play_cord == 39))
 			{
-				Blip_x2 = 604.669;
-				Blip_y2 = -105.857;
-				Blip_z2 = 12.328;
+				Blip_x2 = 1199.22;
+				Blip_y2 = 1368.07;
+				Blip_z2 = 8.06161;
 			}
-			else if (play_cord == 16)
+			else if ((play_cord == 16) || (play_cord == 40))
 			{
-				Blip_x2 = 582.798;
-				Blip_y2 = -205.283;
-				Blip_z2 = 11.001;
+				Blip_x2 = 1183.06;
+				Blip_y2 = 1415.09;
+				Blip_z2 = 9.69333;
 			}
-			else if (play_cord == 17)
+			else if ((play_cord == 17) || (play_cord == 41))
 			{
-				Blip_x2 = 528.276;
-				Blip_y2 = -305.345;
-				Blip_z2 = 10.527;
+				Blip_x2 = 1159.08;
+				Blip_y2 = 1373.02;
+				Blip_z2 = 10.1963;
 			}
-			else if (play_cord == 18)
+			else if ((play_cord == 18) || (play_cord == 42))
 			{
-				Blip_x2 = 410.301;
-				Blip_y2 = -336.548;
-				Blip_z2 = 11.142;
+				Blip_x2 = 1189.24;
+				Blip_y2 = 1325.24;
+				Blip_z2 = 13.705;
 			}
-			else if (play_cord == 19)
+			else if ((play_cord == 19) || (play_cord == 43))
 			{
-				Blip_x2 = 325.847;
-				Blip_y2 = -362.34;
-				Blip_z2 = 13.43;
+				Blip_x2 = 1160.601;
+				Blip_y2 = 1309.001;
+				Blip_z2 = 7.40545;
 			}
-			else if (play_cord == 20)
+			else if ((play_cord == 20) || (play_cord == 44))
 			{
-				Blip_x2 = 242.523;
-				Blip_y2 = -411.935;
-				Blip_z2 = 15.094;
+				Blip_x2 = 1133.17;
+				Blip_y2 = 1333.76;
+				Blip_z2 = 8.59773;
 			}
-			else if (play_cord == 21)
+			else if ((play_cord == 21) || (play_cord == 45))
 			{
-				Blip_x2 = 246.695;
-				Blip_y2 = -542.039;
-				Blip_z2 = 27.099;
+				Blip_x2 = 1106.12;
+				Blip_y2 = 1364.92;
+				Blip_z2 = 10.859;
 			}
-			else if (play_cord == 22)
+			else if ((play_cord == 22) || (play_cord == 46))
 			{
-				Blip_x2 = 239.984;
-				Blip_y2 = -699.925;
-				Blip_z2 = 11.655;
+				Blip_x2 = 1105.15;
+				Blip_y2 = 1331.63;
+				Blip_z2 = 8.73177;
 			}
-			else if (play_cord == 23)
+			else if ((play_cord == 23) || (play_cord == 47))
 			{
-				Blip_x2 = 268.544;
-				Blip_y2 = -869.917;
-				Blip_z2 = 11.294;
+				Blip_x2 = 1125.79;
+				Blip_y2 = 1294.66;
+				Blip_z2 = 6.72605;
 			}
-			else if (play_cord == 24)
+			else if ((play_cord == 24) || (play_cord == 48))
 			{
-				Blip_x2 = 317.674;
-				Blip_y2 = -979.663;
-				Blip_z2 = 10.455;
+				Blip_x2 = 1174.04;
+				Blip_y2 = 1249.25;
+				Blip_z2 = 7.27924;
 			}
-			else if (play_cord == 25)
+			else if ((play_cord == 25) || (play_cord == 49))
 			{
-				Blip_x2 = 421.182;
-				Blip_y2 = -1043.65;
-				Blip_z2 = 10.96;
+				if (play_cord == 49)
+				{
+					Blip_x2 = Blip_x2; 
+					Blip_y2 = Blip_y2;
+					Blip_z2 = Blip_z2;
+				}
+				else
+				{
+					Blip_x2 = 1205.39;
+					Blip_y2 = 1270.37;
+					Blip_z2 = 11.7045;
+				}
 			}
-			else if (play_cord == 26)
-			{
-				Blip_x2 = 543.56;
-				Blip_y2 = -1055.12;
-				Blip_z2 = 11.516;
-			}
-			else if (play_cord == 27)
-			{
-				Blip_x2 = 607.464;
-				Blip_y2 = -994.732;
-				Blip_z2 = 15.699;
-			}
-			else if (play_cord == 28)
-			{
-				Blip_x2 = 692.539;
-				Blip_y2 = -701.819;
-				Blip_z2 = 27.351;
-			}
-			else if (play_cord == 29)
-			{
-				Blip_x2 = Blip_x2; 
-				Blip_y2 = Blip_y2;
-				Blip_z2 = Blip_z2;
-			}
-			else if (play_cord == 30)
+			else if (play_cord == 50)
 			{
 				skip = 2;
 				break;
 			}
-			if (play_cord < 29)
+			if (play_cord < 49)
 			{
 				REMOVE_BLIP(Blip_r);//Удаляем иконку на радаре
 				REMOVE_BLIP(Blip_r2);//Удаляем иконку на радаре
@@ -533,8 +525,8 @@ void rc_baron(void)
 				CHANGE_BLIP_COLOUR(Blip_r, 5);   //цвет иконка на радаре (0=белая)
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(Blip_r, "NE_RACE2");//иконка на радаре "Blip01" называние в истории карты
 				CHANGE_BLIP_SCALE(Blip_r, 0.77999990); // масштаб иконки на радаре
-				checkpoint = CREATE_CHECKPOINT( 4, Blip_x, Blip_y, (Blip_z+1.5), Blip_x2, Blip_y2, Blip_z2, 0.60000000 );
-				if (play_cord < 28)
+				checkpoint = CREATE_CHECKPOINT( 6, Blip_x, Blip_y, (Blip_z+1.5), Blip_x2, Blip_y2, Blip_z2, 0.50000000 );
+				if (play_cord < 48)
 				{
 					ADD_BLIP_FOR_COORD(Blip_x2, Blip_y2, (Blip_z2 + 0.1), &Blip_r2);//создаем иконку на радаре в переменной "Blip01"
 					CHANGE_BLIP_SPRITE(Blip_r2, BLIP_OBJECTIVE);//иконка на радаре "Blip01" равна "BLIP_FINISH_LINE"
@@ -562,186 +554,170 @@ void rc_baron(void)
 				CHANGE_BLIP_SPRITE(Blip_r, BLIP_FINISH_LINE);//иконка на радаре "Blip01" равна "BLIP_FINISH_LINE"
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(Blip_r, "NE_RACE2");//иконка на радаре "Blip01" называние в истории карты
 				CHANGE_BLIP_COLOUR(Blip_r, 0);   //цвет иконка на радаре (0=белая)
-				checkpoint = CREATE_CHECKPOINT( 5, Blip_x, Blip_y, (Blip_z+1.5), Blip_x2, Blip_y2, Blip_z2, 0.60000000 );
+				checkpoint = CREATE_CHECKPOINT( 7, Blip_x, Blip_y, (Blip_z+1.5), Blip_x, Blip_y, Blip_z, 0.80000000 );
 			}
 		}
-
 //============================== соперник 1 ==============================
+
+
 		GET_CHAR_COORDINATES(ped1,  &Ped1X, &Ped1Y, &Ped1Z);//вписываем координаты соперника в переменную
 		GET_DISTANCE_BETWEEN_COORDS_3D( Ped1X, Ped1Y, Ped1Z, ped1B_x, ped1B_y, ped1B_z, &Ped1R);//проверка "игрок на координатах"
 		if ( Ped1R < 10.0)
 		{
 			ped1_cord += 1;
+			FIX_CAR(car1);
 
-			if (ped1_cord == 2)
+			if ((ped1_cord == 2) || (ped1_cord == 27))
 			{
-				ped1B_x = 754.35;
-				ped1B_y = 1635.11;
-				ped1B_z = 26.448;
+				ped1B_x = 1234.9;
+				ped1B_y = 1288.16;
+				ped1B_z = 10.0825;
 			}
-			else if (ped1_cord == 3)
+			else if ((ped1_cord == 3) || (ped1_cord == 28))
 			{
-				ped1B_x = 750.778;
-				ped1B_y = 1482.34;
-				ped1B_z = 24.25;
+				ped1B_x = 1251.44;
+				ped1B_y = 1256.45;
+				ped1B_z = 9.9452;
 			}
-			else if (ped1_cord == 4)
+			else if ((ped1_cord == 4) || (ped1_cord == 29))
 			{
-				ped1B_x = 722.354;
-				ped1B_y = 1322.47;
-				ped1B_z = 22.426;
+				ped1B_x = 1222.74;
+				ped1B_y = 1222.7;
+				ped1B_z = 9.73822;
 			}
-			else if (ped1_cord == 5)
+			else if ((ped1_cord == 5) || (ped1_cord == 30))
 			{
-				ped1B_x = 634.599;
-				ped1B_y = 1222.72;
-				ped1B_z = 22.896;
+				ped1B_x = 1273.73;
+				ped1B_y = 1206.79;
+				ped1B_z = 8.06065;
 			}
-			else if (ped1_cord == 6)
+			else if ((ped1_cord == 6) || (ped1_cord == 31))
 			{
-				ped1B_x = 811.602;
-				ped1B_y = 1097.23;
-				ped1B_z = 15.846;
+				ped1B_x = 1314.61;
+				ped1B_y = 1227.43;
+				ped1B_z = 7.53068;
 			}
-			else if (ped1_cord == 7)
+			else if ((ped1_cord == 7) || (ped1_cord == 32))
 			{
-				ped1B_x = 779.553;
-				ped1B_y = 978.865;
-				ped1B_z = 14.168;
+				ped1B_x = 1302.67;
+				ped1B_y = 1267.16;
+				ped1B_z = 14.09;
 			}
-			else if (ped1_cord == 8)
+			else if ((ped1_cord == 8) || (ped1_cord == 33))
 			{
-				ped1B_x = 764.891;
-				ped1B_y = 877.459;
-				ped1B_z = 13.385;
+				ped1B_x = 1290.41;
+				ped1B_y = 1308.23;
+				ped1B_z = 7.81097;
 			}
-			else if (ped1_cord == 9)
+			else if ((ped1_cord == 9) || (ped1_cord == 34))
 			{
-				ped1B_x = 770.064;
-				ped1B_y = 776.41;
-				ped1B_z = 19.428;
+				ped1B_x = 1312.89;
+				ped1B_y = 1337.47;
+				ped1B_z = 8.78701;
 			}
-			else if (ped1_cord == 10)
+			else if ((ped1_cord == 10) || (ped1_cord == 35))
 			{
-				ped1B_x = 840.542;
-				ped1B_y = 635.447;
-				ped1B_z = 19.134;
+				ped1B_x = 1321.08;
+				ped1B_y = 1371.53;
+				ped1B_z = 9.74834;
 			}
-			else if (ped1_cord == 11)
+			else if ((ped1_cord == 11) || (ped1_cord == 36))
 			{
-				ped1B_x = 765.597;
-				ped1B_y = 520.781;
-				ped1B_z = 20.134;
+				ped1B_x = 1307.35;
+				ped1B_y = 1399.94;
+				ped1B_z = 9.18205;
 			}
-			else if (ped1_cord == 12)
+			else if ((ped1_cord == 12) || (ped1_cord == 37))
 			{
-				ped1B_x = 717.866;
-				ped1B_y = 388.471;
-				ped1B_z = 17.046;
+				ped1B_x = 1248.8;
+				ped1B_y = 1414.5;
+				ped1B_z = 7.94941;
 			}
-			else if (ped1_cord == 13)
+			else if ((ped1_cord == 13) || (ped1_cord == 38))
 			{
-				ped1B_x = 658.013;
-				ped1B_y = 261.482;
-				ped1B_z = 14.929;
+				ped1B_x = 1241.5;
+				ped1B_y = 1384.38;
+				ped1B_z = 5.77478;
 			}
-			else if (ped1_cord == 14)
+			else if ((ped1_cord == 14) || (ped1_cord == 39))
 			{
-				ped1B_x = 627.309;
-				ped1B_y = 167.991;
-				ped1B_z = 14.146;
+				ped1B_x = 1257.74;
+				ped1B_y = 1360.11;
+				ped1B_z = 4.69158;
 			}
-			else if (ped1_cord == 15)
+			else if ((ped1_cord == 15) || (ped1_cord == 40))
 			{
-				ped1B_x = 612.89;
-				ped1B_y = 32.968;
-				ped1B_z = 12.304;
+				ped1B_x = 1228.35;
+				ped1B_y = 1354.6;
+				ped1B_z = 6.52973;
 			}
-			else if (ped1_cord == 16)
+			else if ((ped1_cord == 16) || (ped1_cord == 41))
 			{
-				ped1B_x = 604.669;
-				ped1B_y = -105.857;
-				ped1B_z = 12.328;
+				ped1B_x = 1199.22;
+				ped1B_y = 1368.07;
+				ped1B_z = 8.06161;
 			}
-			else if (ped1_cord == 17)
+			else if ((ped1_cord == 17) || (ped1_cord == 42))
 			{
-				ped1B_x = 582.798;
-				ped1B_y = -205.283;
-				ped1B_z = 11.001;
+				ped1B_x = 1183.06;
+				ped1B_y = 1415.09;
+				ped1B_z = 9.69333;
 			}
-			else if (ped1_cord == 18)
+			else if ((ped1_cord == 18) || (ped1_cord == 43))
 			{
-				ped1B_x = 528.276;
-				ped1B_y = -305.345;
-				ped1B_z = 10.527;
+				ped1B_x = 1159.08;
+				ped1B_y = 1373.02;
+				ped1B_z = 10.1963;
 			}
-			else if (ped1_cord == 19)
+			else if ((ped1_cord == 19) || (ped1_cord == 44))
 			{
-				ped1B_x = 410.301;
-				ped1B_y = -336.548;
-				ped1B_z = 11.142;
+				ped1B_x = 1189.24;
+				ped1B_y = 1325.24;
+				ped1B_z = 13.705;
 			}
-			else if (ped1_cord == 20)
+			else if ((ped1_cord == 20) || (ped1_cord == 45))
 			{
-				ped1B_x = 325.847;
-				ped1B_y = -362.34;
-				ped1B_z = 13.43;
+				ped1B_x = 1160.601;
+				ped1B_y = 1309.001;
+				ped1B_z = 7.40545;
 			}
-			else if (ped1_cord == 21)
+			else if ((ped1_cord == 21) || (ped1_cord == 46))
 			{
-				ped1B_x = 242.523;
-				ped1B_y = -411.935;
-				ped1B_z = 15.094;
+				ped1B_x = 1133.17;
+				ped1B_y = 1333.76;
+				ped1B_z = 8.59773;
 			}
-			else if (ped1_cord == 22)
+			else if ((ped1_cord == 22) || (ped1_cord == 47))
 			{
-				ped1B_x = 246.695;
-				ped1B_y = -542.039;
-				ped1B_z = 27.099;
+				ped1B_x = 1106.12;
+				ped1B_y = 1364.92;
+				ped1B_z = 10.859;
 			}
-			else if (ped1_cord == 23)
+			else if ((ped1_cord == 23) || (ped1_cord == 48))
 			{
-				ped1B_x = 239.984;
-				ped1B_y = -699.925;
-				ped1B_z = 11.655;
+				ped1B_x = 1105.15;
+				ped1B_y = 1331.63;
+				ped1B_z = 8.73177;
 			}
-			else if (ped1_cord == 24)
+			else if ((ped1_cord == 24) || (ped1_cord == 49))
 			{
-				ped1B_x = 268.544;
-				ped1B_y = -869.917;
-				ped1B_z = 11.294;
+				ped1B_x = 1125.79;
+				ped1B_y = 1294.66;
+				ped1B_z = 6.72605;
 			}
-			else if (ped1_cord == 25)
+			else if ((ped1_cord == 25) || (ped1_cord == 50))
 			{
-				ped1B_x = 317.674;
-				ped1B_y = -979.663;
-				ped1B_z = 10.455;
+				ped1B_x = 1174.04;
+				ped1B_y = 1249.25;
+				ped1B_z = 7.27924;
 			}
 			else if (ped1_cord == 26)
 			{
-				ped1B_x = 421.182;
-				ped1B_y = -1043.65;
-				ped1B_z = 10.96;
+				ped1B_x = 1205.39;
+				ped1B_y = 1270.37;
+				ped1B_z = 11.7045;
 			}
-			else if (ped1_cord == 27)
-			{
-				ped1B_x = 543.56;
-				ped1B_y = -1055.12;
-				ped1B_z = 11.516;
-			}
-			else if (ped1_cord == 28)
-			{
-				ped1B_x = 607.464;
-				ped1B_y = -994.732;
-				ped1B_z = 15.699;
-			}
-			else if (ped1_cord == 29)
-			{
-				ped1B_x = 692.539;
-				ped1B_y = -701.819;
-				ped1B_z = 27.351;
-			}
-			else if (ped1_cord == 30)
+			else if (ped1_cord == 51)
 			{
 				ped1B_x = ped1B_x; 
 				ped1B_y = ped1B_y;
@@ -752,183 +728,167 @@ void rc_baron(void)
 			}
 			//TASK_CAR_MISSION_COORS_TARGET_NOT_AGAINST_TRAFFIC(ped1, car1, ped1B_x, ped1B_y, ped1B_z, 4, 60.0, 2, 5, 10);// пед едит на нужные координаты("p1"-пед,"a2"-машины,хyz,какой-то флаг,скорость движения,какие-то флаги)
 		}
-
 //============================== соперник 2 ==============================
+
+
 		GET_CHAR_COORDINATES(ped2,  &Ped2X, &Ped2Y, &Ped2Z);//вписываем координаты соперника в переменную
 		GET_DISTANCE_BETWEEN_COORDS_3D( Ped2X, Ped2Y, Ped2Z, ped2B_x, ped2B_y, ped2B_z, &Ped2R);//проверка "игрок на координатах"
 		if ( Ped2R < 10.0)
 		{
 			ped2_cord += 1;
+			FIX_CAR(car2);
 
-			if (ped2_cord == 2)
+			if ((ped2_cord == 2) || (ped2_cord == 27))
 			{
-				ped2B_x = 754.35;
-				ped2B_y = 1635.11;
-				ped2B_z = 26.448;
+				ped2B_x = 1234.9;
+				ped2B_y = 1288.16;
+				ped2B_z = 10.0825;
 			}
-			else if (ped2_cord == 3)
+			else if ((ped2_cord == 3) || (ped2_cord == 28))
 			{
-				ped2B_x = 750.778;
-				ped2B_y = 1482.34;
-				ped2B_z = 24.25;
+				ped2B_x = 1251.44;
+				ped2B_y = 1256.45;
+				ped2B_z = 9.9452;
 			}
-			else if (ped2_cord == 4)
+			else if ((ped2_cord == 4) || (ped2_cord == 29))
 			{
-				ped2B_x = 722.354;
-				ped2B_y = 1322.47;
-				ped2B_z = 22.426;
+				ped2B_x = 1222.74;
+				ped2B_y = 1222.7;
+				ped2B_z = 9.73822;
 			}
-			else if (ped2_cord == 5)
+			else if ((ped2_cord == 5) || (ped2_cord == 30))
 			{
-				ped2B_x = 634.599;
-				ped2B_y = 1222.72;
-				ped2B_z = 22.896;
+				ped2B_x = 1273.73;
+				ped2B_y = 1206.79;
+				ped2B_z = 8.06065;
 			}
-			else if (ped2_cord == 6)
+			else if ((ped2_cord == 6) || (ped2_cord == 31))
 			{
-				ped2B_x = 811.602;
-				ped2B_y = 1097.23;
-				ped2B_z = 15.846;
+				ped2B_x = 1314.61;
+				ped2B_y = 1227.43;
+				ped2B_z = 7.53068;
 			}
-			else if (ped2_cord == 7)
+			else if ((ped2_cord == 7) || (ped2_cord == 32))
 			{
-				ped2B_x = 779.553;
-				ped2B_y = 978.865;
-				ped2B_z = 14.168;
+				ped2B_x = 1302.67;
+				ped2B_y = 1267.16;
+				ped2B_z = 14.09;
 			}
-			else if (ped2_cord == 8)
+			else if ((ped2_cord == 8) || (ped2_cord == 33))
 			{
-				ped2B_x = 764.891;
-				ped2B_y = 877.459;
-				ped2B_z = 13.385;
+				ped2B_x = 1290.41;
+				ped2B_y = 1308.23;
+				ped2B_z = 7.81097;
 			}
-			else if (ped2_cord == 9)
+			else if ((ped2_cord == 9) || (ped2_cord == 34))
 			{
-				ped2B_x = 770.064;
-				ped2B_y = 776.41;
-				ped2B_z = 19.428;
+				ped2B_x = 1312.89;
+				ped2B_y = 1337.47;
+				ped2B_z = 8.78701;
 			}
-			else if (ped2_cord == 10)
+			else if ((ped2_cord == 10) || (ped2_cord == 35))
 			{
-				ped2B_x = 840.542;
-				ped2B_y = 635.447;
-				ped2B_z = 19.134;
+				ped2B_x = 1321.08;
+				ped2B_y = 1371.53;
+				ped2B_z = 9.74834;
 			}
-			else if (ped2_cord == 11)
+			else if ((ped2_cord == 11) || (ped2_cord == 36))
 			{
-				ped2B_x = 765.597;
-				ped2B_y = 520.781;
-				ped2B_z = 20.134;
+				ped2B_x = 1307.35;
+				ped2B_y = 1399.94;
+				ped2B_z = 9.18205;
 			}
-			else if (ped2_cord == 12)
+			else if ((ped2_cord == 12) || (ped2_cord == 37))
 			{
-				ped2B_x = 717.866;
-				ped2B_y = 388.471;
-				ped2B_z = 17.046;
+				ped2B_x = 1248.8;
+				ped2B_y = 1414.5;
+				ped2B_z = 7.94941;
 			}
-			else if (ped2_cord == 13)
+			else if ((ped2_cord == 13) || (ped2_cord == 38))
 			{
-				ped2B_x = 658.013;
-				ped2B_y = 261.482;
-				ped2B_z = 14.929;
+				ped2B_x = 1241.5;
+				ped2B_y = 1384.38;
+				ped2B_z = 5.77478;
 			}
-			else if (ped2_cord == 14)
+			else if ((ped2_cord == 14) || (ped2_cord == 39))
 			{
-				ped2B_x = 627.309;
-				ped2B_y = 167.991;
-				ped2B_z = 14.146;
+				ped2B_x = 1257.74;
+				ped2B_y = 1360.11;
+				ped2B_z = 4.69158;
 			}
-			else if (ped2_cord == 15)
+			else if ((ped2_cord == 15) || (ped2_cord == 40))
 			{
-				ped2B_x = 612.89;
-				ped2B_y = 32.968;
-				ped2B_z = 12.304;
+				ped2B_x = 1228.35;
+				ped2B_y = 1354.6;
+				ped2B_z = 6.52973;
 			}
-			else if (ped2_cord == 16)
+			else if ((ped2_cord == 16) || (ped2_cord == 41))
 			{
-				ped2B_x = 604.669;
-				ped2B_y = -105.857;
-				ped2B_z = 12.328;
+				ped2B_x = 1199.22;
+				ped2B_y = 1368.07;
+				ped2B_z = 8.06161;
 			}
-			else if (ped2_cord == 17)
+			else if ((ped2_cord == 17) || (ped2_cord == 42))
 			{
-				ped2B_x = 582.798;
-				ped2B_y = -205.283;
-				ped2B_z = 11.001;
+				ped2B_x = 1183.06;
+				ped2B_y = 1415.09;
+				ped2B_z = 9.69333;
 			}
-			else if (ped2_cord == 18)
+			else if ((ped2_cord == 18) || (ped2_cord == 43))
 			{
-				ped2B_x = 528.276;
-				ped2B_y = -305.345;
-				ped2B_z = 10.527;
+				ped2B_x = 1159.08;
+				ped2B_y = 1373.02;
+				ped2B_z = 10.1963;
 			}
-			else if (ped2_cord == 19)
+			else if ((ped2_cord == 19) || (ped2_cord == 44))
 			{
-				ped2B_x = 410.301;
-				ped2B_y = -336.548;
-				ped2B_z = 11.142;
+				ped2B_x = 1189.24;
+				ped2B_y = 1325.24;
+				ped2B_z = 13.705;
 			}
-			else if (ped2_cord == 20)
+			else if ((ped2_cord == 20) || (ped2_cord == 45))
 			{
-				ped2B_x = 325.847;
-				ped2B_y = -362.34;
-				ped2B_z = 13.43;
+				ped2B_x = 1160.601;
+				ped2B_y = 1309.001;
+				ped2B_z = 7.40545;
 			}
-			else if (ped2_cord == 21)
+			else if ((ped2_cord == 21) || (ped2_cord == 46))
 			{
-				ped2B_x = 242.523;
-				ped2B_y = -411.935;
-				ped2B_z = 15.094;
+				ped2B_x = 1133.17;
+				ped2B_y = 1333.76;
+				ped2B_z = 8.59773;
 			}
-			else if (ped2_cord == 22)
+			else if ((ped2_cord == 22) || (ped2_cord == 47))
 			{
-				ped2B_x = 246.695;
-				ped2B_y = -542.039;
-				ped2B_z = 27.099;
+				ped2B_x = 1106.12;
+				ped2B_y = 1364.92;
+				ped2B_z = 10.859;
 			}
-			else if (ped2_cord == 23)
+			else if ((ped2_cord == 23) || (ped2_cord == 48))
 			{
-				ped2B_x = 239.984;
-				ped2B_y = -699.925;
-				ped2B_z = 11.655;
+				ped2B_x = 1105.15;
+				ped2B_y = 1331.63;
+				ped2B_z = 8.73177;
 			}
-			else if (ped2_cord == 24)
+			else if ((ped2_cord == 24) || (ped2_cord == 49))
 			{
-				ped2B_x = 268.544;
-				ped2B_y = -869.917;
-				ped2B_z = 11.294;
+				ped2B_x = 1125.79;
+				ped2B_y = 1294.66;
+				ped2B_z = 6.72605;
 			}
-			else if (ped2_cord == 25)
+			else if ((ped2_cord == 25) || (ped2_cord == 50))
 			{
-				ped2B_x = 317.674;
-				ped2B_y = -979.663;
-				ped2B_z = 10.455;
+				ped2B_x = 1174.04;
+				ped2B_y = 1249.25;
+				ped2B_z = 7.27924;
 			}
 			else if (ped2_cord == 26)
 			{
-				ped2B_x = 421.182;
-				ped2B_y = -1043.65;
-				ped2B_z = 10.96;
+				ped2B_x = 1205.39;
+				ped2B_y = 1270.37;
+				ped2B_z = 11.7045;
 			}
-			else if (ped2_cord == 27)
-			{
-				ped2B_x = 543.56;
-				ped2B_y = -1055.12;
-				ped2B_z = 11.516;
-			}
-			else if (ped2_cord == 28)
-			{
-				ped2B_x = 607.464;
-				ped2B_y = -994.732;
-				ped2B_z = 15.699;
-			}
-			else if (ped2_cord == 29)
-			{
-				ped2B_x = 692.539;
-				ped2B_y = -701.819;
-				ped2B_z = 27.351;
-			}
-			else if (ped2_cord == 30)
+			else if (ped2_cord == 51)
 			{
 				ped2B_x = ped2B_x; 
 				ped2B_y = ped2B_y;
@@ -939,182 +899,166 @@ void rc_baron(void)
 			}
 			//TASK_CAR_MISSION_COORS_TARGET_NOT_AGAINST_TRAFFIC(ped2, car2, ped2B_x, ped2B_y, ped2B_z, 4, 60.0, 2, 5, 10);// пед едит на нужные координаты("p1"-пед,"a2"-машины,хyz,какой-то флаг,скорость движения,какие-то флаги)
 		}
-
 //============================== соперник 3 ==============================
+
+
 		GET_CHAR_COORDINATES(ped3,  &Ped3X, &Ped3Y, &Ped3Z);//вписываем координаты соперника в переменную
 		GET_DISTANCE_BETWEEN_COORDS_3D( Ped3X, Ped3Y, Ped3Z, ped3B_x, ped3B_y, ped3B_z, &Ped3R);//проверка "игрок на координатах"
 		if ( Ped3R < 10.0)
 		{
 			ped3_cord += 1;
-			if (ped3_cord == 2)
+			FIX_CAR(car3);
+			if ((ped3_cord == 2) || (ped3_cord == 27))
 			{
-				ped3B_x = 754.35;
-				ped3B_y = 1635.11;
-				ped3B_z = 26.448;
+				ped3B_x = 1234.9;
+				ped3B_y = 1288.16;
+				ped3B_z = 10.0825;
 			}
-			else if (ped3_cord == 3)
+			else if ((ped3_cord == 3) || (ped3_cord == 28))
 			{
-				ped3B_x = 750.778;
-				ped3B_y = 1482.34;
-				ped3B_z = 24.25;
+				ped3B_x = 1251.44;
+				ped3B_y = 1256.45;
+				ped3B_z = 9.9452;
 			}
-			else if (ped3_cord == 4)
+			else if ((ped3_cord == 4) || (ped3_cord == 29))
 			{
-				ped3B_x = 722.354;
-				ped3B_y = 1322.47;
-				ped3B_z = 22.426;
+				ped3B_x = 1222.74;
+				ped3B_y = 1222.7;
+				ped3B_z = 9.73822;
 			}
-			else if (ped3_cord == 5)
+			else if ((ped3_cord == 5) || (ped3_cord == 30))
 			{
-				ped3B_x = 634.599;
-				ped3B_y = 1222.72;
-				ped3B_z = 22.896;
+				ped3B_x = 1273.73;
+				ped3B_y = 1206.79;
+				ped3B_z = 8.06065;
 			}
-			else if (ped3_cord == 6)
+			else if ((ped3_cord == 6) || (ped3_cord == 31))
 			{
-				ped3B_x = 811.602;
-				ped3B_y = 1097.23;
-				ped3B_z = 15.846;
+				ped3B_x = 1314.61;
+				ped3B_y = 1227.43;
+				ped3B_z = 7.53068;
 			}
-			else if (ped3_cord == 7)
+			else if ((ped3_cord == 7) || (ped3_cord == 32))
 			{
-				ped3B_x = 779.553;
-				ped3B_y = 978.865;
-				ped3B_z = 14.168;
+				ped3B_x = 1302.67;
+				ped3B_y = 1267.16;
+				ped3B_z = 14.09;
 			}
-			else if (ped3_cord == 8)
+			else if ((ped3_cord == 8) || (ped3_cord == 33))
 			{
-				ped3B_x = 764.891;
-				ped3B_y = 877.459;
-				ped3B_z = 13.385;
+				ped3B_x = 1290.41;
+				ped3B_y = 1308.23;
+				ped3B_z = 7.81097;
 			}
-			else if (ped3_cord == 9)
+			else if ((ped3_cord == 9) || (ped3_cord == 34))
 			{
-				ped3B_x = 770.064;
-				ped3B_y = 776.41;
-				ped3B_z = 19.428;
+				ped3B_x = 1312.89;
+				ped3B_y = 1337.47;
+				ped3B_z = 8.78701;
 			}
-			else if (ped3_cord == 10)
+			else if ((ped3_cord == 10) || (ped3_cord == 35))
 			{
-				ped3B_x = 840.542;
-				ped3B_y = 635.447;
-				ped3B_z = 19.134;
+				ped3B_x = 1321.08;
+				ped3B_y = 1371.53;
+				ped3B_z = 9.74834;
 			}
-			else if (ped3_cord == 11)
+			else if ((ped3_cord == 11) || (ped3_cord == 36))
 			{
-				ped3B_x = 765.597;
-				ped3B_y = 520.781;
-				ped3B_z = 20.134;
+				ped3B_x = 1307.35;
+				ped3B_y = 1399.94;
+				ped3B_z = 9.18205;
 			}
-			else if (ped3_cord == 12)
+			else if ((ped3_cord == 12) || (ped3_cord == 37))
 			{
-				ped3B_x = 717.866;
-				ped3B_y = 388.471;
-				ped3B_z = 17.046;
+				ped3B_x = 1248.8;
+				ped3B_y = 1414.5;
+				ped3B_z = 7.94941;
 			}
-			else if (ped3_cord == 13)
+			else if ((ped3_cord == 13) || (ped3_cord == 38))
 			{
-				ped3B_x = 658.013;
-				ped3B_y = 261.482;
-				ped3B_z = 14.929;
+				ped3B_x = 1241.5;
+				ped3B_y = 1384.38;
+				ped3B_z = 5.77478;
 			}
-			else if (ped3_cord == 14)
+			else if ((ped3_cord == 14) || (ped3_cord == 39))
 			{
-				ped3B_x = 627.309;
-				ped3B_y = 167.991;
-				ped3B_z = 14.146;
+				ped3B_x = 1257.74;
+				ped3B_y = 1360.11;
+				ped3B_z = 4.69158;
 			}
-			else if (ped3_cord == 15)
+			else if ((ped3_cord == 15) || (ped3_cord == 40))
 			{
-				ped3B_x = 612.89;
-				ped3B_y = 32.968;
-				ped3B_z = 12.304;
+				ped3B_x = 1228.35;
+				ped3B_y = 1354.6;
+				ped3B_z = 6.52973;
 			}
-			else if (ped3_cord == 16)
+			else if ((ped3_cord == 16) || (ped3_cord == 41))
 			{
-				ped3B_x = 604.669;
-				ped3B_y = -105.857;
-				ped3B_z = 12.328;
+				ped3B_x = 1199.22;
+				ped3B_y = 1368.07;
+				ped3B_z = 8.06161;
 			}
-			else if (ped3_cord == 17)
+			else if ((ped3_cord == 17) || (ped3_cord == 42))
 			{
-				ped3B_x = 582.798;
-				ped3B_y = -205.283;
-				ped3B_z = 11.001;
+				ped3B_x = 1183.06;
+				ped3B_y = 1415.09;
+				ped3B_z = 9.69333;
 			}
-			else if (ped3_cord == 18)
+			else if ((ped3_cord == 18) || (ped3_cord == 43))
 			{
-				ped3B_x = 528.276;
-				ped3B_y = -305.345;
-				ped3B_z = 10.527;
+				ped3B_x = 1159.08;
+				ped3B_y = 1373.02;
+				ped3B_z = 10.1963;
 			}
-			else if (ped3_cord == 19)
+			else if ((ped3_cord == 19) || (ped3_cord == 44))
 			{
-				ped3B_x = 410.301;
-				ped3B_y = -336.548;
-				ped3B_z = 11.142;
+				ped3B_x = 1189.24;
+				ped3B_y = 1325.24;
+				ped3B_z = 13.705;
 			}
-			else if (ped3_cord == 20)
+			else if ((ped3_cord == 20) || (ped3_cord == 45))
 			{
-				ped3B_x = 325.847;
-				ped3B_y = -362.34;
-				ped3B_z = 13.43;
+				ped3B_x = 1160.601;
+				ped3B_y = 1309.001;
+				ped3B_z = 7.40545;
 			}
-			else if (ped3_cord == 21)
+			else if ((ped3_cord == 21) || (ped3_cord == 46))
 			{
-				ped3B_x = 242.523;
-				ped3B_y = -411.935;
-				ped3B_z = 15.094;
+				ped3B_x = 1133.17;
+				ped3B_y = 1333.76;
+				ped3B_z = 8.59773;
 			}
-			else if (ped3_cord == 22)
+			else if ((ped3_cord == 22) || (ped3_cord == 47))
 			{
-				ped3B_x = 246.695;
-				ped3B_y = -542.039;
-				ped3B_z = 27.099;
+				ped3B_x = 1106.12;
+				ped3B_y = 1364.92;
+				ped3B_z = 10.859;
 			}
-			else if (ped3_cord == 23)
+			else if ((ped3_cord == 23) || (ped3_cord == 48))
 			{
-				ped3B_x = 239.984;
-				ped3B_y = -699.925;
-				ped3B_z = 11.655;
+				ped3B_x = 1105.15;
+				ped3B_y = 1331.63;
+				ped3B_z = 8.73177;
 			}
-			else if (ped3_cord == 24)
+			else if ((ped3_cord == 24) || (ped3_cord == 49))
 			{
-				ped3B_x = 268.544;
-				ped3B_y = -869.917;
-				ped3B_z = 11.294;
+				ped3B_x = 1125.79;
+				ped3B_y = 1294.66;
+				ped3B_z = 6.72605;
 			}
-			else if (ped3_cord == 25)
+			else if ((ped3_cord == 25) || (ped3_cord == 50))
 			{
-				ped3B_x = 317.674;
-				ped3B_y = -979.663;
-				ped3B_z = 10.455;
+				ped3B_x = 1174.04;
+				ped3B_y = 1249.25;
+				ped3B_z = 7.27924;
 			}
 			else if (ped3_cord == 26)
 			{
-				ped3B_x = 421.182;
-				ped3B_y = -1043.65;
-				ped3B_z = 10.96;
+				ped3B_x = 1205.39;
+				ped3B_y = 1270.37;
+				ped3B_z = 11.7045;
 			}
-			else if (ped3_cord == 27)
-			{
-				ped3B_x = 543.56;
-				ped3B_y = -1055.12;
-				ped3B_z = 11.516;
-			}
-			else if (ped3_cord == 28)
-			{
-				ped3B_x = 607.464;
-				ped3B_y = -994.732;
-				ped3B_z = 15.699;
-			}
-			else if (ped3_cord == 29)
-			{
-				ped3B_x = 692.539;
-				ped3B_y = -701.819;
-				ped3B_z = 27.351;
-			}
-			else if (ped3_cord == 30)
+			else if (ped3_cord == 51)
 			{
 				ped3B_x = ped3B_x; 
 				ped3B_y = ped3B_y;
@@ -1130,6 +1074,7 @@ void rc_baron(void)
 			skip = 1;
 			break;
 		}
+
 
 		//***************** позиция *****************
 		GET_CHAR_COORDINATES(ped1,  &Ped1X, &Ped1Y, &Ped1Z);//вписываем координаты соперника в переменную
@@ -1489,10 +1434,21 @@ void rc_baron(void)
 		{
 			poziteon = 3;
 		}
+
 		
-		//DRAW_SPRITE( fon, 0.8765625, 0.70045, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );
+		DRAW_SPRITE( fon, 0.8765625, 0.70045, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );
 		DRAW_SPRITE( fon, 0.8765625, 0.74213, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );
 		DRAW_SPRITE( fon, 0.8765625, 0.78381, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// рисуем фоновую текстуру.
+
+		// HUD круг
+		setup_draw_text();	
+		DISPLAY_TEXT(0.78815097, 0.69565, "RCR1_4"); //LAP:
+		setup_draw_value();
+		SET_TEXT_CENTRE(1);
+		DISPLAY_TEXT_WITH_NUMBER(0.9203125, 0.68625, "CP_TIME_NOZERO", play_lap);// 
+		setup_draw_value();
+		SET_TEXT_CENTRE(1);
+		DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.68625, "OUTOF_NUM", 2);// 
 
 		// HUD позицыя игрока
 		setup_draw_text();	
@@ -1567,9 +1523,9 @@ void rc_baron(void)
 	STOP_PLAYBACK_RECORDED_CAR(car1);
 	STOP_PLAYBACK_RECORDED_CAR(car2);
 	STOP_PLAYBACK_RECORDED_CAR(car3);
-	REMOVE_CAR_RECORDING( 3066 ); // выгружаем пути транспорта
-	REMOVE_CAR_RECORDING( 3067 ); // выгружаем пути транспорта
-	REMOVE_CAR_RECORDING( 3068 ); // выгружаем пути транспорта
+	REMOVE_CAR_RECORDING( 3069 ); // выгружаем пути транспорта
+	REMOVE_CAR_RECORDING( 3070 ); // выгружаем пути транспорта
+	REMOVE_CAR_RECORDING( 3071 ); // выгружаем пути транспорта
 
 	// выгружаем из памяти модели
 	MARK_MODEL_AS_NO_LONGER_NEEDED(PedM1);//выгружаем модель педа
@@ -1595,7 +1551,7 @@ void main(void)
 {
 	//WAIT(5000);
 	CLEAR_HELP(); // удаляем текст подсказки
-	LOAD_ADDITIONAL_TEXT("RCPLNE1", 6);
+	LOAD_ADDITIONAL_TEXT("RCRACE1", 6);
 	DO_SCREEN_FADE_OUT( 250 );// Затемняем экран
 	while(true)
 	{
@@ -1610,14 +1566,14 @@ void main(void)
 	SET_PLAYER_INVINCIBLE(GetPlayerIndex(), 1);// Игрок бессмертный
 	SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замараживаем игрока
 	GET_CAR_CHAR_IS_USING(GetPlayerPed(), &car0);//получаем автомобиль
-	SET_CAR_COORDINATES_NO_OFFSET(car0, 741.176, 1785.59, 22.1314);
-	SET_CAR_HEADING(car0, 180.0);
+	SET_CAR_COORDINATES_NO_OFFSET(car0, 1162.67, 1225.26, 8.77136);
+	SET_CAR_HEADING(car0, -5.0);
 	SET_ENGINE_HEALTH(car0, 900);
 
 	//выставляем камеру
 	CREATE_CAM( 14, &camera );
-	POINT_CAM_AT_COORD	( camera, 741.176, 1785.87, 22.1314 ); // куда смотрит камера
-	SET_CAM_POS			( camera, 742.858, 1780.66, 25.0366 );//расположение камеры
+	POINT_CAM_AT_COORD	( camera, 1162.54, 1225.101, 8.77136 ); // куда смотрит камера
+	SET_CAM_POS			( camera, 1166.25, 1230.351, 10.9641 );//расположение камеры
 	SET_CAM_ACTIVE( camera, 1 );
 	SET_CAM_PROPAGATE( camera, 1 );
 	ACTIVATE_SCRIPTED_CAMS(1, 1);
@@ -1637,7 +1593,7 @@ void main(void)
 	
 	REQUEST_MODEL(CarM2);
 	while (!HAS_MODEL_LOADED(CarM2)) WAIT(100);
-	rc_baron();
+	rc_bandit();
 
 	DO_SCREEN_FADE_OUT( 1000 );// Затемняем экран
 	while(true)
@@ -1648,12 +1604,11 @@ void main(void)
 			break;
 		}
 	}
-	CLEAR_AREA( 748.83, 1771.33, 22.1365, 10.0, 1);//очещаем зону загрузки
 
 	//выставляем камеру на фургон
 	CREATE_CAM( 14, &camera );
-	POINT_CAM_AT_COORD	( camera, 741.176, 1785.87, 22.1314 ); // куда смотрит камера
-	SET_CAM_POS			( camera, 742.858, 1780.66, 25.0366 );//расположение камеры
+	POINT_CAM_AT_COORD	( camera, 1162.54, 1225.101, 8.77136 ); // куда смотрит камера
+	SET_CAM_POS			( camera, 1166.25, 1230.351, 10.9641 );//расположение камеры
 	SET_CAM_ACTIVE( camera, 1 );
 	SET_CAM_PROPAGATE( camera, 1 );
 	ACTIVATE_SCRIPTED_CAMS(1, 1);
@@ -1679,6 +1634,7 @@ void main(void)
 	ACTIVATE_SCRIPTED_CAMS( 0, 0 );
 	END_CAM_COMMANDS( &camera );
 	SET_WIDESCREEN_BORDERS( 0 );
+	CLEAR_AREA( 1226.34, 1306.24, 1.87054, 160.0, 1);//очещаем зону загрузки
 	
 	if (skip == 1)
 	{

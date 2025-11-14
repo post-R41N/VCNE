@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RAGEScriptProject>
-  <Game>GTA IV</Game>
+  <Game>GTA IV: TBoGT</Game>
   <HeaderFiles>
     <file>\include\common.h</file>
     <file>\include\consts.h</file>
+    <file>\include\globals.h</file>
     <file>\include\natives.h</file>
     <file>\include\strings.h</file>
     <file>\include\types.h</file>
-    <file>\include\globals.h</file>
   </HeaderFiles>
   <ScriptFiles>
     <file>\scripts\ambstreams.c</file>
@@ -73,11 +73,14 @@
     <file>\scripts\weap_sounds.c</file>
     <file>\scripts\weap_sounds_v1.c</file>
     <file>\scripts\WORLD.c</file>
+    <file>\scripts\mp3_player.c</file>
   </ScriptFiles>
   <Editor>
     <Opened>
-      <view active="true">rcplne.c</view>
-      <view active="false">consts.h</view>
+      <view active="false">cheats.c</view>
+      <view active="false">loader_script.c</view>
+      <view active="false">mp3_player.c</view>
+      <view active="true">intro.c</view>
     </Opened>
   </Editor>
 </RAGEScriptProject>
