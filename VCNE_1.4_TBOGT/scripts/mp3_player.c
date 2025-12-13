@@ -9,9 +9,9 @@
 #include <types.h>
 #include <consts.h>
 
-int isHelpTrackDir = 0, isHelpTrackRoll = 0;
+uint isHelpTrackDir = 0, isHelpTrackRoll = 0;
 
-int isHelpsDisplayedYet()
+uint isHelpsDisplayedYet()
 {
     if (isHelpTrackDir == 1 && isHelpTrackRoll == 1) return 1;
     return 0;

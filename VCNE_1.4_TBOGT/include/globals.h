@@ -10,6 +10,10 @@ boolean G_DIAZ;
 boolean G_ASSASSIN;
 boolean G_PROTECT;
 
+boolean G_HELP;
+boolean G_FLASH_BLIP_SAFE;
+boolean G_FLASH_BLIP;
+
 boolean G_CUBAN;
 boolean G_HAITI;
 boolean G_BIKE;

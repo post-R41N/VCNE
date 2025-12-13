@@ -8,13 +8,15 @@
 #include <types.h>
 #include <consts.h>
 #include "globals.h"
+#include "vcneFunctionLibrary.h"
 float PlayX, PlayY, PlayZ, PlayR, blip_on, skip, dialog, textID, help, car1_des, car2_des, car2_des2, sutosave;
 float PedX, PedY, PedZ, PedR, bike, in_car, in_cord, stelking, load_all, add_phone, locked;
-float sound, soundID, riotID, riotON, skin, vorotaX;
+float sound, soundID, riotID, riotON, skin, vorotaX, speed;
 float ped4_ID, ped5_ID, ped6_ID, ped7_ID, ped8_ID, ped9_ID, ped10_ID, ped11_ID, ped12_ID, ped13_ID;
 float ped14_ID, ped15_ID, ped16_ID, ped17_ID, ped18_ID, ped19_ID, ped20_ID, ped21_ID, ped22_ID, ped23_ID, ped24_ID;
 uint hour, minute, weather;
 uint stat;
+uint pedHealth;
 
 
 void SetTime(uint time)
@@ -76,19 +78,23 @@ void LAWYER_1(void)
 				ADD_BLIP_FOR_COORD(552.217, -293.87, 4.356, &lawyer_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(lawyer_ico, BLIP_ROMAN);//текстура иконки на радаре
 				CHANGE_BLIP_COLOUR(lawyer_ico, 0);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
-				CHANGE_BLIP_SCALE(lawyer_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(lawyer_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(lawyer_ico, "NE_LAWYER");//иконка на радаре называние в истории карты "Адвокат"
 				blip_on = 1;
 			}
 			DRAW_CHECKPOINT( 552.217, -293.87, 4.356, 1.5, 160, 116, 209);//создание чекпойнт на координатах и его цвет
 			GET_CHAR_COORDINATES(GetPlayerPed(),  &PlayX, &PlayY, &PlayZ);//вписываем координаты игрока в переменную
 			GET_DISTANCE_BETWEEN_COORDS_3D( PlayX, PlayY, PlayZ, 552.217, -293.87, 4.356, &PlayR);//проверка "игрок на координатах"
+
+            if (blip_on == 1 && G_FLASH_BLIP == 1) FLASH_BLIP(lawyer_ico, 1);
+            else FLASH_BLIP(lawyer_ico, 0);
 			if (( PlayR < 1.5) && (!IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed())))
 			{
 				//--------------- СТАРТ МИССИИ ---------------
 				skip = 0; // переменная пропуска
 				load_all = 0;
 				G_ONMISSION = 1;
+                G_HELP = 0;
 				REMOVE_BLIP(lawyer_ico);//Удаляем иконку на радаре
 				SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
 				CLEAR_WANTED_LEVEL(GetPlayerIndex());
@@ -120,9 +126,9 @@ void LAWYER_1(void)
 				{
 					WAIT(0);
 				}
-
-				PRINT_BIG("LAW_1", 5000, 2);//The Party
 				DO_SCREEN_FADE_IN(0);
+                SetTime(300);
+                DrawText("LAW_1", 0, false, 0);
 				while (!HAS_CUTSCENE_FINISHED())
 				{
 					WAIT(0);
@@ -138,11 +144,6 @@ void LAWYER_1(void)
 				FORWARD_TO_TIME_OF_DAY(hour, minute);//устанавливаем время
 
 				SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 1, 1, 1 );//размораживаем игрока
-				ADD_BLIP_FOR_COORD(527.259, -601.747, 4.341, &Party_ico);//создаем иконку на радаре
-				CHANGE_BLIP_SPRITE(Party_ico, BLIP_CLOTHES_SHOP);//текстура иконки на радаре
-				CHANGE_BLIP_COLOUR(Party_ico, 0);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
-				CHANGE_BLIP_SCALE(Party_ico, 1.1); // масштаб иконки на радаре
-				CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_SHOP");//иконка на радаре называние в истории карты "Clothes shop"
 
 				SetTime(1000);
 				NEW_SCRIPTED_CONVERSATION();
@@ -150,28 +151,25 @@ void LAWYER_1(void)
 				ADD_LINE_TO_CONVERSATION(0, "R14_VR", "", 0, 0);//
 				START_SCRIPT_CONVERSATION(1, 1);
 				SetSpeech();
-
-				PRINT_STRING_IN_STRING("string", "LAW1_1", 5500, 1);//~g~Go get some new threads from Rafael's clothes shop.
-				SetTime(2000);
-
-				// мигиние радара
-				DISPLAY_RADAR(0);
-				SetTime(250);
-				DISPLAY_RADAR(1);
-				SetTime(250);
-				DISPLAY_RADAR(0);
-				SetTime(250);
-				DISPLAY_RADAR(1);
-				SetTime(250);
-				DISPLAY_RADAR(0);
-				SetTime(250);
-				DISPLAY_RADAR(1);
-				SetTime(250);
-				DISPLAY_RADAR(0);
-				SetTime(250);
-				DISPLAY_RADAR(1);
-				SetTime(3250);
-
+                
+                WaitUntilHelpFadeIn();
+                PRINT_HELP_FOREVER("LAW1_HELP_1");
+                PRINT_NOW("LAW1_1", 6000, 1);//~g~Go get some new threads from Rafael's clothes shop.
+                ADD_BLIP_FOR_COORD(527.259, -601.747, 4.341, &Party_ico);//создаем иконку на радаре
+				CHANGE_BLIP_SPRITE(Party_ico, BLIP_CLOTHES_SHOP);//текстура иконки на радаре
+				CHANGE_BLIP_COLOUR(Party_ico, 12);   //цвет иконка на радаре (0=белая, 5=розовый, 12=голубой, 19=жёлтый)
+				CHANGE_BLIP_SCALE(Party_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_SHOP");//иконка на радаре называние в истории карты "Clothes shop"
+                SET_ROUTE(Party_ico, 1);
+                SetTime(500);
+                FLASH_ROUTE(1);
+                FLASH_BLIP(Party_ico, 1);
+				SetTime(5500);
+                FLASH_ROUTE(0);
+                FLASH_BLIP(Party_ico, 0);
+                CLEAR_HELP();
+                G_HELP = 1;
+                
 				Car car1, car2, car3, car4, car5, car6;
 				Ped ped1, ped2;
 				Cam camera, camera2, camera3;
@@ -231,11 +229,14 @@ void LAWYER_1(void)
 				while (TRUE)
 				{
 					WAIT(0);
-					DRAW_CHECKPOINT( 527.259, -601.747, 4.341, 1.3, 246, 151, 255);//создание чекпойнт на координатах и его цвет
+					DRAW_CHECKPOINT(527.259, -601.747, 4.425, 1.3, 246, 151, 255);//создание чекпойнт на координатах и его цвет
 					GET_CHAR_COORDINATES(GetPlayerPed(),  &PlayX, &PlayY, &PlayZ);//вписываем координаты игрока в переменную
 					GET_DISTANCE_BETWEEN_COORDS_3D( PlayX, PlayY, PlayZ, 527.259, -601.747, 4.341, &PlayR);//проверка "игрок на координатах"
 					if (( PlayR < 1.3) && (!IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed())))
 					{
+                        G_HELP = 0;
+                        if (IS_HELP_MESSAGE_BEING_DISPLAYED()) CLEAR_HELP();
+                        SET_ROUTE(Party_ico, 0);
 						REMOVE_BLIP(Party_ico);//Удаляем иконку на радаре
 						SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
 
@@ -261,12 +262,14 @@ void LAWYER_1(void)
 								break;
 							}
 						}
+                        CLEAR_AREA(527.259, -601.747, 4.341, 80.5, 1);//Очищаем зону загрузки  
+                        SetTime(800);
+                        
 						// переодивание	
 						SET_CHAR_COMPONENT_VARIATION(GetPlayerPed(), 1, 1, 0);
-
 						FORWARD_TO_TIME_OF_DAY(19, 30);//устанавливаем время
-						SET_CHAR_COORDINATES(GetPlayerPed(), 528.664, -602.916, 4.766);// перемещаем игрока
-						SET_CHAR_HEADING(GetPlayerPed(), 52.9);
+						SET_CHAR_COORDINATES(GetPlayerPed(), 528.664, -602.916, 4.766);//перемещаем игрока
+						SET_CHAR_HEADING(GetPlayerPed(), 52.9);                      
 						SetTime(200);
 						DO_SCREEN_FADE_IN( 1000 );// убирается затемнение экрана
 
@@ -282,8 +285,6 @@ void LAWYER_1(void)
 						SET_CAM_PROPAGATE( camera2, 1 );
 						ACTIVATE_SCRIPTED_CAMS(1, 1);
 
-						SetTime(800);
-						CLEAR_AREA(527.259, -601.747, 4.341, 80.5, 1);//очещаем зону загрузки
 						START_PLAYBACK_RECORDED_CAR_WITH_OFFSET(car1, 2993, 0.0, 0.0, 0.0);// подъезд мотоцыкла
 						SetTime(3200);
 						
@@ -326,6 +327,7 @@ void LAWYER_1(void)
 						CHANGE_BLIP_COLOUR(Party_ico, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
 						CHANGE_BLIP_SCALE(Party_ico, 0.6); // масштаб иконки на радаре
 						CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_POINT");//иконка на радаре называние в истории карты ""
+                        SET_ROUTE(Party_ico, 1);
 
 						bike = 0;
 						break;
@@ -339,6 +341,7 @@ void LAWYER_1(void)
 				//------------------ Вторая часть миссии ------------------
 				if (skip == 0)
 				{
+                    SETTIMERA(0);
 					while (TRUE)
 					{
 						WAIT(0);
@@ -365,9 +368,22 @@ void LAWYER_1(void)
 								CLEAR_PRINTS();
 								TASK_COMBAT(ped1, GetPlayerPed());
 								PRINT_STRING_IN_STRING("string", "LAW1_2", 5500, 1);//~g~Get to the Colonel's boat.
+                                PRINT_HELP_FOREVER("LAW1_HELP_4");//Look behind 
+                                SetTime(5000);
+                                CLEAR_HELP();
+                                SetTime(3000);
+                                PRINT_HELP_FOREVER("CORNER");//In order to corner effectively press ~INPUT_VEH_BRAKE~
+                                SetTime(5000);
+                                CLEAR_HELP();
+                                SetTime(3000);
+                                PRINT_HELP_FOREVER("LAW1_HELP_2");//Shift your weight forwards and backwards when on a bike.
+                                SetTime(7500);
+                                CLEAR_HELP();
+                                G_HELP = 1;
 							}
 						}
-
+                        //else if ((IS_CHAR_DEAD(ped1)) || (!IS_CHAR_INJURED(ped1)) || TIMERA() > 10000) G_HELP = 1;
+                        
 						if ((load_all == 0) && (IS_CHAR_IN_AREA_3D( GetPlayerPed(), 182.78, -847.079, 0.41, 210.881, -811.954, 17.658, 0 )))
 						{
 							load_all = 1;
@@ -392,6 +408,9 @@ void LAWYER_1(void)
 						GET_DISTANCE_BETWEEN_COORDS_3D( PlayX, PlayY, PlayZ, 192.169, -827.01, 2.043, &PlayR);//проверка "игрок на координатах"
 						if ( PlayR < 1.3 )
 						{
+                            G_HELP = 0;
+                            if (IS_HELP_MESSAGE_BEING_DISPLAYED()) CLEAR_HELP();
+                            SET_ROUTE(Party_ico, 0);
 							REMOVE_BLIP(Party_ico);//Удаляем иконку на радаре
 							SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
 							DO_SCREEN_FADE_OUT( 1000 );// Затемняем экран
@@ -449,6 +468,7 @@ void LAWYER_1(void)
 							CHANGE_BLIP_SCALE(Party_ico, 0.6); // масштаб иконки на радаре
 							CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_POINT");//иконка на радаре называние в истории карты ""
 							PRINT_STRING_IN_STRING("string", "LAW1_3", 5500, 1);//~g~Take the Colonel's daughter to the Pole Position club.
+                            SET_ROUTE(Party_ico, 1);
 							in_car = 0;
 							stelking = 0;
 							dialog = 0;
@@ -535,6 +555,7 @@ void LAWYER_1(void)
 								dialog = 2;
 								textID = 2;
 							}
+                            PRINT_HELP("LAW1_HELP_3");//Look around using mouse
 						}
 						if (dialog == 1)
 						{
@@ -631,11 +652,16 @@ void LAWYER_1(void)
 								if (!IS_SCRIPTED_CONVERSATION_ONGOING())
 								{
 									CLEAR_PRINTS();
+                                    if (IS_THIS_HELP_MESSAGE_BEING_DISPLAYED("LAW1_HELP_3"))
+                                    {
+                                        CLEAR_HELP();
+                                        G_HELP = 1;
+                                    }
 									textID = 7;
 								}
 							}
 						}
-
+                        
 						DRAW_CHECKPOINT( 534.054, -946.33, 4.189, 1.3, 246, 151, 255);//создание чекпойнт на координатах и его цвет
 						GET_CHAR_COORDINATES(GetPlayerPed(),  &PlayX, &PlayY, &PlayZ);//вписываем координаты игрока в переменную
 						GET_CHAR_COORDINATES(ped2,  &PedX, &PedY, &PedZ);//вписываем координаты игрока в переменную
@@ -643,9 +669,12 @@ void LAWYER_1(void)
 						GET_DISTANCE_BETWEEN_COORDS_3D( PedX, PedY, PedZ, 534.054, -946.33, 4.189, &PedR);//проверка "игрок на координатах"
 						if (( PlayR < 1.5 ) && ( PedR < 1.5 ))
 						{
+                            G_HELP = 0;
+                            if (IS_HELP_MESSAGE_BEING_DISPLAYED()) CLEAR_HELP();
 							ABORT_SCRIPTED_CONVERSATION( 0 );
 							// затемнение
 							SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
+                            SET_ROUTE(Party_ico, 0);
 							REMOVE_BLIP(Party_ico);//Удаляем иконку на радаре
 							DO_SCREEN_FADE_OUT( 1000 );// Затемняем экран
 							while(true)
@@ -665,8 +694,8 @@ void LAWYER_1(void)
 							{
 								SET_CHAR_COORDINATES(ped2, 533.717, -943.083, 4.834);// перемещаем педа Мерседес
 							}
-							TASK_GO_STRAIGHT_TO_COORD(ped2, 524.137, -930.173, 4.834, 2, -2);
-
+							//TASK_GO_STRAIGHT_TO_COORD(ped2, 524.137, -930.173, 4.834, 2, -2);
+                            TASK_GO_STRAIGHT_TO_COORD(ped2, 524.035,-927.675, 4.834, 2, -2);
 							// ставим камеру
 							CREATE_CAM( 14, &camera );
 							POINT_CAM_AT_COORD	( camera, 535.314, -937.212, 8.304); // куда смотрит камера
@@ -752,56 +781,14 @@ void LAWYER_1(void)
 				{
 					MARK_CAR_AS_NO_LONGER_NEEDED(&car6);//выгружаем модель машины(в последствии машина изчезнет)
 				}
-				if (skip == 1)
-				{
-					SETTIMERA(0); //сбрасываем таймер 
-					while (true)
-					{
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-                        SET_TEXT_FONT(0);
-						DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// пишем "Миссия провалена"
-
-						WAIT( 0 );
-						if ( TIMERA() > 3000 )
-						{
-							break;
-						}
-					}
-				}
+				if (skip == 1) DrawText("MISSION_FAILED", 2, false, 0);//Вызываем функцию строчки Миссия провалена
 				else if (skip == 2)
 				{
 					PRINT_HELP("NECLOTH1"); //Soiree outfit delivered to Ocean View Hotel on Ocean Beach.
 					SETTIMERA(0); //сбрасываем таймер 
 					REGISTER_MISSION_PASSED( "S_LAW_1" );//The Party
 					TRIGGER_MISSION_COMPLETE_AUDIO(1);//произрываем музыку параметр "(1)" воспроизводит звук из "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (цыфра "6" = "SMC6" в том-же архиве) 
-					while (true)
-					{
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-                        SET_TEXT_FONT(0);
-						DISPLAY_TEXT(0.5, 0.45, "MISSION_PASSED");// пишем "Миссия завершина"
-
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-                        SET_TEXT_FONT(0);
-						DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "CASH", 100);// +5000$
-						
-						WAIT( 0 );
-						if ( TIMERA() > 4000 )
-						{
-							break;
-						}
-					}
+                    DrawText("MISSION_PASSED", 1, true, 100);//Вызываем строчку Миссия пройдена
 					ADD_SCORE( GetPlayerIndex(), +100 );//даём игроку денег
 					G_LAWYER = 2;
 					stat = GET_INT_STAT(0);
@@ -812,6 +799,7 @@ void LAWYER_1(void)
 				}
 
 				G_ONMISSION = 0;
+                G_HELP = 1;
 				blip_on = 0;
 			}
 		}
@@ -822,7 +810,7 @@ void LAWYER_1(void)
 			{
 				ADD_BLIP_FOR_COORD(552.217, -293.87, 4.356, &lawyer_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(lawyer_ico, BLIP_ROMAN);//текстура иконки на радаре
-				CHANGE_BLIP_SCALE(lawyer_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(lawyer_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(lawyer_ico, "NE_LAWYER");//иконка на радаре называние в истории карты "Адвокат"
 				blip_on = 1;
 			}
@@ -840,6 +828,7 @@ void LAWYER_1(void)
 				in_car = 0;
 				help = 0;
 				locked = 1;
+                pedHealth = 0;
 				REMOVE_BLIP(lawyer_ico);//Удаляем иконку на радаре
 				SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
 				CLEAR_WANTED_LEVEL(GetPlayerIndex());
@@ -870,9 +859,9 @@ void LAWYER_1(void)
 				{
 					WAIT(0);
 				}
-
-				PRINT_BIG("LAW_2", 5000, 2);//Back Alley Brawl
 				DO_SCREEN_FADE_IN(0);
+                SetTime(300);
+                DrawText("LAW_2", 0, false, 0);//Вызываем строчку названия миссии(тип строки 0)
 				while (!HAS_CUTSCENE_FINISHED())
 				{
 					WAIT(0);
@@ -893,8 +882,13 @@ void LAWYER_1(void)
 				CHANGE_BLIP_COLOUR(Party_ico, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
 				CHANGE_BLIP_SCALE(Party_ico, 0.6); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_POINT");//иконка на радаре называние в истории карты "Телефонный звонок"
-				PRINT_STRING_IN_STRING("string", "LAW2_6", 5500, 1);//~g~Go to the Malibu Club and find Kent Paul.
-
+                SET_ROUTE(Party_ico, 1);//Рисуем маршрут
+                
+				PRINT_NOW("LAW2_6", 5500, 1);//~g~Go to the Malibu Club and find Kent Paul.
+                PRINT_HELP_FOREVER("LAW2_HELP_1");//Zoom out radar and display vehicle, area and street names
+                SetTime(5000);
+                CLEAR_HELP();
+                
 				Car car1;
 				Pickup mob_phone;
 				Ped ped1, ped2, ped3, ped4, ped5;
@@ -947,7 +941,25 @@ void LAWYER_1(void)
 				REQUEST_MODEL(trubka);
 				while (!HAS_MODEL_LOADED(trubka)) WAIT(0);
 				CREATE_OBJECT_NO_OFFSET(trubka, 1.1, 1.1, -1.1, &trubka_1, TRUE);
-
+                
+                SETTIMERA(0);
+                while (TRUE)
+                {
+                    if (IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed()))
+                    {
+                        PRINT_HELP_FOREVER("LAW2_HELP_2");//Cycle between radiostations
+                        SetTime(7500);
+                        CLEAR_HELP();
+                        PRINT_HELP_FOREVER("LAW2_HELP_3");//Turn off radio
+                        SetTime(5000);
+                        CLEAR_HELP();
+                        PRINT_HELP_FOREVER("LAW2_HELP_4");//Turn on radio
+                        SetTime(7500);
+                        CLEAR_HELP();
+                        break;
+                    }
+                    else if (TIMERA() > 20000) break;
+                }
 				//------------------ Первая часть миссии ------------------
 				while (TRUE)
 				{
@@ -956,6 +968,7 @@ void LAWYER_1(void)
 					DRAW_CHECKPOINT( 925.599, 453.827, 5.389, 1.3, 246, 151, 255);//создание чекпойнт на координатах и его цвет
 					GET_CHAR_COORDINATES(GetPlayerPed(),  &PlayX, &PlayY, &PlayZ);//вписываем координаты игрока в переменную
 					GET_DISTANCE_BETWEEN_COORDS_3D( PlayX, PlayY, PlayZ, 925.599, 453.827, 5.389, &PlayR);//проверка "игрок на координатах"
+  
 					if (( PlayR < 1.3) && (!IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed())))
 					{
 						SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
@@ -973,6 +986,7 @@ void LAWYER_1(void)
 						TASK_GO_STRAIGHT_TO_COORD(GetPlayerPed(), 921.141, 457.901, 5.688, 2, -2);//игрок идёт в клуб
 
 						// затемнение
+                        SET_ROUTE(Party_ico, 0);//Удаляем маршрут
 						REMOVE_BLIP(Party_ico);//Удаляем иконку на радаре
 						DO_SCREEN_FADE_OUT( 1000 );// Затемняем экран
 						while(true)
@@ -1011,18 +1025,18 @@ void LAWYER_1(void)
 						{
 							DO_SCREEN_FADE_IN(0);
 						}
-
+                        
 						ADD_BLIP_FOR_COORD(869.546, -37.984, 5.566, &Party_ico);//создаем иконку на радаре
 						CHANGE_BLIP_SPRITE(Party_ico, BLIP_OBJECTIVE);//текстура иконки на радаре
 						CHANGE_BLIP_COLOUR(Party_ico, 19);  //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
 						CHANGE_BLIP_SCALE(Party_ico, 0.6); // масштаб иконки на радаре
 						CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_POINT");//иконка на радаре называние в истории карты "Телефонный звонок"
 						PRINT_STRING_IN_STRING("string", "LAW2_7", 5500, 1);//~g~Go and find the chef on Ocean Drive.
-
+                        SET_ROUTE(Party_ico, 1);
 						SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 1, 1, 1 );//размораживаем игрока
 						SET_CHAR_COORDINATES(ped1, 869.546, -37.984, 4.853);// перемещаем повора-босса
 						SET_CHAR_HEADING(ped1, 56.323);
-
+                        speed = 0.0;
 						// анимация разговора по телефону
 						ATTACH_OBJECT_TO_PED( trubka_1, ped1, 1232, 0.070, 0.052, 0.003, 3.30000000, 0.30000000, -0.45000000, 0 );
 						REQUEST_ANIMS( "amb@payphone" );//загружаем файл с анимацией
@@ -1045,9 +1059,12 @@ void LAWYER_1(void)
 						WAIT(0);
 						GET_CHAR_COORDINATES(GetPlayerPed(),  &PlayX, &PlayY, &PlayZ);//вписываем координаты игрока в переменную
 						GET_DISTANCE_BETWEEN_COORDS_3D( PlayX, PlayY, PlayZ, 869.546, -37.984, 5.566, &PlayR);//проверка "игрок на координатах"
-						if ( PlayR < 15.3)
+                        GET_CHAR_SPEED(GetPlayerPed(), &speed);
+						if (PlayR < 15.3 && speed < 20.0)
 						{
+                            SET_ROUTE(Party_ico, 0);
 							REMOVE_BLIP(Party_ico);//Удаляем иконку на радаре
+                            GET_CHAR_HEALTH(ped1, pedHealth);
 							SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
 
 							// ставим камеру
@@ -1093,7 +1110,7 @@ void LAWYER_1(void)
 							START_SCRIPT_CONVERSATION(1, 1);
 							SetSpeech();
 
-// анимация разговора тут
+                            // анимация разговора тут
 
 							NEW_SCRIPTED_CONVERSATION();
 							ADD_NEW_CONVERSATION_SPEAKER(0, GetPlayerPed(), "ROMAN");
@@ -1101,7 +1118,7 @@ void LAWYER_1(void)
 							START_SCRIPT_CONVERSATION(1, 1);
 							SetSpeech();
 
-// анимация разговора тут
+                            // анимация разговора тут
 
 							NEW_SCRIPTED_CONVERSATION();
 							ADD_NEW_CONVERSATION_SPEAKER(0, GetPlayerPed(), "ROMAN");
@@ -1138,7 +1155,7 @@ void LAWYER_1(void)
 							while (TRUE)
 							{
 								WAIT(0);
-								if ((IS_CHAR_DEAD(ped1)) || (IS_CHAR_INJURED(ped1)))//если пед мёртв или ранен
+								if ((IS_CHAR_DEAD(ped1)) || (IS_CHAR_INJURED(ped1)) || (pedHealth < 50))//если пед мёртв или ранен
 								{
 									EXPLODE_CHAR_HEAD(ped1);
 									REMOVE_BLIP(Party_ico);//Удаляем иконку на радаре
@@ -1172,7 +1189,7 @@ void LAWYER_1(void)
 							}
 							break;
 						}
-						else if ((IS_CHAR_DEAD(ped1)) || (IS_CHAR_INJURED(ped1)))//если игрок мёртв или аврестован
+						else if ((IS_CHAR_DEAD(ped1)) || (IS_CHAR_INJURED(ped1)) || (pedHealth < 50))//если игрок мёртв или аврестован
 						{
 							EXPLODE_CHAR_HEAD(ped1);
 							DETACH_OBJECT( trubka_1, 1 );
@@ -1457,8 +1474,9 @@ void LAWYER_1(void)
 							// создаём блип оружейки
 							SetTime(1000);
 							ADD_BLIP_FOR_COORD(379.082, -948.858, 4.217, &Party_ico);//создаем иконку на радаре
-							CHANGE_BLIP_SPRITE(Party_ico, BLIP_WEAPONS);//текстура иконки на радаре
-							CHANGE_BLIP_SCALE(Party_ico, 1.1); // масштаб иконки на радаре
+							CHANGE_BLIP_SPRITE(Party_ico, BLIP_OBJECTIVE);//текстура иконки на радаре
+							CHANGE_BLIP_SCALE(Party_ico, 0.6); // масштаб иконки на радаре
+                            CHANGE_BLIP_COLOUR(Party_ico, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
 							CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_POINT");//иконка на радаре называние в истории карты "Ammu-Nation"
 							CLEAR_PRINTS();
 							PRINT_STRING_IN_STRING("string", "LAW2_15", 5500, 1);//~g~Go to Ammu-Nation.
@@ -1484,8 +1502,9 @@ void LAWYER_1(void)
 							PRINT_STRING_IN_STRING("string", "LAW2_15", 5500, 1);//~g~Go to Ammu-Nation.
 							REMOVE_BLIP(lance_car);//Удаляем иконку на радаре
 							ADD_BLIP_FOR_COORD(379.082, -948.858, 4.217, &Party_ico);//создаем иконку на радаре
-							CHANGE_BLIP_SPRITE(Party_ico, BLIP_WEAPONS);//текстура иконки на радаре
-							CHANGE_BLIP_SCALE(Party_ico, 1.1); // масштаб иконки на радаре
+							CHANGE_BLIP_SPRITE(Party_ico, BLIP_OBJECTIVE);//текстура иконки на радаре
+                            CHANGE_BLIP_COLOUR(Party_ico, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+							CHANGE_BLIP_SCALE(Party_ico, 0.6); // масштаб иконки на радаре
 							CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_POINT");//иконка на радаре называние в истории карты "Ammu-Nation"
 						}
 
@@ -1800,49 +1819,14 @@ void LAWYER_1(void)
 				if (skip == 1)
 				{
 					SETTIMERA(0); //сбрасываем таймер 
-					while (true)
-					{
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// пишем "Миссия провалена"
-
-						WAIT( 0 );
-						if ( TIMERA() > 3000 )
-						{
-							break;
-						}
-					}
+					DrawText("MISSION_FAILED", 2, false, 0);//Вызываем функцию строчки Миссия провалена
 				}
 				else if (skip == 2)
 				{
 					SETTIMERA(0); //сбрасываем таймер 
 					REGISTER_MISSION_PASSED( "S_LAW_2" );//Back Alley Brawl
 					TRIGGER_MISSION_COMPLETE_AUDIO(1);//произрываем музыку параметр "(1)" воспроизводит звук из "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (цыфра "6" = "SMC6" в том-же архиве) 
-					while (true)
-					{
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT(0.5, 0.45, "MISSION_PASSED");// пишем "Миссия завершина"
-
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "CASH", 200);// +5000$
-						
-						WAIT( 0 );
-						if ( TIMERA() > 4000 )
-						{
-							break;
-						}
-					}
+                    DrawText("MISSION_PASSED", 1, true, 200);//Вызываем функцию строчки Миссия пройдена
 					ADD_SCORE( GetPlayerIndex(), +200 );//даём игроку денег
 					G_LAWYER = 3;
 					G_MAIN_CALL = 1;
@@ -1862,7 +1846,7 @@ void LAWYER_1(void)
 			{
 				ADD_BLIP_FOR_COORD(552.217, -293.87, 4.356, &lawyer_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(lawyer_ico, BLIP_ROMAN);//текстура иконки на радаре
-				CHANGE_BLIP_SCALE(lawyer_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(lawyer_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(lawyer_ico, "NE_LAWYER");//иконка на радаре называние в истории карты "Адвокат"
 				blip_on = 1;
 			}
@@ -1993,8 +1977,9 @@ void LAWYER_1(void)
 					WAIT(0);
 				}
 
-				PRINT_BIG("LAW_3", 5000, 2);//Jury Fury
 				DO_SCREEN_FADE_IN(0);
+                SetTime(300);
+                DrawText("LAW_3", 0, false, 0);//Вызываем строчку названия миссии(тип строки 0)
 				while (!HAS_CUTSCENE_FINISHED())
 				{
 					WAIT(0);
@@ -2801,52 +2786,13 @@ void LAWYER_1(void)
 				MARK_CAR_AS_NO_LONGER_NEEDED(&car2);//выгружаем модель машины(в последствии машина изчезнет)
 				MARK_CAR_AS_NO_LONGER_NEEDED(&car4);//выгружаем модель машины(в последствии машина изчезнет)
 
-				if (skip == 1)
-				{
-					SETTIMERA(0); //сбрасываем таймер 
-					while (true)
-					{
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// пишем "Миссия провалена"
-
-						WAIT( 0 );
-						if ( TIMERA() > 3000 )
-						{
-							break;
-						}
-					}
-				}
+				if (skip == 1) DrawText("MISSION_FAILED", 2, false, 0);//Вызываем функцию строчки Миссия провалена
 				else if (skip == 2)
 				{
 					SETTIMERA(0); //сбрасываем таймер 
 					REGISTER_MISSION_PASSED( "S_LAW_3" );//Jury Fury
 					TRIGGER_MISSION_COMPLETE_AUDIO(1);//произрываем музыку параметр "(1)" воспроизводит звук из "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (цыфра "6" = "SMC6" в том-же архиве) 
-					while (true)
-					{
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT(0.5, 0.45, "MISSION_PASSED");// пишем "Миссия завершина"
-
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "CASH", 400);// +5000$
-						
-						WAIT( 0 );
-						if ( TIMERA() > 4000 )
-						{
-							break;
-						}
-					}
+                    DrawText("MISSION_PASSED", 1, true, 400);//Вызываем функцию строчки Миссия пройдена
 					ADD_SCORE( GetPlayerIndex(), +400 );//даём игроку денег
 					G_LAWYER = 4;
 					stat = GET_INT_STAT(0);
@@ -2866,7 +2812,7 @@ void LAWYER_1(void)
 			{
 				ADD_BLIP_FOR_COORD(552.217, -293.87, 4.356, &lawyer_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(lawyer_ico, BLIP_ROMAN);//текстура иконки на радаре
-				CHANGE_BLIP_SCALE(lawyer_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(lawyer_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(lawyer_ico, "NE_LAWYER");//иконка на радаре называние в истории карты "Адвокат"
 				blip_on = 1;
 			}
@@ -2908,9 +2854,9 @@ void LAWYER_1(void)
 				{
 					WAIT(0);
 				}
-
-				PRINT_BIG("LAW_4", 5000, 2);//Riot
 				DO_SCREEN_FADE_IN(0);
+                SetTime(300);
+                DrawText("LAW_4", 0, false, 0);//Вызываем строчку названия миссии(тип строки 0)
 				while (!HAS_CUTSCENE_FINISHED())
 				{
 					WAIT(0);
@@ -3798,53 +3744,14 @@ void LAWYER_1(void)
 				MARK_OBJECT_AS_NO_LONGER_NEEDED(&barrel_3);
 				MARK_OBJECT_AS_NO_LONGER_NEEDED(&vorota);
 
-				if (skip == 1)
-				{
-					SETTIMERA(0); //сбрасываем таймер 
-					while (true)
-					{
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// пишем "Миссия провалена"
-
-						WAIT( 0 );
-						if ( TIMERA() > 3000 )
-						{
-							break;
-						}
-					}
-				}
+				if (skip == 1) DrawText("MISSION_FAILED", 2, false, 0);//
 				else if (skip == 2)
 				{
 					PRINT_HELP("CLOTH3"); //Coveralls outfit delivered to Tooled Up in The North Point Mall.
 					SETTIMERA(0); //сбрасываем таймер 
 					REGISTER_MISSION_PASSED( "S_LAW_4" );//Riot
 					TRIGGER_MISSION_COMPLETE_AUDIO(1);//произрываем музыку параметр "(1)" воспроизводит звук из "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (цыфра "6" = "SMC6" в том-же архиве) 
-					while (true)
-					{
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT(0.5, 0.45, "MISSION_PASSED");// пишем "Миссия завершина"
-
-						SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
-						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
-						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
-						SET_TEXT_CENTRE(1); // задаём центр текста
-						DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "CASH", 1000);// +5000$
-						
-						WAIT( 0 );
-						if ( TIMERA() > 4000 )
-						{
-							break;
-						}
-					}
+                    DrawText("MISSION_PASSED", 1, true, 1000);//Вызываем строчку Миссия пройдена
 					ADD_SCORE( GetPlayerIndex(), +1000 );//даём игроку денег
 					G_LAWYER = 5;
 					G_AVERY = 1;

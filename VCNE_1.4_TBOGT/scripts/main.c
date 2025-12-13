@@ -341,7 +341,8 @@ void main(void)
 	G_LANCE_CALL = 0;
 	G_MERSEDES_CALL = 0;
 	G_AVERY_CALL = 0;
-
+    G_HELP = 0;
+    
 	G_LAWYER = 0;
 	G_BIKE = 0;
 	G_COKERUN = 0;

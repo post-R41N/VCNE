@@ -8,6 +8,7 @@
     <file>\include\natives.h</file>
     <file>\include\strings.h</file>
     <file>\include\types.h</file>
+    <file>\include\vcneFunctionLibrary.h</file>
   </HeaderFiles>
   <ScriptFiles>
     <file>\scripts\ambstreams.c</file>
@@ -74,13 +75,22 @@
     <file>\scripts\weap_sounds_v1.c</file>
     <file>\scripts\WORLD.c</file>
     <file>\scripts\mp3_player.c</file>
+    <file>\scripts\parachute_launcher.c</file>
+    <file>\scripts\parachute_test.c</file>
+    <file>\scripts\test_fonts.c</file>
+    <file>\scripts\functionSamples.c</file>
+    <file>\scripts\intro_help.c</file>
   </ScriptFiles>
   <Editor>
     <Opened>
-      <view active="false">cheats.c</view>
       <view active="false">loader_script.c</view>
-      <view active="false">mp3_player.c</view>
-      <view active="true">intro.c</view>
+      <view active="false">test_fonts.c</view>
+      <view active="false">intro.c</view>
+      <view active="false">intro_help.c</view>
+      <view active="true">LAWYER.c</view>
+      <view active="false">vc_jump.c</view>
+      <view active="false">vcneFunctionLibrary.h</view>
+      <view active="false">functionSamples.c</view>
     </Opened>
   </Editor>
 </RAGEScriptProject>

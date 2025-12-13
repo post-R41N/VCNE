@@ -86,7 +86,7 @@ void boyarsky(void)
 			{
 				ADD_BLIP_FOR_COORD(691.139, 300.702, 4.845, &avery_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(avery_ico, BLIP_FAUSTIN);//текстура иконки на радаре
-				CHANGE_BLIP_SCALE(avery_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(avery_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(avery_ico, "LG_02");//иконка на радаре называние в истории карты "Боярский"
 				blip_on = 1;
 			}
@@ -144,7 +144,7 @@ void boyarsky(void)
 				ADD_BLIP_FOR_COORD(758.381, 736.977, 5.287, &avery_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(avery_ico, BLIP_CLOTHES_SHOP);//текстура иконки на радаре
 				CHANGE_BLIP_COLOUR(avery_ico, 0);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
-				CHANGE_BLIP_SCALE(avery_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(avery_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(avery_ico, "NE_SHOP");//иконка на радаре называние в истории карты "магазин одежды"
 
 				SetTime(1000);
@@ -735,7 +735,7 @@ void boyarsky(void)
 			{
 				ADD_BLIP_FOR_COORD(691.139, 300.702, 4.845, &avery_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(avery_ico, BLIP_FAUSTIN);//текстура иконки на радаре
-				CHANGE_BLIP_SCALE(avery_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(avery_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(avery_ico, "LG_02");//иконка на радаре называние в истории карты "Боярский"
 				blip_on = 1;
 			}
@@ -2183,7 +2183,7 @@ void boyarsky(void)
 			{
 				ADD_BLIP_FOR_COORD(691.139, 300.702, 4.845, &avery_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(avery_ico, BLIP_FAUSTIN);//текстура иконки на радаре
-				CHANGE_BLIP_SCALE(avery_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(avery_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(avery_ico, "LG_02");//иконка на радаре называние в истории карты "Боярский"
 				blip_on = 1;
 			}
@@ -2240,7 +2240,7 @@ void boyarsky(void)
 				ADD_BLIP_FOR_COORD(-588.894, 104.258, 4.781, &avery_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(avery_ico, BLIP_CLOTHES_SHOP);//текстура иконки на радаре
 				CHANGE_BLIP_COLOUR(avery_ico, 0);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
-				CHANGE_BLIP_SCALE(avery_ico, 1.1); // масштаб иконки на радаре
+				CHANGE_BLIP_SCALE(avery_ico, 1.0); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(avery_ico, "NE_SHOP");//иконка на радаре называние в истории карты "магазин одежды"
 				PRINT_STRING_IN_STRING("string", "TEX_2C", 5000, 1);//~g~Go get yourself some Cuban gang colors in Little Havana!
 

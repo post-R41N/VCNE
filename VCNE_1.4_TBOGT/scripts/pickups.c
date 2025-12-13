@@ -16,6 +16,19 @@ Pickup skin_1, skin_2, skin_3, skin_4, skin_5, skin_6, skin_7, skin_8, skin_9, s
 Pickup pack_weap_1, pack_weap_2, pack_weap_3, pack_weap_4, pack_weap_5, pack_weap_6, pack_weap_7, pack_weap_8, pack_weap_9, pack_weap_10, pack_weap_11, pack_weap_12, pack_weap_13, pack_weap_14, pack_weap_15, pack_weap_16, pack_weap_17, pack_weap_18, pack_weap_19, pack_weap_20, pack_weap_21;
 int add_weap1, add_weap2, add_weap3, add_weap4, add_weap5, add_weap6, add_weap7;
 
+void SetTime(uint time)
+{
+	SETTIMERA(0);
+	while (true)
+	{
+		WAIT(0);
+		if (TIMERA() > time)
+		{
+			break;
+		}
+	}
+}
+
 void swap_skin(int skinID)
 {
 	DO_SCREEN_FADE_OUT( 500 );// Затемняем экран
@@ -35,6 +48,9 @@ void swap_skin(int skinID)
 	SET_CHAR_COMPONENT_VARIATION(GetPlayerPed(), 1, skinID, 0);
 	WAIT(500);
 	DO_SCREEN_FADE_IN( 500 );// убирается затемнение экрана
+    PRINT_HELP("WD_ACCE");
+    SetTime(5000);
+    CLEAR_HELP();
 }
 void pickups(void)
 {

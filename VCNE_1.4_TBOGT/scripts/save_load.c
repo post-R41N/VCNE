@@ -124,10 +124,21 @@ void main(void)
 		}
 		else if (G_SAVE_SAVED == 16) // Ocean View Hotel
 		{
-			X = 664.601;
+			X = 653.472;
+			Y = -741.518;
+			Z = 7.03654;
+			R = 250.0;
+            /*
+            old
+            X = 664.601;
 			Y = -746.511;
 			Z = 7.041;
-			R = 250.0;
+            
+            new
+            x=653.472
+            y=-741.518
+            z=7.03654
+            */
 		}
 		else if (G_SAVE_SAVED == 17) // Vercetti Mansion
 		{

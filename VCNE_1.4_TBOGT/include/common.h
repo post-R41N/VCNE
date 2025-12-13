@@ -32,5 +32,3 @@ void UpdateWeaponOfPed(Ped ped, Weapon weapon)
 		GIVE_WEAPON_TO_CHAR(ped, weapon, AMMO_MAX, FALSE);	
 	}
 }
-
-

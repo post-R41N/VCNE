@@ -465,7 +465,7 @@ void sa_race(void)
 	textur = LOAD_TXD( "sunshine_race" );
 	fon = GET_TEXTURE( textur, "fon_hud" );
 	timer = GET_TEXTURE( textur, "timer_hud" );
-
+    
 	uint CarM1 = MODEL_INFERNUS;//Переменная "Car2" = модели машины
 	uint CarM2 = MODEL_BANSHEE;//Переменная "Car2" = модели машины
 	uint CarM3 = MODEL_SUPERGT;//Переменная "Car2" = модели машины

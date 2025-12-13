@@ -4,7 +4,7 @@
 #include <types.h>
 #include <consts.h>
 #include "globals.h"
-// Ð² Ð¾Ñ€Ð¸Ð³Ð¸Ð½Ð°Ð»Ðµ ÑÑ‚Ð¸ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ðµ ÑÐ²Ð»ÑÑŽÑ‚ÑÑ Ð³Ð»Ð¾Ð±Ð°Ð»ÐºÐ°Ð¼Ð¸
+// â îðèãèíàëå ýòè ïåðåìåííûå ÿâëÿþòñÿ ãëîáàëêàìè
 int flag_4x4_mission1_passed, flag_4x4one_trigger, flag_intro1_before, flag_launch_4x4_1_ok, record_4x4_one;
 
 int pcj_seconds, pcj_minutes, pcj_reward, checkpoint_time_limit;
@@ -154,15 +154,15 @@ void time_calc(void) {
 
 void mission_4x4one_failed(void) {
 	//PRINT_BIG("M_FAIL", 2000, 1);
-	SETTIMERA(0); //ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÐµÐ¼ Ñ‚Ð°Ð¹Ð¼ÐµÑ€ 
+	SETTIMERA(0); //ñáðàñûâàåì òàéìåð 
 	while (true)
 	{
-		SET_TEXT_COLOUR(95, 195, 247, 255); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_SCALE(0.5, 0.7); // Ñ€Ð°Ð·Ð¼ÐµÑ€Ñ‹ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°
+		SET_TEXT_COLOUR(95, 195, 247, 255); // çàäà¸ì öâåò òåêñòà
+		SET_TEXT_SCALE(0.5, 0.7); // ðàçìåðû øðèôòà
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ‚ÐµÐ½ÑŒ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_CENTRE(1); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ñ‚ÐµÐºÑÑ‚Ð°
-		DISPLAY_TEXT(0.5, 0.45, "M_FAIL");// Ð¿Ð¸ÑˆÐµÐ¼ "ÐœÐ¸ÑÑÐ¸Ñ Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ð½Ð°"
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // çàäà¸ì òåíü òåêñòà
+		SET_TEXT_CENTRE(1); // çàäà¸ì öåíòð òåêñòà
+		DISPLAY_TEXT(0.5, 0.45, "M_FAIL");// ïèøåì "Ìèññèÿ çàâåðøèíà"
 
 		WAIT( 0 );
 		if ( TIMERA() > 4000 )
@@ -207,15 +207,15 @@ void mission_4x4one_passed(void) {
 		SET_INT_STAT(0, stat);
 	}
 
-	TRIGGER_MISSION_COMPLETE_AUDIO(1);//Ð¿Ñ€Ð¾Ð¸Ð·Ñ€Ñ‹Ð²Ð°ÐµÐ¼ Ð¼ÑƒÐ·Ñ‹ÐºÑƒ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ "(1)" Ð²Ð¾ÑÐ¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´Ð¸Ñ‚ Ð·Ð²ÑƒÐº Ð¸Ð· "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (Ñ†Ñ‹Ñ„Ñ€Ð° "6" = "SMC6" Ð² Ñ‚Ð¾Ð¼-Ð¶Ðµ Ð°Ñ€Ñ…Ð¸Ð²Ðµ)
-	SETTIMERA(0); //ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÐµÐ¼ Ñ‚Ð°Ð¹Ð¼ÐµÑ€ 
+	TRIGGER_MISSION_COMPLETE_AUDIO(1);//ïðîèçðûâàåì ìóçûêó ïàðàìåòð "(1)" âîñïðîèçâîäèò çâóê èç "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (öûôðà "6" = "SMC6" â òîì-æå àðõèâå)
+	SETTIMERA(0); //ñáðàñûâàåì òàéìåð 
 	while (true)
 	{
-		SET_TEXT_COLOUR(30, 215, 135, 255); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_SCALE(0.5, 0.7); // Ñ€Ð°Ð·Ð¼ÐµÑ€Ñ‹ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°
+		SET_TEXT_COLOUR(30, 215, 135, 255); // çàäà¸ì öâåò òåêñòà
+		SET_TEXT_SCALE(0.5, 0.7); // ðàçìåðû øðèôòà
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ‚ÐµÐ½ÑŒ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_CENTRE(1); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ñ‚ÐµÐºÑÑ‚Ð°
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // çàäà¸ì òåíü òåêñòà
+		SET_TEXT_CENTRE(1); // çàäà¸ì öåíòð òåêñòà
 		DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "M_PASS", pcj_reward);//
 		
 		WAIT( 0 );
@@ -474,8 +474,8 @@ void mission_start_4x4one(void) {
 				timer_4x4 -= 1000;
 				SETTIMERB(0);
 			}
-			DRAW_SPRITE( fon, 0.8765625, 0.74213, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// Ñ€Ð¸ÑÑƒÐµÐ¼ Ñ„Ð¾Ð½Ð¾Ð²ÑƒÑŽ Ñ‚ÐµÐºÑÑ‚ÑƒÑ€Ñƒ.
-			DRAW_SPRITE( fon, 0.8765625, 0.7838, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// Ñ€Ð¸ÑÑƒÐµÐ¼ Ñ„Ð¾Ð½Ð¾Ð²ÑƒÑŽ Ñ‚ÐµÐºÑÑ‚ÑƒÑ€Ñƒ.
+			DRAW_SPRITE( fon, 0.8765625, 0.74213, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// ðèñóåì ôîíîâóþ òåêñòóðó.
+			DRAW_SPRITE( fon, 0.8765625, 0.7838, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// ðèñóåì ôîíîâóþ òåêñòóðó.
 
 			int timemin, timesec, timetemp;
 			timesec = timer_4x4 / 1000;
@@ -501,11 +501,11 @@ void mission_start_4x4one(void) {
 			SET_TEXT_CENTRE(1);
 			if (timemin > 9)
 			{
-				DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_NOZERO", timemin);// Ð¼Ð¸Ð½ÑƒÑ‚Ñ‹
+				DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_NOZERO", timemin);// ìèíóòû
 			}
 			else
 			{
-				DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_ZERO", timemin);// Ð¼Ð¸Ð½ÑƒÑ‚Ñ‹
+				DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_ZERO", timemin);// ìèíóòû
 			}
 			setup_draw_value();
 			DISPLAY_TEXT(0.9203125, 0.76954074, "CP_TIME_SEP");
@@ -514,11 +514,11 @@ void mission_start_4x4one(void) {
 			SET_TEXT_CENTRE(1);
 			if ( timesec > 9 )
 			{
-				DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_NOZERO", timesec);// ÑÐµÐºÑƒÐ½Ð´Ñ‹
+				DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_NOZERO", timesec);// ñåêóíäû
 			}
 			else
 			{
-				DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_ZERO", timesec);// ÑÐµÐºÑƒÐ½Ð´Ñ‹
+				DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_ZERO", timesec);// ñåêóíäû
 			}
 
 			setup_draw_text();
@@ -815,18 +815,18 @@ void mission_start_4x4one(void) {
 			while (IS_SCREEN_FADING()) {
 				WAIT(0);
 			}
-			SETTIMERA(0); //ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÐµÐ¼ Ñ‚Ð°Ð¹Ð¼ÐµÑ€ 
+			SETTIMERA(0); //ñáðàñûâàåì òàéìåð 
 			PRINT_WITH_NUMBER_NOW("T4X4_1A", checkpoint_time_limit, 5000, 1 );
 			flag_intro = 1;	
 		}
 
 		if (print_text == 1)
 		{
-			SET_TEXT_COLOUR(30, 215, 135, 255); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
-			SET_TEXT_SCALE(0.5, 0.6); // Ñ€Ð°Ð·Ð¼ÐµÑ€Ñ‹ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°
+			SET_TEXT_COLOUR(30, 215, 135, 255); // çàäà¸ì öâåò òåêñòà
+			SET_TEXT_SCALE(0.5, 0.6); // ðàçìåðû øðèôòà
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ‚ÐµÐ½ÑŒ Ñ‚ÐµÐºÑÑ‚Ð°
-			SET_TEXT_CENTRE(1); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ñ‚ÐµÐºÑÑ‚Ð°
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // çàäà¸ì òåíü òåêñòà
+			SET_TEXT_CENTRE(1); // çàäà¸ì öåíòð òåêñòà
 			DISPLAY_TEXT(0.5, 0.40, "T4X4_1");//
 
 			if ( TIMERA() > 5000 )

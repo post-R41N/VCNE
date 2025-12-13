@@ -71,70 +71,70 @@ void business(void)
 	// Ammu-Nation#1 (Washington Beach)
 	ADD_BLIP_FOR_COORD(369.825, -949.315, 4.43197, &ammun1_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(ammun1_ico, BLIP_WEAPONS);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(ammun1_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(ammun1_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(ammun1_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(ammun1_ico, "LG_13");//иконка на радаре называние в истории карты ""
 
 	// Ammu-Nation#2 (Downtown)
 	ADD_BLIP_FOR_COORD(-244.787, 1737.22, 5.01206, &ammun2_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(ammun2_ico, BLIP_WEAPONS);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(ammun2_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(ammun2_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(ammun2_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(ammun2_ico, "LG_13");//иконка на радаре называние в истории карты ""
 
 	// Ammu-Nation#3 (Mall)
 	ADD_BLIP_FOR_COORD(798.101, 1588.29, 13.1281, &ammun3_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(ammun3_ico, BLIP_WEAPONS);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(ammun3_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(ammun3_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(ammun3_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(ammun3_ico, "LG_13");//иконка на радаре называние в истории карты ""
 
 	// Screw This (Havana)
 	ADD_BLIP_FOR_COORD(-533.581, -160.29, 5.26489, &tools1_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(tools1_ico, BLIP_REVENGE);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(tools1_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(tools1_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(tools1_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(tools1_ico, "LG_15");//иконка на радаре называние в истории карты ""
 
 	// Bunch of Tools (Washington Beach)
 	ADD_BLIP_FOR_COORD(636.332, 59.2133, 4.97102, &tools2_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(tools2_ico, BLIP_REVENGE);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(tools2_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(tools2_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(tools2_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(tools2_ico, "LG_15");//иконка на радаре называние в истории карты ""
 
 	// Hardware Store (Mall)
 	ADD_BLIP_FOR_COORD(796.299, 1610.4, 13.0615, &tools3_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(tools3_ico, BLIP_REVENGE);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(tools3_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(tools3_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(tools3_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(tools3_ico, "LG_15");//иконка на радаре называние в истории карты ""
 
 	// Pay 'n' Spray (Docks)
 	ADD_BLIP_FOR_COORD(-473.14, -722.05, 6.68, &paint1_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(paint1_ico, BLIP_PAY_N_SPRAY);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(paint1_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(paint1_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(paint1_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(paint1_ico, "LG_22");//иконка на радаре называние в истории карты ""
 
 	// Pay 'n' Spray (Haiti)
 	ADD_BLIP_FOR_COORD(-447.7, 419.3, 6.07, &paint2_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(paint2_ico, BLIP_PAY_N_SPRAY);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(paint2_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(paint2_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(paint2_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(paint2_ico, "LG_22");//иконка на радаре называние в истории карты ""
 
 	// Pay 'n' Spray (Washington Beach)
 	ADD_BLIP_FOR_COORD(426.69, -725.55, 5.43, &paint3_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(paint3_ico, BLIP_PAY_N_SPRAY);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(paint3_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(paint3_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(paint3_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(paint3_ico, "LG_22");//иконка на радаре называние в истории карты ""
 
 	// Pay 'n' Spray (Vice Point)
 	ADD_BLIP_FOR_COORD(752.2, 965.8, 6.21, &paint4_ico);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(paint4_ico, BLIP_PAY_N_SPRAY);//текстура иконки на радаре
-	CHANGE_BLIP_SCALE(paint4_ico, 1.1); // масштаб иконки на радаре
+	CHANGE_BLIP_SCALE(paint4_ico, 1.0); // масштаб иконки на радаре
 	SET_BLIP_AS_SHORT_RANGE(paint4_ico, 1); // иконка пропадает если не в зоне радардиска
 	CHANGE_BLIP_NAME_FROM_TEXT_FILE(paint4_ico, "LG_22");//иконка на радаре называние в истории карты ""
 
@@ -2516,7 +2516,7 @@ void business(void)
 		{
 			if (blip8_on == 0)
 			{
-				ADD_BLIP_FOR_COORD(661.2, -730.39, 15.59, &property8_ico);//создаем иконку на радаре
+				ADD_BLIP_FOR_COORD(661.662, -744.849, 7.038, &property8_ico);//создаем иконку на радаре
 				CHANGE_BLIP_SPRITE(property8_ico, BLIP_SAFEHOUSE);//текстура иконки на радаре
 				CHANGE_BLIP_SCALE(property8_ico, 1.1); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(property8_ico, "LG_16");//иконка на радаре называние в истории карты ""

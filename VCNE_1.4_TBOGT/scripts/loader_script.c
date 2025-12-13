@@ -46,7 +46,9 @@
 #define packages "packages"
 #define vc_jump "vc_jump"
 #define mp3_player "mp3_player"
-//#define parachutelauncher "parachutelauncher"
+#define intro_help "intro_help"
+#define test_fonts "test_fonts"
+#define parachutelauncher "parachutelauncher"
 
 
 void CheckScript(char *name, boolean checkloading)
@@ -104,6 +106,8 @@ void main(void)
 		CheckScript(packages, TRUE);
 		CheckScript(vc_jump, TRUE);
         CheckScript(mp3_player, TRUE);
+        //CheckScript(intro_help, TRUE);
+        CheckScript(test_fonts, TRUE);
         //CheckScript(parachutelauncher, TRUE);
 
 		
