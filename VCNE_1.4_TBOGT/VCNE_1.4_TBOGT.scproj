@@ -83,14 +83,14 @@
   </ScriptFiles>
   <Editor>
     <Opened>
-      <view active="false">loader_script.c</view>
-      <view active="false">test_fonts.c</view>
+      <view active="false">LAWYER.c</view>
       <view active="false">intro.c</view>
-      <view active="false">intro_help.c</view>
-      <view active="true">LAWYER.c</view>
-      <view active="false">vc_jump.c</view>
-      <view active="false">vcneFunctionLibrary.h</view>
-      <view active="false">functionSamples.c</view>
+      <view active="false">test_fonts.c</view>
+      <view active="false">loader_script.c</view>
+      <view active="false">types.h</view>
+      <view active="false">globals.h</view>
+      <view active="false">vigilante.c</view>
+      <view active="true">side_quests.c</view>
     </Opened>
   </Editor>
 </RAGEScriptProject>

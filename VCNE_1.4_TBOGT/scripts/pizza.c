@@ -47,7 +47,7 @@ void mission_cleanup_pizza(void)
 	REMOVE_BLIP(ped10_blip);
 	REMOVE_BLIP(pizza_shop);
 	REMOVE_BLIP(pizza_moped_blip);
-	MARK_CAR_AS_NO_LONGER_NEEDED(&car1);//РІС‹РіСЂСѓР¶Р°РµРј РјРѕРґРµР»СЊ РјР°С€РёРЅС‹(РІ РїРѕСЃР»РµРґСЃС‚РІРёРё РјР°С€РёРЅР° РёР·С‡РµР·РЅРµС‚)
+	MARK_CAR_AS_NO_LONGER_NEEDED(&car1);//выгружаем модель машины(в последствии машина изчезнет)
 	SET_PLAYER_CAN_DO_DRIVE_BY(GetPlayerIndex(), 1);
 	TERMINATE_THIS_SCRIPT();
 }
@@ -55,15 +55,15 @@ void mission_passed_pizza(void)
 {
 	CLEAR_PRINTS();
 	CLEAR_WANTED_LEVEL(GetPlayerIndex());
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
-	TRIGGER_MISSION_COMPLETE_AUDIO(1);//РїСЂРѕРёР·СЂС‹РІР°РµРј РјСѓР·С‹РєСѓ РїР°СЂР°РјРµС‚СЂ "(1)" РІРѕСЃРїСЂРѕРёР·РІРѕРґРёС‚ Р·РІСѓРє РёР· "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (С†С‹С„СЂР° "6" = "SMC6" РІ С‚РѕРј-Р¶Рµ Р°СЂС…РёРІРµ)
+	SETTIMERA(0); //сбрасываем таймер 
+	TRIGGER_MISSION_COMPLETE_AUDIO(1);//произрываем музыку параметр "(1)" воспроизводит звук из "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (цыфра "6" = "SMC6" в том-же архиве)
 	while (true)
 	{
-		SET_TEXT_COLOUR(95, 195, 247, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-		SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+		SET_TEXT_COLOUR(95, 195, 247, 255); // задаём цвет текста
+		SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-		SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+		SET_TEXT_CENTRE(1); // задаём центр текста
 		DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "P_PASS", 5000);//
 
 		WAIT( 0 );
@@ -85,15 +85,15 @@ void mission_passed_pizza(void)
 }
 void mission_failed_pizza(void)
 {
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	SETTIMERA(0); //сбрасываем таймер 
 	while (true)
 	{
-		SET_TEXT_COLOUR(255, 159, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-		SET_TEXT_SCALE(0.5, 0.6); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+		SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
+		SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-		SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-		DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// РїРёС€РµРј "РњРёСЃСЃРёСЏ РїСЂРѕРІР°Р»РµРЅР°"
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+		SET_TEXT_CENTRE(1); // задаём центр текста
+		DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// пишем "Миссия провалена"
 
 		WAIT( 0 );
 		if ( TIMERA() > 3000 )
@@ -123,7 +123,7 @@ void help_text(void)
 	{
 		if ( TIMERA() > 5000 )
 		{
-			SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+			SETTIMERA(0); //сбрасываем таймер 
 			text3 = 0;
 		}
 	}
@@ -348,12 +348,12 @@ void dead_ped(void)
 	}
 	return;
 }
-void food_delivery(void)// РґРѕСЃС‚Р°РІРєР°
+void food_delivery(void)// доставка
 {
 	while (true)
 	{
 		WAIT(0);
-		DRAW_CHECKPOINT( pizza_shopx, pizza_shopy, pizza_shopz, 4.0, 160, 116, 209);//СЃРѕР·РґР°РЅРёРµ С‡РµРєРїРѕР№РЅС‚ РЅР° РєРѕРѕСЂРґРёРЅР°С‚Р°С… Рё РµРіРѕ С†РІРµС‚
+		DRAW_CHECKPOINT( pizza_shopx, pizza_shopy, pizza_shopz, 4.0, 160, 116, 209);//создание чекпойнт на координатах и его цвет
 
 		if (TIMERB() > 1050)
 		{
@@ -366,8 +366,8 @@ void food_delivery(void)// РґРѕСЃС‚Р°РІРєР°
 			time_s = 59;
 		}
 
-		DRAW_SPRITE( fon, 0.8765625, 0.74213, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// СЂРёСЃСѓРµРј С„РѕРЅРѕРІСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ.
-		DRAW_SPRITE( fon, 0.8765625, 0.7838, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// СЂРёСЃСѓРµРј С„РѕРЅРѕРІСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ.
+		DRAW_SPRITE( fon, 0.8765625, 0.74213, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// рисуем фоновую текстуру.
+		DRAW_SPRITE( fon, 0.8765625, 0.7838, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// рисуем фоновую текстуру.
 
 		setup_draw_text();
 		DISPLAY_TEXT(0.78815097, 0.73564852, "PIZ1_12");
@@ -381,11 +381,11 @@ void food_delivery(void)// РґРѕСЃС‚Р°РІРєР°
 		SET_TEXT_CENTRE(1);
 		if (time_m > 9)
 		{
-			DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_NOZERO", time_m);// РјРёРЅСѓС‚С‹
+			DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_NOZERO", time_m);// минуты
 		}
 		else
 		{
-			DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_ZERO", time_m);// РјРёРЅСѓС‚С‹
+			DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_ZERO", time_m);// минуты
 		}
 		setup_draw_value();
 		DISPLAY_TEXT(0.9203125, 0.76954074, "CP_TIME_SEP");
@@ -394,11 +394,11 @@ void food_delivery(void)// РґРѕСЃС‚Р°РІРєР°
 		SET_TEXT_CENTRE(1);
 		if ( time_s > 9 )
 		{
-			DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_NOZERO", time_s);// СЃРµРєСѓРЅРґС‹
+			DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_NOZERO", time_s);// секунды
 		}
 		else
 		{
-			DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_ZERO", time_s);// СЃРµРєСѓРЅРґС‹
+			DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_ZERO", time_s);// секунды
 		}
 
 		if (text2 == 0)
@@ -734,7 +734,7 @@ void food_delivery(void)// РґРѕСЃС‚Р°РІРєР°
 			break;
 		}
 
-		// РїСЂРѕРІР°Р» С‚СѓС‚
+		// провал тут
 		dead_ped();
 		if (IS_CAR_DEAD(car1))
 		{
@@ -754,14 +754,14 @@ void food_delivery(void)// РґРѕСЃС‚Р°РІРєР°
 			PRINT_NOW("PIZ1_08", 5000, 1);
 			mission_failed_pizza();
 		}
-		else if ((IS_CHAR_DEAD(GetPlayerPed())) || (HAS_CHAR_BEEN_ARRESTED(GetPlayerPed())))// РёРіСЂРѕРє РјС‘СЂС‚РІ/Р°СЂРµСЃС‚РѕРІР°РЅ
+		else if ((IS_CHAR_DEAD(GetPlayerPed())) || (HAS_CHAR_BEEN_ARRESTED(GetPlayerPed())))// игрок мёртв/арестован
 		{
 			CLEAR_PRINTS();
 			mission_failed_pizza();
 		}
 	}
 }
-void set_random_cord(void)//СЂР°РЅРґРѕРЅРѕРјР°Р№Р·РµСЂ РєРѕРѕСЂРґРёРЅР°С‚
+void set_random_cord(void)//рандономайзер координат
 {
 	GENERATE_RANDOM_INT_IN_RANGE(1, 33, &random_cord);
 	if (pizza_zon == 1)
@@ -874,7 +874,7 @@ void set_random_cord(void)//СЂР°РЅРґРѕРЅРѕРјР°Р№Р·РµСЂ РєРѕРѕСЂРґРёРЅР°С‚
 	}
 	GENERATE_RANDOM_INT_IN_RANGE(1, 360, &random_cord);
 }
-void spawn_ped(void)//СЃРѕР·РґР°РЅРёРµ РєР»РёРµРЅС‚РѕРІ
+void spawn_ped(void)//создание клиентов
 {
 	if ((create_ped1 == 0) && (pizza_lvl >= 1))
 	{
@@ -987,12 +987,12 @@ void spawn_ped(void)//СЃРѕР·РґР°РЅРёРµ РєР»РёРµРЅС‚РѕРІ
 		create_ped10 = 1;
 	}
 }
-void start_pizza_mission(void)// Р·РѕРЅР° РїРёС†С†РёСЂРёРё
+void start_pizza_mission(void)// зона пиццирии
 {
 	while (true)
 	{
 		WAIT(0);
-		DRAW_CHECKPOINT( pizza_shopx, pizza_shopy, pizza_shopz, 4.0, 160, 116, 209);//СЃРѕР·РґР°РЅРёРµ С‡РµРєРїРѕР№РЅС‚ РЅР° РєРѕРѕСЂРґРёРЅР°С‚Р°С… Рё РµРіРѕ С†РІРµС‚
+		DRAW_CHECKPOINT( pizza_shopx, pizza_shopy, pizza_shopz, 4.0, 160, 116, 209);//создание чекпойнт на координатах и его цвет
 
 		if (TIMERB() > 1050)
 		{
@@ -1005,8 +1005,8 @@ void start_pizza_mission(void)// Р·РѕРЅР° РїРёС†С†РёСЂРёРё
 			time_s = 59;
 		}
 
-		DRAW_SPRITE( fon, 0.8765625, 0.74213, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// СЂРёСЃСѓРµРј С„РѕРЅРѕРІСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ.
-		DRAW_SPRITE( fon, 0.8765625, 0.7838, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// СЂРёСЃСѓРµРј С„РѕРЅРѕРІСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ.
+		DRAW_SPRITE( fon, 0.8765625, 0.74213, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// рисуем фоновую текстуру.
+		DRAW_SPRITE( fon, 0.8765625, 0.7838, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155 );// рисуем фоновую текстуру.
 
 		setup_draw_text();
 		DISPLAY_TEXT(0.78815097, 0.73564852, "PIZ1_12");
@@ -1020,11 +1020,11 @@ void start_pizza_mission(void)// Р·РѕРЅР° РїРёС†С†РёСЂРёРё
 		SET_TEXT_CENTRE(1);
 		if (time_m > 9)
 		{
-			DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_NOZERO", time_m);// РјРёРЅСѓС‚С‹
+			DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_NOZERO", time_m);// минуты
 		}
 		else
 		{
-			DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_ZERO", time_m);// РјРёРЅСѓС‚С‹
+			DISPLAY_TEXT_WITH_NUMBER(0.9088542, 0.76954074, "CP_TIME_ZERO", time_m);// минуты
 		}
 		setup_draw_value();
 		DISPLAY_TEXT(0.9203125, 0.76954074, "CP_TIME_SEP");
@@ -1033,11 +1033,11 @@ void start_pizza_mission(void)// Р·РѕРЅР° РїРёС†С†РёСЂРёРё
 		SET_TEXT_CENTRE(1);
 		if ( time_s > 9 )
 		{
-			DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_NOZERO", time_s);// СЃРµРєСѓРЅРґС‹
+			DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_NOZERO", time_s);// секунды
 		}
 		else
 		{
-			DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_ZERO", time_s);// СЃРµРєСѓРЅРґС‹
+			DISPLAY_TEXT_WITH_NUMBER(0.9348959, 0.76954074, "CP_TIME_ZERO", time_s);// секунды
 		}
 
 		if (!IS_CHAR_IN_CAR(GetPlayerPed(), car1))
@@ -1079,7 +1079,7 @@ void start_pizza_mission(void)// Р·РѕРЅР° РїРёС†С†РёСЂРёРё
 			food_delivery();
 		}
 
-		// РїСЂРѕРІР°Р» С‚СѓС‚
+		// провал тут
 		dead_ped();
 		if (IS_CAR_DEAD(car1))
 		{
@@ -1099,7 +1099,7 @@ void start_pizza_mission(void)// Р·РѕРЅР° РїРёС†С†РёСЂРёРё
 			PRINT_NOW("PIZ1_08", 5000, 1);
 			mission_failed_pizza();
 		}
-		else if ((IS_CHAR_DEAD(GetPlayerPed())) || (HAS_CHAR_BEEN_ARRESTED(GetPlayerPed())))// РёРіСЂРѕРє РјС‘СЂС‚РІ/Р°СЂРµСЃС‚РѕРІР°РЅ
+		else if ((IS_CHAR_DEAD(GetPlayerPed())) || (HAS_CHAR_BEEN_ARRESTED(GetPlayerPed())))// игрок мёртв/арестован
 		{
 			CLEAR_PRINTS();
 			mission_failed_pizza();
@@ -1110,14 +1110,14 @@ void start_pizza_mission(void)// Р·РѕРЅР° РїРёС†С†РёСЂРёРё
 void main(void)
 {
 	WAIT(100);
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	SETTIMERA(0); //сбрасываем таймер 
 	while (true)
 	{
-		SET_TEXT_COLOUR(30, 215, 135, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-		SET_TEXT_SCALE(0.5, 0.6); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+		SET_TEXT_COLOUR(30, 215, 135, 255); // задаём цвет текста
+		SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-		SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+		SET_TEXT_CENTRE(1); // задаём центр текста
 		DISPLAY_TEXT(0.5, 0.45, "PIZ1_A");//
 
 		WAIT( 0 );
@@ -1130,7 +1130,7 @@ void main(void)
 	textur = LOAD_TXD("sunshine_race");
 	fon = GET_TEXTURE(textur, "fon_hud");
 
-	ObjM1 = pizza_box_1; // РєРѕСЂРѕР±РєР° РїРёС†С†С‹
+	ObjM1 = pizza_box_1; // коробка пиццы
 	REQUEST_MODEL(ObjM1);
 	while (!HAS_MODEL_LOADED(ObjM1)) WAIT(0);
 	CREATE_OBJECT_NO_OFFSET(pizza_box_1, 5.0, 5.0, -5.0, &pizza_box_var, 1);
@@ -1162,10 +1162,10 @@ void main(void)
 	PRINT("PIZ1_01", 7000, 1);
 	PRINT("PIZ1_05", 7000, 1);
 	PRINT_HELP("PIZ1_06");
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	SETTIMERA(0); //сбрасываем таймер 
 	SETTIMERB(0);
 
-	ADD_BLIP_FOR_COORD(pizza_shopx, pizza_shopy, pizza_shopz, &pizza_shop);//СЃРѕР·РґР°РµРј РёРєРѕРЅРєСѓ РЅР° СЂР°РґР°СЂРµ
+	ADD_BLIP_FOR_COORD(pizza_shopx, pizza_shopy, pizza_shopz, &pizza_shop);//создаем иконку на радаре
 	CHANGE_BLIP_SPRITE(pizza_shop, BLIP_OBJECTIVE);
 	CHANGE_BLIP_COLOUR(pizza_shop, 5);
 	CHANGE_BLIP_SCALE(pizza_shop, 0.6);

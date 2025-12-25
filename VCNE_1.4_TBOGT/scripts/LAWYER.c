@@ -10,7 +10,7 @@
 #include "globals.h"
 #include "vcneFunctionLibrary.h"
 float PlayX, PlayY, PlayZ, PlayR, blip_on, skip, dialog, textID, help, car1_des, car2_des, car2_des2, sutosave;
-float PedX, PedY, PedZ, PedR, bike, in_car, in_cord, stelking, load_all, add_phone, locked;
+float PedX, PedY, PedZ, PedR, PedD, bike, in_car, in_cord, stelking, load_all, add_phone, locked;
 float sound, soundID, riotID, riotON, skin, vorotaX, speed;
 float ped4_ID, ped5_ID, ped6_ID, ped7_ID, ped8_ID, ped9_ID, ped10_ID, ped11_ID, ped12_ID, ped13_ID;
 float ped14_ID, ped15_ID, ped16_ID, ped17_ID, ped18_ID, ped19_ID, ped20_ID, ped21_ID, ped22_ID, ped23_ID, ped24_ID;
@@ -25,10 +25,7 @@ void SetTime(uint time)
 	while(true)
 	{
 		WAIT(0);
-		if (TIMERA() > time)
-		{
-			break;
-		}
+		if ((TIMERA() > time) || (IS_CHAR_DEAD(GetPlayerPed())) || (HAS_CHAR_BEEN_ARRESTED(GetPlayerPed()))) break;//Проверка если таймер кончился или гг умер, или гг арестован
 	}
 }
 void SetSpeech(void)
@@ -37,14 +34,7 @@ void SetSpeech(void)
 	while(true)
 	{
 		WAIT(0);
-		if (!IS_SCRIPTED_CONVERSATION_ONGOING())
-		{
-			break;
-		}
-		else if (TIMERA() > 10000)
-		{
-			break;
-		}
+		if (!IS_SCRIPTED_CONVERSATION_ONGOING() || TIMERA() > 10000 || IS_CHAR_DEAD(GetPlayerPed()) || HAS_CHAR_BEEN_ARRESTED(GetPlayerPed())) break;//Проверка если таймер кончился или гг умер, или гг арестован
 	}
 }
 
@@ -88,18 +78,34 @@ void LAWYER_1(void)
 
             if (blip_on == 1 && G_FLASH_BLIP == 1) FLASH_BLIP(lawyer_ico, 1);
             else FLASH_BLIP(lawyer_ico, 0);
-			if (( PlayR < 1.5) && (!IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed())))
+			if (PlayR < 1.5 && !IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed()) && (!IS_CHAR_DEAD(GetPlayerPed()) || !HAS_CHAR_BEEN_ARRESTED(GetPlayerPed())))
 			{
 				//--------------- СТАРТ МИССИИ ---------------
+                Cam introCam;
 				skip = 0; // переменная пропуска
 				load_all = 0;
+                in_cord = 0;
 				G_ONMISSION = 1;
                 G_HELP = 0;
+                INCREMENT_INT_STAT(STAT_MISSIONS_ATTEMPTED, 1);
 				REMOVE_BLIP(lawyer_ico);//Удаляем иконку на радаре
 				SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
 				CLEAR_WANTED_LEVEL(GetPlayerIndex());
+                
+				// камера сверху
+				CREATE_CAM(14, &introCam);
+				POINT_CAM_AT_COORD(introCam, 551.414, -293.291, 9.4937); // куда смотрит камера
+				SET_CAM_POS(introCam, 522.059, -286.694, 18.2173);//расположение камеры
+				SET_CAM_ACTIVE(introCam, 1);
+				SET_CAM_PROPAGATE(introCam, 1);
+				ACTIVATE_SCRIPTED_CAMS(1, 1);
+				SET_CAM_FOV(introCam, 45.0);
+				SET_WIDESCREEN_BORDERS(1);
+
+				TASK_GO_STRAIGHT_TO_COORD(GetPlayerPed(), 555.648, -296.272, 5.5, 2, -1);// Томми идёт в двери
+				SetTime(1000);
 				
-				DO_SCREEN_FADE_OUT( 1000 );// Затемняем экран
+				DO_SCREEN_FADE_OUT(1000);// Затемняем экран
 				while(true)
 				{
 					WAIT(0);
@@ -108,6 +114,11 @@ void LAWYER_1(void)
 						break;
 					}
 				}
+                
+                //Деактивация и уничтожение камеры
+                ACTIVATE_SCRIPTED_CAMS(0, 0);
+				DESTROY_CAM(introCam);
+                
 				// переодивание тут
 				SET_CHAR_COMPONENT_VARIATION(GetPlayerPed(), 1, 0, 0);
 
@@ -170,61 +181,57 @@ void LAWYER_1(void)
                 CLEAR_HELP();
                 G_HELP = 1;
                 
-				Car car1, car2, car3, car4, car5, car6;
+				Car car1, car2, car3, car4, car5, car6; 
 				Ped ped1, ped2;
 				Cam camera, camera2, camera3;
-
+                
+                uint CarM1 = MODEL_BOBBER;//Фривэй
+                uint CarM2 = MODEL_BANSHEE;
+                uint CarM3 = MODEL_SUPERGT;
+                uint CarM4 = MODEL_INFERNUS;
+                uint CarM5 = MODEL_STRETCH;
+                
 				uint PedM1 = MODEL_M_Y_DORK_02;// Байкер
-				uint PedM2 = MODEL_IG_ANNA;// Мерседес
-				uint CarM1 = MODEL_BOBBER;
-				uint CarM2 = MODEL_BANSHEE;
-				uint CarM3 = MODEL_SUPERGT;
-				uint CarM4 = MODEL_INFERNUS;
-				uint CarM5 = MODEL_STRETCH;
+                uint PedM2 = MODEL_IG_ANNA;// Мерседес
 
 				REQUEST_MODEL(CarM1);
 				while (!HAS_MODEL_LOADED(CarM1)) WAIT(100);
-
-				REQUEST_MODEL(CarM2);
-				while (!HAS_MODEL_LOADED(CarM2)) WAIT(100);
-
-				REQUEST_MODEL(CarM3);
-				while (!HAS_MODEL_LOADED(CarM3)) WAIT(100);
-
-				REQUEST_MODEL(CarM4);
-				while (!HAS_MODEL_LOADED(CarM4)) WAIT(100);
-
-				REQUEST_MODEL(CarM5);
-				while (!HAS_MODEL_LOADED(CarM5)) WAIT(100);
-
+                REQUEST_MODEL(CarM2);
+                while (!HAS_MODEL_LOADED(CarM2)) WAIT(100);
+                REQUEST_MODEL(CarM3);
+                while (!HAS_MODEL_LOADED(CarM3)) WAIT(100);
+                REQUEST_MODEL(CarM4);
+                while (!HAS_MODEL_LOADED(CarM4)) WAIT(100);
+                REQUEST_MODEL(CarM5);
+                while (!HAS_MODEL_LOADED(CarM5)) WAIT(100);
+                
 				REQUEST_MODEL(PedM1);// Байкер
 				while (!HAS_MODEL_LOADED(PedM1));////проверка "пед загрузился" если нет то начанаем с начало
-
-				REQUEST_MODEL(PedM2);// Мерседес
-				while (!HAS_MODEL_LOADED(PedM2));////проверка "пед загрузился" если нет то начанаем с начало
-
+                REQUEST_MODEL(PedM2);// Мерседес
+                while (!HAS_MODEL_LOADED(PedM2));////проверка "пед загрузился" если нет то начанаем с начало
+                            
 				// создаём байк и байкера
 				CREATE_CAR(CarM1, 286.576, -788.199, 5.801, &car1, TRUE);
 				CREATE_CHAR_INSIDE_CAR(car1, 1, PedM1, &ped1);//создаём педа за рулём автомобиля
-
-				// создаём транспорт у яхты
-				CREATE_CAR(CarM2, 196.987, -842.386, 2.732, &car2, TRUE);
-				SET_CAR_HEADING(car2, 102.336);
-				CREATE_CAR(CarM3, 195.982, -837.659, 2.732, &car3, TRUE);
-				SET_CAR_HEADING(car3, -77.664);
-				CREATE_CAR(CarM4, 191.256, -818.101, 2.732, &car4, TRUE);
-				SET_CAR_HEADING(car4, 102.336);
-				CREATE_CAR(CarM5, 191.191, -813.617, 2.732, &car5, TRUE);
-				SET_CAR_HEADING(car5, 102.336);
-
-				// создаём Мерседес
-				CREATE_CHAR (26, PedM2, 281.145, -791.79, 5.445, &ped2, TRUE);// создаём педа
-				SET_CHAR_COMPONENT_VARIATION(ped2, 1, 0, 0);
 
 				// грузим пути байкера
 				REQUEST_CAR_RECORDING( 2993 );
 				while (!HAS_CAR_RECORDING_BEEN_LOADED( 2993 )) WAIT(0);
 
+                // создаём транспорт у яхты
+                CREATE_CAR(CarM2, 196.987, -842.386, 2.732, &car2, TRUE);
+                SET_CAR_HEADING(car2, 102.336);
+                CREATE_CAR(CarM3, 195.982, -837.659, 2.732, &car3, TRUE);
+                SET_CAR_HEADING(car3, -77.664);
+                CREATE_CAR(CarM4, 191.256, -818.101, 2.732, &car4, TRUE);
+                SET_CAR_HEADING(car4, 102.336);
+                CREATE_CAR(CarM5, 191.191, -813.617, 2.732, &car5, TRUE);
+                SET_CAR_HEADING(car5, 102.336);
+
+                // создаём Мерседес
+                CREATE_CHAR (26, PedM2, 281.145, -791.79, 5.445, &ped2, TRUE);// создаём педа
+                SET_CHAR_COMPONENT_VARIATION(ped2, 1, 0, 0);
+                
 				//------------------ Первая часть миссии ------------------
 				while (TRUE)
 				{
@@ -241,19 +248,19 @@ void LAWYER_1(void)
 						SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
 
 						// камера сверху
-						CREATE_CAM( 14, &camera );
-						POINT_CAM_AT_COORD	( camera, 530.273, -604.626, 4.197 ); // куда смотрит камера
-						SET_CAM_POS			( camera, 522.552, -596.448, 16.414 );//расположение камеры
-						SET_CAM_ACTIVE( camera, 1 );
-						SET_CAM_PROPAGATE( camera, 1 );
+						CREATE_CAM(14, &camera);
+						POINT_CAM_AT_COORD(camera, 530.273, -604.626, 4.197); // куда смотрит камера
+						SET_CAM_POS(camera, 522.552, -596.448, 16.414);//расположение камеры
+						SET_CAM_ACTIVE(camera, 1);
+						SET_CAM_PROPAGATE(camera, 1);
 						ACTIVATE_SCRIPTED_CAMS(1, 1);
-						SET_CAM_FOV( camera, 45.0 );
-						SET_WIDESCREEN_BORDERS( 1 );
+						SET_CAM_FOV(camera, 45.0 );
+						SET_WIDESCREEN_BORDERS(1);
 
 						TASK_GO_STRAIGHT_TO_COORD(GetPlayerPed(), 529.623, -603.946, 4.766, 2, -2);// Томми идёт в двери
 						SetTime(1000);
 
-						DO_SCREEN_FADE_OUT( 1000 );// Затемняем экран
+						DO_SCREEN_FADE_OUT(1000);// Затемняем экран
 						while(true)
 						{
 							WAIT(0);
@@ -274,33 +281,34 @@ void LAWYER_1(void)
 						DO_SCREEN_FADE_IN( 1000 );// убирается затемнение экрана
 
 						// подём камеры
-						CREATE_CAM( 3, &camera2 );
-						CREATE_CAM( 14, &camera3 );
-						POINT_CAM_AT_COORD	( camera, 528.442, -602.798, 4.56 ); // куда смотрит камера
-						SET_CAM_POS			( camera, 527.141, -601.545, 5.08 );//расположение камеры
-						POINT_CAM_AT_COORD	( camera3, 528.442, -602.798, 5.839 ); // куда смотрит камера
-						SET_CAM_POS			( camera3, 527.141, -601.545, 5.08 );//расположение камеры
-						SET_CAM_INTERP_STYLE_CORE( camera2, camera, camera3, 3500, 0 ); //перемещение камеры от игрока на точку указанную в координатах "SET_CAM_POS(camera, X, Y, Z)" 
-						SET_CAM_ACTIVE( camera2, 1 );
-						SET_CAM_PROPAGATE( camera2, 1 );
+						CREATE_CAM(3, &camera2);
+						CREATE_CAM(14, &camera3);
+						POINT_CAM_AT_COORD( camera, 528.442, -602.798, 4.56); // куда смотрит камера
+						SET_CAM_POS(camera, 527.141, -601.545, 5.08 );//расположение камеры
+						POINT_CAM_AT_COORD(camera3, 528.442, -602.798, 5.839); // куда смотрит камера
+						SET_CAM_POS(camera3, 527.141, -601.545, 5.08);//расположение камеры
+						SET_CAM_INTERP_STYLE_CORE(camera2, camera, camera3, 3500, 0); //перемещение камеры от игрока на точку указанную в координатах "SET_CAM_POS(camera, X, Y, Z)" 
+						SET_CAM_ACTIVE(camera2, 1);
+						SET_CAM_PROPAGATE(camera2, 1);
 						ACTIVATE_SCRIPTED_CAMS(1, 1);
 
 						START_PLAYBACK_RECORDED_CAR_WITH_OFFSET(car1, 2993, 0.0, 0.0, 0.0);// подъезд мотоцыкла
+                        TASK_LOOK_AT_VEHICLE(GetPlayerPed(), car1, 8700, 0);
 						SetTime(3200);
 						
-						ACTIVATE_SCRIPTED_CAMS( 0, 0 );
-						DESTROY_CAM( camera );
-						DESTROY_CAM( camera2 );
-						DESTROY_CAM( camera3 );
+						ACTIVATE_SCRIPTED_CAMS(0, 0);
+						DESTROY_CAM(camera);
+						DESTROY_CAM(camera2);
+						DESTROY_CAM(camera3);
 
 						// смена ракурса камеры
-						CREATE_CAM( 14, &camera );
-						POINT_CAM_AT_COORD	( camera, 529.848, -602.708, 5.331 ); // куда смотрит камера
-						SET_CAM_POS			( camera, 507.329, -603.689, 5.273 );//расположение камеры
-						SET_CAM_ACTIVE( camera, 1 );
-						SET_CAM_PROPAGATE( camera, 1 );
+						CREATE_CAM(14, &camera);
+						POINT_CAM_AT_COORD(camera, 510.91, -603.339, 5.22626); // куда смотрит камера
+						SET_CAM_POS(camera, 508.767, -604.549, 4.78936);//расположение камеры
+						SET_CAM_ACTIVE(camera, 1);
+						SET_CAM_PROPAGATE(camera, 1);
 						ACTIVATE_SCRIPTED_CAMS(1, 1);
-						SET_CAM_FOV( camera, 45.0 );
+						SET_CAM_FOV(camera, 45.0);
 						SetTime(1000);
 
 						NEW_SCRIPTED_CONVERSATION();
@@ -311,14 +319,14 @@ void LAWYER_1(void)
 
 						STOP_PLAYBACK_RECORDED_CAR(car1);
 						TASK_LEAVE_CAR(ped1, car1);
-						TASK_GO_STRAIGHT_TO_COORD(ped1, 508.057, -642.656, 12.069, 2, -2);
-						SetTime(2500);
-
-						SET_CAM_BEHIND_PED( GetPlayerPed() );
-						ACTIVATE_SCRIPTED_CAMS( 0, 0 );
-						DESTROY_CAM( camera );
-						SET_WIDESCREEN_BORDERS( 0 );
-						SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 1, 1, 1 );//размораживаем игрока
+                        TASK_GO_STRAIGHT_TO_COORD(ped1, 508.443, -602.966, 5.4177, 2, -1);//Ланс бежит во второй пойнт
+                        SetTime(2500);
+                        
+						SET_CAM_BEHIND_PED(GetPlayerPed());
+						ACTIVATE_SCRIPTED_CAMS(0, 0);
+						DESTROY_CAM(camera);
+						SET_WIDESCREEN_BORDERS(0);
+						SET_PLAYER_CONTROL_ADVANCED(GetPlayerIndex(), 1, 1, 1);//размораживаем игрока
 						CLEAR_PRINTS();
 						PRINT_STRING_IN_STRING("string", "LAW1_2", 5500, 1);//~g~Get to the Colonel's boat.
 
@@ -328,7 +336,6 @@ void LAWYER_1(void)
 						CHANGE_BLIP_SCALE(Party_ico, 0.6); // масштаб иконки на радаре
 						CHANGE_BLIP_NAME_FROM_TEXT_FILE(Party_ico, "NE_POINT");//иконка на радаре называние в истории карты ""
                         SET_ROUTE(Party_ico, 1);
-
 						bike = 0;
 						break;
 					}
@@ -345,8 +352,39 @@ void LAWYER_1(void)
 					while (TRUE)
 					{
 						WAIT(0);
-						if ((!IS_CHAR_DEAD(ped1)) && (!IS_CHAR_INJURED(ped1)))//если игрок мёртв или аврестован
+						if ((!IS_CHAR_DEAD(ped1)) && (!IS_CHAR_INJURED(ped1)))//Если пед мёртв или аврестован
 						{
+                            GET_CHAR_COORDINATES(ped1, &PedX, &PedY, &PedZ);//Вписываем координаты педа в переменную
+                            GET_DISTANCE_BETWEEN_COORDS_3D(PlayX, PlayY, PlayZ, PedX, PedY, PedZ, &PedD);//Получаем расстояние между ГГ и педом
+                            if (in_cord == 0)
+                            {
+                                GET_DISTANCE_BETWEEN_COORDS_3D(PedX, PedY, PedZ, 508.443, -602.966, 5.4177, &PedR);//Проверка "пед на координатах"
+                                if (PedR > 0.1)
+                                {
+								    TASK_GO_STRAIGHT_TO_COORD(ped1, 508.443, -602.966, 5.4177, 2, -1);//Пед идет к стенке
+                                }
+                                else
+                                {
+                                    if (in_cord == 0) in_cord = 1;//Пед на координатах
+                                }
+                            }
+                            else if (in_cord == 1)
+                            {
+                                TASK_TURN_CHAR_TO_FACE_COORD(ped1, 510.936, -603.106, 4.7698);//Пед поворачивается к мотоциклу
+                                SetTime(1500);
+                                in_cord = 2;
+                            }
+                            else if (in_cord == 2)
+                            {
+                                TASK_START_SCENARIO_IN_PLACE(ped1, "Scenario_SmokingOutsideOffice", -1082130432);//Пед проигрывает сценарий курения
+                                SETTIMERB(0);
+                                in_cord = 3;
+                            }
+                            else if (in_cord == 3 && TIMERB() > 30000)
+                            {
+                                TASK_CAR_DRIVE_WANDER(ped1, car1, 20, 0);//Пед уезжает восвояси
+                                in_cord = 4; 
+                            }
 							if ((IS_CHAR_IN_CAR(GetPlayerPed(), car1)) && (bike == 0))
 							{
 								bike = 1;
@@ -354,13 +392,13 @@ void LAWYER_1(void)
 								ADD_NEW_CONVERSATION_SPEAKER(0, GetPlayerPed(), "ROMAN");
 								ADD_LINE_TO_CONVERSATION(0, "R1_BE_XXX1", "LAW1_13", 0, 0);//No! My Bike!
 								START_SCRIPT_CONVERSATION(1, 1);
-								SETTIMERB( 0 );
-
-								// тут анимация
-								SET_CHAR_HEADING(ped1, -32.106);
-								REQUEST_ANIMS( "amb@taxi_hail_m" );
-								while (!HAVE_ANIMS_LOADED( "amb@taxi_hail_m" )) WAIT(0);
-								TASK_PLAY_ANIM_NON_INTERRUPTABLE( ped1, "hail_left", "amb@taxi_hail_m", 1.0, 1, 0, 0, 0, 3000 );//Воиспроизвидение анимации на педе
+								SETTIMERB(0);
+                                
+                                TASK_LOOK_AT_CHAR(ped1, GetPlayerPed(), 3000, 0);//Пед смотрит на Томми
+                                TASK_TURN_CHAR_TO_FACE_CHAR(ped1, GetPlayerPed());//Пед поворачивается к Томми
+								REQUEST_ANIMS("gestures@male");
+								while (!HAVE_ANIMS_LOADED("gestures@male")) WAIT(0);
+								TASK_PLAY_ANIM_NON_INTERRUPTABLE( ped1, "wot_the_fuck", "gestures@male", 1.0, 1, 0, 0, 0, 3000);//Воиспроизвидение анимации на педе
 							}
 							if ((bike == 1) && (TIMERB() > 2000))
 							{
@@ -368,39 +406,81 @@ void LAWYER_1(void)
 								CLEAR_PRINTS();
 								TASK_COMBAT(ped1, GetPlayerPed());
 								PRINT_STRING_IN_STRING("string", "LAW1_2", 5500, 1);//~g~Get to the Colonel's boat.
+                                SETTIMERB(0);
+							}
+						}
+                        else
+                        {
+                            if (bike < 3) bike = 3;
+                        }
+                        if (IS_CHAR_SITTING_IN_CAR(GetPlayerPed(), car1))
+                        {
+                            if (bike == 2 && TIMERB() > 1000)
+                            {
+                                if (G_HELP == 1) G_HELP = 0;
                                 PRINT_HELP_FOREVER("LAW1_HELP_4");//Look behind 
                                 SetTime(5000);
                                 CLEAR_HELP();
                                 SetTime(3000);
+                                bike = 3;
+                            }
+                            else if (bike == 3)
+                            {
+                                if (G_HELP == 1) G_HELP = 0;
                                 PRINT_HELP_FOREVER("CORNER");//In order to corner effectively press ~INPUT_VEH_BRAKE~
                                 SetTime(5000);
                                 CLEAR_HELP();
                                 SetTime(3000);
+                                bike = 4;
+                            }
+                            else if (bike == 4)
+                            {
+                                if (G_HELP == 1) G_HELP = 0;
                                 PRINT_HELP_FOREVER("LAW1_HELP_2");//Shift your weight forwards and backwards when on a bike.
                                 SetTime(7500);
                                 CLEAR_HELP();
-                                G_HELP = 1;
-							}
-						}
-                        //else if ((IS_CHAR_DEAD(ped1)) || (!IS_CHAR_INJURED(ped1)) || TIMERA() > 10000) G_HELP = 1;
+                                SetTime(3000);
+                                bike = 5;
+                            }
+                            else if (bike == 5)
+                            {
+                                bike = 6;
+                                if (G_HELP == 0) G_HELP = 1;
+                            }
+                        }
+                        else if (!IS_CHAR_SITTING_IN_CAR(GetPlayerPed(), car1) && IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed())) if (G_HELP == 0) G_HELP = 1;
                         
-						if ((load_all == 0) && (IS_CHAR_IN_AREA_3D( GetPlayerPed(), 182.78, -847.079, 0.41, 210.881, -811.954, 17.658, 0 )))
+						if ((load_all == 0) && (PedD > 100.0))
 						{
 							load_all = 1;
+                            in_cord = 4;
 							MARK_MODEL_AS_NO_LONGER_NEEDED(PedM1);//выгружаем модель машины
 							MARK_MODEL_AS_NO_LONGER_NEEDED(CarM1);//выгружаем модель машины
+                            
+							MARK_CHAR_AS_NO_LONGER_NEEDED(&ped1);//выгружаем модель педа(в последствии пед изчезнет
+							MARK_CAR_AS_NO_LONGER_NEEDED(&car1);//выгружаем модель машины(в последствии машина изчезнет)
+							REMOVE_CAR_RECORDING(2993); // выгружаем пути транспорта
+						}
+						else if ((load_all == 1) && (IS_CHAR_IN_AREA_3D(GetPlayerPed(), 182.78, -847.079, 0.41, 210.881, -811.954, 17.658, 0)))
+						{
+							load_all = 2;
+                            if (HAS_MODEL_LOADED(PedM1) && HAS_MODEL_LOADED(CarM1))
+                            {
+                                MARK_MODEL_AS_NO_LONGER_NEEDED(PedM1);//выгружаем модель машины
+                                MARK_MODEL_AS_NO_LONGER_NEEDED(CarM1);//выгружаем модель машины
+                                
+                                MARK_CHAR_AS_NO_LONGER_NEEDED(&ped1);//выгружаем модель педа(в последствии пед изчезнет
+                                MARK_CAR_AS_NO_LONGER_NEEDED(&car1);//выгружаем модель машины(в последствии машина изчезнет)
+                            }
 							MARK_MODEL_AS_NO_LONGER_NEEDED(CarM2);//выгружаем модель машины
 							MARK_MODEL_AS_NO_LONGER_NEEDED(CarM3);//выгружаем модель машины
 							MARK_MODEL_AS_NO_LONGER_NEEDED(CarM4);//выгружаем модель машины
 							MARK_MODEL_AS_NO_LONGER_NEEDED(CarM5);//выгружаем модель машины
 
-							MARK_CHAR_AS_NO_LONGER_NEEDED(&ped1);//выгружаем модель педа(в последствии пед изчезнет
-							MARK_CAR_AS_NO_LONGER_NEEDED(&car1);//выгружаем модель машины(в последствии машина изчезнет)
 							MARK_CAR_AS_NO_LONGER_NEEDED(&car2);//выгружаем модель машины(в последствии машина изчезнет)
 							MARK_CAR_AS_NO_LONGER_NEEDED(&car3);//выгружаем модель машины(в последствии машина изчезнет)
 							MARK_CAR_AS_NO_LONGER_NEEDED(&car4);//выгружаем модель машины(в последствии машина изчезнет)
 							MARK_CAR_AS_NO_LONGER_NEEDED(&car5);//выгружаем модель машины(в последствии машина изчезнет)
-							REMOVE_CAR_RECORDING( 2993 ); // выгружаем пути транспорта
 						}
 
 						DRAW_CHECKPOINT( 192.169, -827.01, 2.043, 1.8, 246, 151, 255);//создание чекпойнт на координатах и его цвет
@@ -413,7 +493,28 @@ void LAWYER_1(void)
                             SET_ROUTE(Party_ico, 0);
 							REMOVE_BLIP(Party_ico);//Удаляем иконку на радаре
 							SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
-							DO_SCREEN_FADE_OUT( 1000 );// Затемняем экран
+                            
+                            // смена ракурса камеры
+                            CREATE_CAM(14, &camera);
+                            POINT_CAM_AT_COORD(camera, 183.771, -827.777, 6.22); // куда смотрит камера
+                            SET_CAM_POS(camera, 203.049, -830.084, 4.185);//расположение камеры
+                            SET_CAM_ACTIVE(camera, 1);
+                            SET_CAM_PROPAGATE(camera, 1);
+                            ACTIVATE_SCRIPTED_CAMS(1, 1);
+                            SET_CAM_FOV(camera, 45.0);
+                            
+                            DISPLAY_RADAR(0);
+                            DISPLAY_HUD(0);
+                            
+                            if (IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed()))//Если игрок использует машину, то заставляем выйти из нее
+                            {
+                                GET_CAR_CHAR_IS_USING(GetPlayerPed(), &car6);
+                                TASK_LEAVE_CAR(GetPlayerPed(), &car6); 
+                            }
+                            
+                            TASK_GO_STRAIGHT_TO_COORD(GetPlayerPed(), 180.16, -827.78, 2.5, 2, -1);//ГГ идет в двери Пирса 2 к Кортезу
+                            SetTime(2000);
+							DO_SCREEN_FADE_OUT(1000);// Затемняем экран
 							while(true)
 							{
 								WAIT(0);
@@ -422,16 +523,20 @@ void LAWYER_1(void)
 									break;
 								}
 							}
-							// проверка игрок в машине
-							if (IS_CHAR_SITTING_IN_ANY_CAR(GetPlayerPed()))
-							{
-								GET_CAR_CHAR_IS_USING(GetPlayerPed(), &car6);
-								WARP_CHAR_FROM_CAR_TO_COORD(GetPlayerPed(), 189.069, -827.351, 2.732);// высаживаем игрока
+                            
+                            ACTIVATE_SCRIPTED_CAMS(0, 0);
+                            DESTROY_CAM(camera); 
+                            DISPLAY_RADAR(1);
+                            DISPLAY_HUD(1);
+                            
+                            if (DOES_VEHICLE_EXIST(car6))
+                            {
 								FIX_CAR(car6);
 								SET_CAR_COORDINATES(car6, 194.114, -830.352, 2.732);
 								SET_CAR_HEADING(car6, -77.664);
 								MARK_CAR_AS_NO_LONGER_NEEDED(&car6);
 							}
+                            
 							SET_CHAR_COORDINATES(GetPlayerPed(), 189.069, -827.351, 2.732);// перемещаем игрока
 							SET_CHAR_HEADING(GetPlayerPed(), -55.1);
 							SET_CHAR_COORDINATES(ped2, 189.147, -825.867, 2.732);// перемещаем педа Мерседес
@@ -555,7 +660,7 @@ void LAWYER_1(void)
 								dialog = 2;
 								textID = 2;
 							}
-                            PRINT_HELP("LAW1_HELP_3");//Look around using mouse
+                            PRINT_HELP_FOREVER("LAW1_HELP_3");//Look around using mouse
 						}
 						if (dialog == 1)
 						{
@@ -583,6 +688,11 @@ void LAWYER_1(void)
 							}
 							else if (textID == 4)
 							{
+                                if (IS_THIS_HELP_MESSAGE_BEING_DISPLAYED("LAW1_HELP_3"))
+                                {
+                                    CLEAR_HELP();
+                                    if (G_HELP == 0) G_HELP = 1;
+                                }
 								if (!IS_SCRIPTED_CONVERSATION_ONGOING())
 								{
 									NEW_SCRIPTED_CONVERSATION();
@@ -616,6 +726,11 @@ void LAWYER_1(void)
 							}
 							else if (textID == 3)
 							{
+                                if (IS_THIS_HELP_MESSAGE_BEING_DISPLAYED("LAW1_HELP_3"))
+                                {
+                                    CLEAR_HELP();
+                                    if (G_HELP == 0) G_HELP = 1;
+                                }
 								if (!IS_SCRIPTED_CONVERSATION_ONGOING())
 								{
 									NEW_SCRIPTED_CONVERSATION();
@@ -655,7 +770,7 @@ void LAWYER_1(void)
                                     if (IS_THIS_HELP_MESSAGE_BEING_DISPLAYED("LAW1_HELP_3"))
                                     {
                                         CLEAR_HELP();
-                                        G_HELP = 1;
+                                        if (G_HELP == 0) G_HELP = 1;
                                     }
 									textID = 7;
 								}
@@ -676,7 +791,7 @@ void LAWYER_1(void)
 							SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 0, 0, 0 );//замораживаем игрока
                             SET_ROUTE(Party_ico, 0);
 							REMOVE_BLIP(Party_ico);//Удаляем иконку на радаре
-							DO_SCREEN_FADE_OUT( 1000 );// Затемняем экран
+							DO_SCREEN_FADE_OUT(1000);// Затемняем экран
 							while(true)
 							{
 								WAIT(0);
@@ -688,26 +803,26 @@ void LAWYER_1(void)
 							// Мерседесс идёт в двери
 							if (IS_CHAR_SITTING_IN_ANY_CAR(ped2))
 							{
-								WARP_CHAR_FROM_CAR_TO_COORD(ped2, 533.717, -943.083, 4.834);// высаживаем педа
+								WARP_CHAR_FROM_CAR_TO_COORD(ped2, 533.11, -943.567, 4.834);// высаживаем педа
 							}
 							else
 							{
-								SET_CHAR_COORDINATES(ped2, 533.717, -943.083, 4.834);// перемещаем педа Мерседес
+								SET_CHAR_COORDINATES(ped2, 533.11, -943.567, 4.834);// перемещаем педа Мерседес
 							}
-							//TASK_GO_STRAIGHT_TO_COORD(ped2, 524.137, -930.173, 4.834, 2, -2);
-                            TASK_GO_STRAIGHT_TO_COORD(ped2, 524.035,-927.675, 4.834, 2, -2);
+                            TASK_GO_STRAIGHT_TO_COORD(ped2, 524.035,-927.675, 4.834, 2, -1);
+                            TASK_LOOK_AT_CHAR(GetPlayerPed(), ped2, 6000, 0);
 							// ставим камеру
-							CREATE_CAM( 14, &camera );
-							POINT_CAM_AT_COORD	( camera, 535.314, -937.212, 8.304); // куда смотрит камера
-							SET_CAM_POS			( camera, 519.49, -951.657, 4.995 );//расположение камеры
-							SET_CAM_ACTIVE( camera, 1 );
-							SET_CAM_PROPAGATE( camera, 1 );
+							CREATE_CAM(14, &camera );
+							POINT_CAM_AT_COORD(camera, 535.314, -937.212, 8.304); // куда смотрит камера
+							SET_CAM_POS(camera, 519.49, -951.657, 4.995);//расположение камеры
+							SET_CAM_ACTIVE(camera, 1);
+							SET_CAM_PROPAGATE(camera, 1);
 							ACTIVATE_SCRIPTED_CAMS(1, 1);
-							SET_CAM_FOV( camera, 45.0 );
-							SET_WIDESCREEN_BORDERS( 1 );
+							SET_CAM_FOV(camera, 45.0);
+							SET_WIDESCREEN_BORDERS(1);
 
 							SetTime(200);
-							DO_SCREEN_FADE_IN( 1000 );// убирается затемнение экрана
+							DO_SCREEN_FADE_IN(1000);// убирается затемнение экрана
 							SetTime(500);
 
 							NEW_SCRIPTED_CONVERSATION();
@@ -717,8 +832,8 @@ void LAWYER_1(void)
 							SetSpeech();
 
 							// смена ракурса камеры
-							POINT_CAM_AT_COORD	( camera, 524.911, -931.449, 6.039 ); // куда смотрит камера
-							SET_CAM_POS			( camera, 533.056, -941.08, 4.889 );//расположение камеры
+							POINT_CAM_AT_COORD(camera, 524.911, -931.449, 6.039); // куда смотрит камера
+							SET_CAM_POS(camera, 533.056, -941.08, 4.889);//расположение камеры
 
 							NEW_SCRIPTED_CONVERSATION();
 							ADD_NEW_CONVERSATION_SPEAKER(0, GetPlayerPed(), "NIKO");
@@ -728,11 +843,11 @@ void LAWYER_1(void)
 
 							//убираем камеру
 							SetTime(4000);
-							SET_CAM_BEHIND_PED( GetPlayerPed() );
-							ACTIVATE_SCRIPTED_CAMS( 0, 0 );
-							DESTROY_CAM( camera );
-							SET_WIDESCREEN_BORDERS( 0 );
-							SET_PLAYER_CONTROL_ADVANCED( GetPlayerIndex(), 1, 1, 1 );//размораживаем игрока
+							SET_CAM_BEHIND_PED(GetPlayerPed());
+							ACTIVATE_SCRIPTED_CAMS(0, 0);
+							DESTROY_CAM(camera);
+							SET_WIDESCREEN_BORDERS(0);
+							SET_PLAYER_CONTROL_ADVANCED(GetPlayerIndex(), 1, 1, 1);//размораживаем игрока
 							SET_CHAR_COORDINATES(ped2, 19.147, -5.867, 12.732);// перемещаем педа Мерседес
 							skip = 2;// переменная пропуска
 							CLEAR_PRINTS();
@@ -740,7 +855,7 @@ void LAWYER_1(void)
 						}
 						else if ((IS_CHAR_DEAD(GetPlayerPed())) || (HAS_CHAR_BEEN_ARRESTED(GetPlayerPed())))//если игрок мёртв или аврестован
 						{
-							ABORT_SCRIPTED_CONVERSATION( 0 );
+							ABORT_SCRIPTED_CONVERSATION(0);
 							skip = 1;// переменная пропуска
 							break;
 						}
@@ -772,16 +887,20 @@ void LAWYER_1(void)
 					MARK_CAR_AS_NO_LONGER_NEEDED(&car3);//выгружаем модель машины(в последствии машина изчезнет)
 					MARK_CAR_AS_NO_LONGER_NEEDED(&car4);//выгружаем модель машины(в последствии машина изчезнет)
 					MARK_CAR_AS_NO_LONGER_NEEDED(&car5);//выгружаем модель машины(в последствии машина изчезнет)
-					REMOVE_CAR_RECORDING( 2993 ); // выгружаем пути транспорта
+					REMOVE_CAR_RECORDING(2993); // выгружаем пути транспорта
 				}
 				MARK_MODEL_AS_NO_LONGER_NEEDED(PedM2);//выгружаем модель педа
-				MARK_CHAR_AS_NO_LONGER_NEEDED(&ped2);//выгружаем модель педа(в последствии пед изчезнет
+				MARK_CHAR_AS_NO_LONGER_NEEDED(&ped2);//выгружаем модель педа(в последствии пед изчезнет)
 
 				if (car6 != 0)
 				{
 					MARK_CAR_AS_NO_LONGER_NEEDED(&car6);//выгружаем модель машины(в последствии машина изчезнет)
 				}
-				if (skip == 1) DrawText("MISSION_FAILED", 2, false, 0);//Вызываем функцию строчки Миссия провалена
+				if (skip == 1) 
+                {
+                    DrawText("MISSION_FAILED", 2, false, 0);//Вызываем функцию строчки Миссия провалена
+                    INCREMENT_INT_STAT(STAT_MISSIONS_FAILED, 1);
+                }
 				else if (skip == 2)
 				{
 					PRINT_HELP("NECLOTH1"); //Soiree outfit delivered to Ocean View Hotel on Ocean Beach.
@@ -789,12 +908,11 @@ void LAWYER_1(void)
 					REGISTER_MISSION_PASSED( "S_LAW_1" );//The Party
 					TRIGGER_MISSION_COMPLETE_AUDIO(1);//произрываем музыку параметр "(1)" воспроизводит звук из "...\EFLC\pc\audio\Sfx\gps.rpf\GPS\MISSION_COMPLETE_1" (цыфра "6" = "SMC6" в том-же архиве) 
                     DrawText("MISSION_PASSED", 1, true, 100);//Вызываем строчку Миссия пройдена
-					ADD_SCORE( GetPlayerIndex(), +100 );//даём игроку денег
-					G_LAWYER = 2;
-					stat = GET_INT_STAT(0);
-					stat += 1;
-					SET_INT_STAT(0, stat);
-
+					ADD_SCORE( GetPlayerIndex(), +100);//даём игроку денег
+                    INCREMENT_INT_STAT(STAT_MISSIONS_PASSED, 1);//Инкрементируем количество значения "Миссий Пройдено"
+                    INCREMENT_FLOAT_STAT(STAT_MADE_FROM_MISSIONS, 100);//Инкрементируем значения денег заработанных на миссиях
+					SET_FLOAT_STAT(STAT_GAME_PROGRESS, 50.0 / 56.0);//Задаем значение процента прохождения игры
+                    G_LAWYER = 2;
 					sutosave = 1;
 				}
 

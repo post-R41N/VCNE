@@ -58,21 +58,21 @@ void failed(void) {
 	//PRINT_BIG("F_FAIL1", 5000, 5);
 	//PRINT_WITH_NUMBER_BIG("TSCORE", total_score, 6000, 6);
 
-	SETTIMERA(0); //ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÐµÐ¼ Ñ‚Ð°Ð¹Ð¼ÐµÑ€ 
+	SETTIMERA(0); //ñáðàñûâàåì òàéìåð 
 	while (true)
 	{
-		SET_TEXT_COLOUR(30, 215, 135, 255); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_SCALE(0.5, 0.7); // Ñ€Ð°Ð·Ð¼ÐµÑ€Ñ‹ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°
+		SET_TEXT_COLOUR(30, 215, 135, 255); // çàäà¸ì öâåò òåêñòà
+		SET_TEXT_SCALE(0.5, 0.7); // ðàçìåðû øðèôòà
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ‚ÐµÐ½ÑŒ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_CENTRE(1); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ñ‚ÐµÐºÑÑ‚Ð°
-		DISPLAY_TEXT(0.5, 0.4, "F_FAIL1");// Ð¿Ð¸ÑˆÐµÐ¼ "ÐœÐ¸ÑÑÐ¸Ñ Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ð½Ð°"
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // çàäà¸ì òåíü òåêñòà
+		SET_TEXT_CENTRE(1); // çàäà¸ì öåíòð òåêñòà
+		DISPLAY_TEXT(0.5, 0.4, "F_FAIL1");// ïèøåì "Ìèññèÿ çàâåðøèíà"
 
-		SET_TEXT_COLOUR(95, 195, 247, 255); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_SCALE(0.5, 0.7); // Ñ€Ð°Ð·Ð¼ÐµÑ€Ñ‹ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°
+		SET_TEXT_COLOUR(95, 195, 247, 255); // çàäà¸ì öâåò òåêñòà
+		SET_TEXT_SCALE(0.5, 0.7); // ðàçìåðû øðèôòà
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ‚ÐµÐ½ÑŒ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_CENTRE(1); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ñ‚ÐµÐºÑÑ‚Ð°
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // çàäà¸ì òåíü òåêñòà
+		SET_TEXT_CENTRE(1); // çàäà¸ì öåíòð òåêñòà
 		DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "TSCORE", total_score);//
 		
 		WAIT( 0 );
@@ -161,21 +161,21 @@ void passed(void) {
 	//PRINT_WITH_NUMBER_BIG("F_REWD", score_ft, 6000, 6);
 	ADD_SCORE(GetPlayerIndex(), score_ft);
 
-	SETTIMERA(0); //ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÐµÐ¼ Ñ‚Ð°Ð¹Ð¼ÐµÑ€ 
+	SETTIMERA(0); //ñáðàñûâàåì òàéìåð 
 	while (true)
 	{
-		SET_TEXT_COLOUR(30, 215, 135, 255); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_SCALE(0.5, 0.7); // Ñ€Ð°Ð·Ð¼ÐµÑ€Ñ‹ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°
+		SET_TEXT_COLOUR(30, 215, 135, 255); // çàäà¸ì öâåò òåêñòà
+		SET_TEXT_SCALE(0.5, 0.7); // ðàçìåðû øðèôòà
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ‚ÐµÐ½ÑŒ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_CENTRE(1); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ñ‚ÐµÐºÑÑ‚Ð°
-		DISPLAY_TEXT(0.5, 0.4, "F_PASS1");// Ð¿Ð¸ÑˆÐµÐ¼ "ÐœÐ¸ÑÑÐ¸Ñ Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ð½Ð°"
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // çàäà¸ì òåíü òåêñòà
+		SET_TEXT_CENTRE(1); // çàäà¸ì öåíòð òåêñòà
+		DISPLAY_TEXT(0.5, 0.4, "F_PASS1");// ïèøåì "Ìèññèÿ çàâåðøèíà"
 
-		SET_TEXT_COLOUR(95, 195, 247, 255); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_SCALE(0.5, 0.7); // Ñ€Ð°Ð·Ð¼ÐµÑ€Ñ‹ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°
+		SET_TEXT_COLOUR(95, 195, 247, 255); // çàäà¸ì öâåò òåêñòà
+		SET_TEXT_SCALE(0.5, 0.7); // ðàçìåðû øðèôòà
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ‚ÐµÐ½ÑŒ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_CENTRE(1); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ñ‚ÐµÐºÑÑ‚Ð°
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // çàäà¸ì òåíü òåêñòà
+		SET_TEXT_CENTRE(1); // çàäà¸ì öåíòð òåêñòà
 		DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "F_REWD", score_ft);//
 		
 		WAIT( 0 );
@@ -185,7 +185,7 @@ void passed(void) {
 		}
 	}
 	if (firetruck_level > 11) {
-		if (G_FIRE == 0) {		// ÐµÑÐ»Ð¸ Ð¿Ñ€Ð¾Ð¹Ð´ÐµÑˆÑŒ Ð²ÑÐµ ÑƒÑ€Ð¾Ð²Ð½Ð¸ Ð² Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ñ€Ð°Ð·, Ñ‚Ð¾ Ð¿Ð¾ÐºÐ°Ð¶ÐµÑ‚ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ
+		if (G_FIRE == 0) {		// åñëè ïðîéäåøü âñå óðîâíè â ïåðâûé ðàç, òî ïîêàæåò ñîîáùåíèå
 			stat = GET_INT_STAT(0);
 			stat += 1;
 			SET_INT_STAT(0, stat);
@@ -360,7 +360,7 @@ void do_cancelled_checks(void) {
 			}
 		}
 		mission_end_button_ft = 0;
-		if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
+		if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())) {
 			mission_end_button_ft = 1;
 		}
 		if (mission_end_button_ft == 1) {
@@ -680,7 +680,7 @@ void next_fire(void) {
 		WAIT(0);
 		next_fire();
 	}
-	// Ñ„Ð»Ð°Ð³ Ð¼Ð¸ÑÑÐ¸Ð¸, Ð¿Ð¾ÑÐ»Ðµ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¾Ñ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¾ÑÑ‚Ñ€Ð¾Ð²
+	// ôëàã ìèññèè, ïîñëå êîòîðîé îòêðûâàåòñÿ âòîðîé îñòðîâ
 	/*if (flag_baron_mission2_passed == 0)
 		if ((car1_x > -1894.212) && (car1_x < 172.402) && (car1_y > -1494.821) && (car1_y < 2427.426)) {
 			WAIT(0);
@@ -956,14 +956,14 @@ void mission_start_fire(void) {
 	onfire_ped_9_fire = 0;
 	
 	SET_WANTED_MULTIPLIER(0.5);
-	SETTIMERA(0); //ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÐµÐ¼ Ñ‚Ð°Ð¹Ð¼ÐµÑ€ 
+	SETTIMERA(0); //ñáðàñûâàåì òàéìåð 
 	while (true)
 	{
-		SET_TEXT_COLOUR(30, 215, 135, 255); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_SCALE(0.5, 0.6); // Ñ€Ð°Ð·Ð¼ÐµÑ€Ñ‹ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°
+		SET_TEXT_COLOUR(30, 215, 135, 255); // çàäà¸ì öâåò òåêñòà
+		SET_TEXT_SCALE(0.5, 0.6); // ðàçìåðû øðèôòà
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ‚ÐµÐ½ÑŒ Ñ‚ÐµÐºÑÑ‚Ð°
-		SET_TEXT_CENTRE(1); // Ð·Ð°Ð´Ð°Ñ‘Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ñ‚ÐµÐºÑÑ‚Ð°
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // çàäà¸ì òåíü òåêñòà
+		SET_TEXT_CENTRE(1); // çàäà¸ì öåíòð òåêñòà
 		DISPLAY_TEXT(0.5, 0.45, "FIRE_M");//
 
 		WAIT( 0 );
@@ -980,7 +980,7 @@ void main(void) {
 	Car FT_car;
 	SET_MAX_WANTED_LEVEL(0);
 	STORE_CAR_CHAR_IS_IN_NO_SAVE(GetPlayerPed(), &FT_car);
-	LOCK_CAR_DOORS(FT_car, 2); // Ð·Ð°Ð¿ÐµÑ€Ð°ÐµÐ¼ Ð°Ð²Ñ‚Ð¾Ð¼Ð¾Ð±Ð¸Ð»ÑŒ
+	LOCK_CAR_DOORS(FT_car, 2); // çàïåðàåì àâòîìîáèëü
 	WAIT( 100 );
 	mission_start_fire();
 	failed();

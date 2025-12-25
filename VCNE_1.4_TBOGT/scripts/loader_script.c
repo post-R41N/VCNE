@@ -106,7 +106,7 @@ void main(void)
 		CheckScript(packages, TRUE);
 		CheckScript(vc_jump, TRUE);
         CheckScript(mp3_player, TRUE);
-        //CheckScript(intro_help, TRUE);
+        CheckScript(intro_help, TRUE);
         CheckScript(test_fonts, TRUE);
         //CheckScript(parachutelauncher, TRUE);
 

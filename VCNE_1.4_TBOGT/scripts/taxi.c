@@ -132,7 +132,7 @@ void mission_taxi1_passed(void) {
 }
 
 void taxi_fail_button_pressed(void) {
-	while (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
+	while ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())) {
 		WAIT(0);
 		if (!IS_PLAYER_PLAYING(GetPlayerIndex())) {
 			mission_taxi1_failed();
@@ -221,7 +221,7 @@ void score(void) {
 				if (!IS_CHAR_IN_CAR(GetPlayerPed(), taxi_car1)) {
 					taxi_ped_leave2();
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())) {
 					taxi_ped_leave2();
 				}
 			}
@@ -725,7 +725,7 @@ void passenger_destination(void) {
 		if (!IS_CHAR_IN_CAR(GetPlayerPed(), taxi_car1)) {
 			mission_taxi1_failed();
 		}
-		if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
+		if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())) {
 			taxi_fail_button_pressed();
 		}
 		if (taxi_countdown <= 0) {
@@ -835,7 +835,7 @@ void ped_get_in_taxi(void) {
 		if (!LOCATE_CHAR_IN_CAR_CHAR_3D(GetPlayerPed(), taxi_ped1, 90.0, 90.0, 20.0, 0)) {
 			mission_taxi1_passed();
 		}
-		if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
+		if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())) {
 			taxi_fail_button_pressed();
 		}
 		if ((taxi_countdown_already_started == 1) && (taxi_countdown <= 0)) {
@@ -947,7 +947,7 @@ void ped_get_in_taxi(void) {
 		if (!LOCATE_CHAR_IN_CAR_CHAR_3D(GetPlayerPed(), taxi_ped1, 90.0, 90.0, 20.0, 0)) {
 			mission_taxi1_passed();
 		}
-		if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
+		if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())) {
 			taxi_fail_button_pressed();
 		}
 		if ((taxi_countdown_already_started == 1) && (taxi_countdown <= 0)) {
@@ -976,7 +976,7 @@ void Start_taxi_mission(void) {
 	if (!IS_CHAR_IN_CAR(GetPlayerPed(), taxi_car1)) {
 		mission_taxi1_failed();
 	}
-	if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
+	if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())) {
 		taxi_fail_button_pressed();
 	}
 	if ((taxi_countdown_already_started == 1) && (taxi_countdown <= 0)) {

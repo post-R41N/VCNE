@@ -47,21 +47,21 @@ void setup_draw_value(void) {
 
 void ambulance_failed(void) {
 	if (!(ambulance_level == 13)) {
-		SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+		SETTIMERA(0); //сбрасываем таймер 
 		while (true)
 		{
-			SET_TEXT_COLOUR(30, 215, 135, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(30, 215, 135, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-			DISPLAY_TEXT(0.5, 0.4, "A_FAIL1");// РїРёС€РµРј "РњРёСЃСЃРёСЏ Р·Р°РІРµСЂС€РёРЅР°"
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
+			DISPLAY_TEXT(0.5, 0.4, "A_FAIL1");// пишем "Миссия завершина"
 
-			SET_TEXT_COLOUR(95, 195, 247, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(95, 195, 247, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
 			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "A_SAVES", saved_peds_this_go);//
 			
 			WAIT( 0 );
@@ -107,9 +107,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_1, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_1, &injured_ped_1_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_1_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_1_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_1_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_1_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_1_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_1_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_1_blip, "BL_VTAR");
 		return;
 	}
@@ -121,9 +121,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_2, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_2, &injured_ped_2_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_2_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_2_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_2_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_2_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_2_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_2_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_2_blip, "BL_VTAR");
 		return;
 	}
@@ -135,9 +135,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_3, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_3, &injured_ped_3_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_3_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_3_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_3_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_3_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_3_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_3_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_3_blip, "BL_VTAR");
 		return;
 	}
@@ -149,9 +149,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_4, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_4, &injured_ped_4_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_4_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_4_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_4_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_4_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_4_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_4_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_4_blip, "BL_VTAR");
 		return;
 	}
@@ -163,9 +163,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_5, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_5, &injured_ped_5_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_5_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_5_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_5_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_5_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_5_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_5_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_5_blip, "BL_VTAR");
 		return;
 	}	
@@ -177,9 +177,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_6, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_6, &injured_ped_6_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_6_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_6_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_6_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ 
+		CHANGE_BLIP_SPRITE(injured_ped_6_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_6_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_6_blip, 0.6); // масштаб иконки на радаре 
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_6_blip, "BL_VTAR");
 		return;
 	}	
@@ -191,9 +191,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_7, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_7, &injured_ped_7_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_7_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_7_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_7_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_7_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_7_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_7_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_7_blip, "BL_VTAR");
 		return;
 	}
@@ -205,9 +205,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_8, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_8, &injured_ped_8_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_8_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_8_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_8_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_8_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_8_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_8_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_8_blip, "BL_VTAR");
 		return;
 	}
@@ -219,9 +219,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_9, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_9, &injured_ped_9_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_9_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_9_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_9_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ 
+		CHANGE_BLIP_SPRITE(injured_ped_9_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_9_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_9_blip, 0.6); // масштаб иконки на радаре 
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_9_blip, "BL_VTAR");
 		return;
 	}
@@ -233,9 +233,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_10, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_10, &injured_ped_10_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_10_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_10_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_10_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_10_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_10_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_10_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_10_blip, "BL_VTAR");
 		return;
 	}
@@ -247,9 +247,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_11, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_11, &injured_ped_11_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_11_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_11_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_11_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_11_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_11_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_11_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_11_blip, "BL_VTAR");
 		return;
 	}
@@ -261,9 +261,9 @@ void create_random_injured_ped(void) {
 		GENERATE_RANDOM_FLOAT_IN_RANGE(0.0, 359.9, &random_ped_heading);
 		SET_CHAR_HEADING(injured_ped_12, random_ped_heading);
 		ADD_BLIP_FOR_CHAR(injured_ped_12, &injured_ped_12_blip);
-		CHANGE_BLIP_SPRITE(injured_ped_12_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(injured_ped_12_blip, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(injured_ped_12_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(injured_ped_12_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(injured_ped_12_blip, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(injured_ped_12_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(injured_ped_12_blip, "BL_VTAR");
 		return;
 	}
@@ -346,22 +346,22 @@ void injured_ped_checks(void) {
 			REMOVE_BLIP(ped_var_for_gosub_blip);
 			if (hospital_blip_flag == 0) {
 				ADD_BLIP_FOR_COORD(hospital_x, hospital_y, hospital_z, &hospital_blip);
-				CHANGE_BLIP_SPRITE(hospital_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-				CHANGE_BLIP_COLOUR(hospital_blip, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-				CHANGE_BLIP_SCALE(hospital_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+				CHANGE_BLIP_SPRITE(hospital_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+				CHANGE_BLIP_COLOUR(hospital_blip, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+				CHANGE_BLIP_SCALE(hospital_blip, 0.6); // масштаб иконки на радаре
 				CHANGE_BLIP_NAME_FROM_TEXT_FILE(hospital_blip, "BL_HTAR");
 				hospital_blip_flag = 1;
 			}
 			time_chunk_in_secs = time_chunk / 1000;
 			//PRINT_WITH_NUMBER_BIG("A_TIME", time_chunk_in_secs, 6000, 6);
-			SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+			SETTIMERA(0); //сбрасываем таймер 
 			while (true)
 			{
-				SET_TEXT_COLOUR(95, 195, 247, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-				SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+				SET_TEXT_COLOUR(95, 195, 247, 255); // задаём цвет текста
+				SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 				SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-				SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-				SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+				SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+				SET_TEXT_CENTRE(1); // задаём центр текста
 				DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "A_TIME", time_chunk_in_secs);//
 
 				WAIT( 0 );
@@ -401,23 +401,23 @@ void injured_ped_checks(void) {
 			}
 			if ( TIMERA() > 10000 )
 			{
-				SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+				SETTIMERA(0); //сбрасываем таймер 
 				while (true)
 				{
-					SET_TEXT_COLOUR(30, 215, 135, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-					SET_TEXT_SCALE(0.5, 0.6); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+					SET_TEXT_COLOUR(30, 215, 135, 255); // задаём цвет текста
+					SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
 					SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-					SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-					SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+					SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+					SET_TEXT_CENTRE(1); // задаём центр текста
 					DISPLAY_TEXT(0.5, 0.4, "A_PASS");//
 
 					if (bonus_time_flag == 1)
 					{
-						SET_TEXT_COLOUR(95, 195, 247, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-						SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+						SET_TEXT_COLOUR(95, 195, 247, 255); // задаём цвет текста
+						SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 						SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-						SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+						SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+						SET_TEXT_CENTRE(1); // задаём центр текста
 						DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "A_TIME", time_chunk_in_secs);//
 					}
 
@@ -734,7 +734,7 @@ void ambulance_loop(void) {
 			setup_draw_value();
 			DISPLAY_TEXT_WITH_2_NUMBERS(0.9018542, 0.76954074, "HOTR_T0", timemin, timesec);
 		}
-		if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
+		if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())) {
 			mission_end_button_ambulance = 1;
 		}		
 		if (mission_end_button_ambulance == 1) {
@@ -900,14 +900,14 @@ void ambulance_loop(void) {
 			score_am = ambulance_level * ambulance_level;
 			score_am *= 50;
 			//PRINT_WITH_NUMBER_BIG("A_REW", score_am, 6000, 6);
-			SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+			SETTIMERA(0); //сбрасываем таймер 
 			while (true)
 			{
-				SET_TEXT_COLOUR(95, 195, 247, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-				SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+				SET_TEXT_COLOUR(95, 195, 247, 255); // задаём цвет текста
+				SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 				SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-				SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-				SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+				SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+				SET_TEXT_CENTRE(1); // задаём центр текста
 				DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "A_REW", score_am);//
 
 				WAIT( 0 );
@@ -939,14 +939,14 @@ void ambulance_loop(void) {
 			ambulance_level++;
 			if (ambulance_level == 13) {
 				//PRINT_WITH_NUMBER_BIG("A_COMP1", 15000, 5000, 5);
-				SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+				SETTIMERA(0); //сбрасываем таймер 
 				while (true)
 				{
-					SET_TEXT_COLOUR(95, 195, 247, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-					SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+					SET_TEXT_COLOUR(95, 195, 247, 255); // задаём цвет текста
+					SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 					SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-					SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-					SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+					SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+					SET_TEXT_CENTRE(1); // задаём центр текста
 					DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "A_COMP1", 15000);//
 					
 					WAIT( 0 );
@@ -1038,9 +1038,9 @@ void mission_root(void) {
 	
 	if (G_ONMISSION == 0) {
 		ADD_BLIP_FOR_COORD(hospital_x, hospital_y, hospital_z, &hospital_blip);
-		CHANGE_BLIP_SPRITE(hospital_blip, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ "BLIP_FINISH_LINE"
-		CHANGE_BLIP_COLOUR(hospital_blip, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-		CHANGE_BLIP_SCALE(hospital_blip, 0.6); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+		CHANGE_BLIP_SPRITE(hospital_blip, BLIP_OBJECTIVE);//текстура иконки на радаре "BLIP_FINISH_LINE"
+		CHANGE_BLIP_COLOUR(hospital_blip, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+		CHANGE_BLIP_SCALE(hospital_blip, 0.6); // масштаб иконки на радаре
 		CHANGE_BLIP_NAME_FROM_TEXT_FILE(hospital_blip, "BL_HTAR");
 	}
 	ambulance_loop();
@@ -1089,14 +1089,14 @@ void mission_start_ambulance(void) {
 	ped_coord_z = 0.0;
 	
 	PRINT_NOW("ATUTOR2", 3000, 1);
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	SETTIMERA(0); //сбрасываем таймер 
 	while (true)
 	{
-		SET_TEXT_COLOUR(30, 215, 135, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-		SET_TEXT_SCALE(0.5, 0.6); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+		SET_TEXT_COLOUR(30, 215, 135, 255); // задаём цвет текста
+		SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-		SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+		SET_TEXT_CENTRE(1); // задаём центр текста
 		DISPLAY_TEXT(0.5, 0.45, "AMBUL_M");//
 
 		WAIT( 0 );

@@ -11,20 +11,31 @@
 #include "globals.h"
 #include "vcneFunctionLibrary.h"
 uint g_alt;
+uint isOn;
+Cam introCam;
+
 void main(void)
 {   
     Blip ice_ico; 
+    isOn = false;
     g_alt = 0;
     bool firstTick = true;
+    Ped ped1, ped2;
+    float px, py, pz;
     while (true)
     {
         if (IS_GAME_KEYBOARD_KEY_JUST_PRESSED(28))
         {
-            //DrawText("MISSION_PASSED", 1, true, 5000);//Вызываем строчку Миссия пройдена(тип строки 1)
-            //PLAY_AUDIO_EVENT( "FRONTEND_OTHER_RACE_321" );      
+            PLAY_AUDIO_EVENT( "FRONTEND_OTHER_RACE_321" );
+                
+            //GET_CHAR_COORDINATES(GetPlayerPed(), &px, &py, &pz);
+            //GET_RANDOM_CHAR_IN_AREA_OFFSET_NO_SAVE(px, py, pz, 20.0, 20.0, 20.0, &ped1);
+            //GET_RANDOM_CHAR_IN_AREA_OFFSET_NO_SAVE(px, py, pz, 20.0, 20.0, 20.0, &ped2);
+            //TASK_CHAR_ARREST_CHAR(ped1, ped2);  
+                
             if (firstTick)
             {
-                g_alt = 1;
+                g_alt = 1;    
                 firstTick = false;
             }     
         }

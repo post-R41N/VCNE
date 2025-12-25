@@ -4,11 +4,11 @@
 #include <types.h>
 #include <consts.h>
 #include "globals.h"
-// РЅР°С‡Р°Р»Рѕ РјРёСЃСЃРёРё РјРµС‚РѕРґ mission_ovalring_start()
+// начало миссии метод mission_ovalring_start()
 
-int HG_BEST_NASCAR_RESULT, HG_NASCAR_BEST_TIME, HG_NASCAR_BEST_LAP_TIME; // РіР»РѕР±Р°Р»РєРё РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ
+int HG_BEST_NASCAR_RESULT, HG_NASCAR_BEST_TIME, HG_NASCAR_BEST_LAP_TIME; // глобалки для сохранения результатов
 
-// РґРµС„РѕР»С‚РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїСЂРё Р·Р°РіСЂСѓР·РєРµ РёРіСЂС‹
+// дефолтные значения при загрузке игры
 //HG_NASCAR_BEST_LAP_TIME = 999999;
 //HG_NASCAR_BEST_TIME = 999999;
 //HG_BEST_NASCAR_RESULT = 999999;
@@ -331,8 +331,8 @@ void mission_ovalring_cleanup(void) {
 
 	RELEASE_TEXTURE( fon );
 	REMOVE_TXD( textur );
-	FORWARD_TO_TIME_OF_DAY(01, 05);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
-	FORCE_WEATHER_NOW( weather );//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїРѕРіРѕРґР°
+	FORWARD_TO_TIME_OF_DAY(01, 05);//устанавливаем время
+	FORCE_WEATHER_NOW( weather );//устанавливаем погода
 	RELEASE_WEATHER();
 
 	REMOVE_IPL("blodring");
@@ -548,7 +548,7 @@ void ovalring_loop(void) {
 		SET_TEXT_EDGE(2, 0, 0, 0, 255);
 		SET_TEXT_DROPSHADOW(0, 0, 0, 0, 0);
 		SET_TEXT_CENTRE(1);
-		DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "RACES_7", 1); // РїРёС€РµРј "GO"
+		DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "RACES_7", 1); // пишем "GO"
 	}
 
 	if (showcase == 9) {
@@ -693,7 +693,7 @@ void ovalring_loop(void) {
 		GET_TIME_OF_DAY(&hour, &minute);
 
 		if ((hour > 21) && (minute > 55)) {
-			FORWARD_TO_TIME_OF_DAY(20, 25);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
+			FORWARD_TO_TIME_OF_DAY(20, 25);//устанавливаем время
 		}
 
 		player_result = nascar_laps * 100;
@@ -1989,50 +1989,50 @@ void ovalring_loop(void) {
 	{
 		if (position == 1)
 		{
-			SET_TEXT_COLOUR(0, 197, 145, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(0, 197, 145, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-			DISPLAY_TEXT(0.5, 0.45, "HOTR_30");// РїРёС€РµРј "РњРёСЃСЃРёСЏ Р·Р°РІРµСЂС€РёРЅР°"
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
+			DISPLAY_TEXT(0.5, 0.45, "HOTR_30");// пишем "Миссия завершина"
 
-			SET_TEXT_COLOUR(50, 182, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(50, 182, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
 			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "HOTR_29", 5000);// +5000$
 		}
 		if (position == 2)
 		{
-			SET_TEXT_COLOUR(0, 197, 145, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(0, 197, 145, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-			DISPLAY_TEXT(0.5, 0.45, "HOTR_31");// РїРёС€РµРј "РњРёСЃСЃРёСЏ Р·Р°РІРµСЂС€РёРЅР°"
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
+			DISPLAY_TEXT(0.5, 0.45, "HOTR_31");// пишем "Миссия завершина"
 
-			SET_TEXT_COLOUR(50, 182, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(50, 182, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
 			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "HOTR_29", 1500);// +5000$
 		}
 		if (position == 3)
 		{
-			SET_TEXT_COLOUR(0, 197, 145, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(0, 197, 145, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-			DISPLAY_TEXT(0.5, 0.45, "HOTR_32");// РїРёС€РµРј "РњРёСЃСЃРёСЏ Р·Р°РІРµСЂС€РёРЅР°"
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
+			DISPLAY_TEXT(0.5, 0.45, "HOTR_32");// пишем "Миссия завершина"
 
-			SET_TEXT_COLOUR(50, 182, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(50, 182, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
 			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "HOTR_29", 500);// +5000$
 		}
 	}
@@ -2371,7 +2371,7 @@ void mission_ovalring_start(void) {
 	
 	GET_CURRENT_WEATHER(&weather);
 	FORCE_WEATHER_NOW(WEATHER_EXTRA_SUNNY);
-	FORWARD_TO_TIME_OF_DAY(20, 30);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
+	FORWARD_TO_TIME_OF_DAY(20, 30);//устанавливаем время
 
 	SET_MAX_WANTED_LEVEL(0);
 	SET_CHAR_COORDINATES(GetPlayerPed(), -941.47, 1861.099, 10.69);

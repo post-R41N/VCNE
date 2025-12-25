@@ -101,7 +101,7 @@ void whoopee(void)
 					help_text = 1;
 					temp = 1;
 				}
-				if (((IS_CONTROL_PRESSED( 2, 23 )) && (! IS_USING_CONTROLLER()) && (G_ICECREAM > 0) && (G_ONMISSION == 0)) || ((IS_BUTTON_PRESSED( 0, 4 )) && (IS_USING_CONTROLLER()) && (G_ICECREAM > 0) && (G_ONMISSION == 0)))
+				if (G_ICECREAM > 0 && G_ONMISSION == 0 && ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER())))
 				{
 					CLEAR_HELP(); // удаляем текст подсказки
 					G_ONMISSION = 1;

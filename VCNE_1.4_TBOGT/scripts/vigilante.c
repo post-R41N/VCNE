@@ -109,19 +109,16 @@ void copcar_cancelled_checks(void) {
 	if ((IS_CHAR_IN_ANY_POLICE_VEHICLE(GetPlayerPed())) || (IS_CHAR_IN_MODEL(GetPlayerPed(), GET_HASH_KEY("annihilator"))) || (IS_CHAR_IN_MODEL(GetPlayerPed(), GET_HASH_KEY("fbi")))) {
 		STORE_CAR_CHAR_IS_IN_NO_SAVE(GetPlayerPed(), &players_cop_car);
 		SET_CAN_BURST_CAR_TYRES(players_cop_car, 0);
-		if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
-			if (mission_end_button == 1) {
-				mission_end_button = 2;
-			}
-		} else {
-			if (mission_end_button == 0) {
-				mission_end_button = 1;
-			}
+		if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_USING_CONTROLLER() && IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6))) {
+			if (mission_end_button == 1) mission_end_button = 2;
+		}
+        else {
+			if (mission_end_button == 0) mission_end_button = 1;
 		}
 		game_time_flag = 0;
 	}
 	if (mission_end_button == 2) {
-		if (!(((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))) {
+		if (!((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))) {
 			PRINT_NOW("C_CANC", 3000, 1);
 			copcar_cancelled_flag = 1;
 			return;
@@ -2007,30 +2004,4 @@ void main(void) {
 
 	mission_start_copcar();
 	copcar_failed();
-
-	/*while (true) {
-		WAIT(0);
-		if ((IS_CHAR_IN_ANY_POLICE_VEHICLE(GetPlayerPed())) || (IS_CHAR_IN_MODEL(GetPlayerPed(), GET_HASH_KEY("annihilator"))) || (IS_CHAR_IN_MODEL(GetPlayerPed(), GET_HASH_KEY("fbi")))) {
-			if (G_ONMISSION == 0) {
-				if (incopcar == 0) {
-					PRINT_HELP("CTUTOR");
-					incopcar = 1;
-				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER()))) {
-					G_ONMISSION = 1;
-					mission_start_copcar();
-					if (HAS_DEATHARREST_EXECUTED()) {
-						copcar_failed();
-					}
-					mission_cleanup_copcar();
-					copcar_failed();
-					G_ONMISSION = 0;
-					WAIT(1000);
-				}
-			}
-		} else {
-			CLEAR_HELP();
-			incopcar = 0;
-		}
-	}*/
 }

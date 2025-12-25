@@ -103,10 +103,11 @@ void boat_race(void)
 				if (help_text1 == 0)
 				{
 					CLEAR_HELP(); // удаляем текст подсказки
-					PRINT_HELP("NEHELP2"); //Press the ~PAD_LB~ button to activate the mission
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2");//Press the ~PAD_LB~ button to activate the mission.
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2_PAD");//Press the ~PAD_LB~ + ~PAD_RB~ buttons to activate the mission.
 					help_text1 = 1;
 				}
-				if (((IS_CONTROL_PRESSED( 2, 23 )) && (! IS_USING_CONTROLLER()) && (G_COKERUN > 0) && (G_ONMISSION == 0)) || ((IS_BUTTON_PRESSED( 0, 4 )) && (IS_USING_CONTROLLER()) && (G_COKERUN > 0) && (G_ONMISSION == 0)))
+				if (G_COKERUN > 0 && G_ONMISSION == 0 && ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))) 
 				{
 					CLEAR_HELP(); // удаляем текст подсказки
 					REMOVE_BLIP(boat_ico);//Удаляем иконку на радаре
@@ -696,9 +697,9 @@ void boat_race(void)
 						PRINT_HELP_FOREVER("NEGETMONEY"); // Press the ~INPUT_PHONE_ACCEPT~ button to cash out.
 						help = 1;
 					}
-					if ((IS_CONTROL_PRESSED( 2, 181 )) && (! IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED( 0, 16 )))//проверка нажата-ли клавиша "Для покупки".
+					if ((IS_CONTROL_PRESSED(2, 181) && !IS_USING_CONTROLLER()) || (IS_USING_CONTROLLER() && IS_BUTTON_PRESSED(0, 16)))//проверка нажата-ли клавиша "Для покупки".
 					{
-						ADD_SCORE( GetPlayerIndex(), +income );// отнимаем у игрока сумму
+						ADD_SCORE( GetPlayerIndex(), +income);// отнимаем у игрока сумму
 						income = 0;
 					}
 				}

@@ -18,14 +18,7 @@ void SetSpeech(void)
 	while(true)
 	{
 		WAIT(0);
-		if (!IS_SCRIPTED_CONVERSATION_ONGOING())
-		{
-			break;
-		}
-		else if (TIMERA() > 10000)
-		{
-			break;
-		}
+		if (!IS_SCRIPTED_CONVERSATION_ONGOING() || TIMERA() > 10000 || IS_CHAR_DEAD(GetPlayerPed()) || HAS_CHAR_BEEN_ARRESTED(GetPlayerPed())) break;
 	}
 }
 

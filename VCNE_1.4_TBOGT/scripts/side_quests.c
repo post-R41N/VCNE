@@ -43,10 +43,11 @@ void main(void)
 			{
 				if (inamb == 0)
 				{
-					PRINT_HELP("ATUTOR");
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("ATUTOR");
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("ATUTOR_PAD");
 					inamb = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("ambulance");
 					while (!HAS_SCRIPT_LOADED("ambulance")) WAIT(0);
@@ -70,10 +71,11 @@ void main(void)
 			{
 				if (incopcar == 0)
 				{
-					PRINT_HELP("CTUTOR");
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("CTUTOR");
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("CTUTOR_PAD");
 					incopcar = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("vigilante");
 					while (!HAS_SCRIPT_LOADED("vigilante")) WAIT(0);
@@ -97,10 +99,11 @@ void main(void)
 			{
 				if (inftk == 0)
 				{
-					PRINT_HELP("FTUTOR");
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("FTUTOR");
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("FTUTOR_PAD");
 					inftk = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("firetruck");
 					while (!HAS_SCRIPT_LOADED("firetruck")) WAIT(0);
@@ -124,10 +127,11 @@ void main(void)
 			{
 				if (intaxi == 0)
 				{
-					PRINT_HELP("TTUTOR");
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("TTUTOR");
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("TTUTOR_PAD");
 					intaxi = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("taxi");
 					while (!HAS_SCRIPT_LOADED("taxi")) WAIT(0);
@@ -178,10 +182,11 @@ void main(void)
 				if (incrazy == 0)
 				{
 					CLEAR_HELP(); // удаляем текст подсказки
-					PRINT_HELP("NEHELP2"); //Press the ~PAD_LB~ button to activate the mission
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2");//Press the ~PAD_LB~ button to activate the mission.
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2_PAD");//Press the ~PAD_LB~ + ~PAD_RB~ buttons to activate the mission.
 					incrazy = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("conecrazy");
 					while (!HAS_SCRIPT_LOADED("conecrazy")) WAIT(0);
@@ -225,10 +230,11 @@ void main(void)
 					if (inbmx == 0)
 					{
 						CLEAR_HELP(); // удаляем текст подсказки
-						PRINT_HELP("NEHELP2"); //Press the ~PAD_LB~ button to activate the mission
+                        if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2");//Press the ~PAD_LB~ button to activate the mission.
+                        else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2_PAD");//Press the ~PAD_LB~ + ~PAD_RB~ buttons to activate the mission.
 						inbmx = 1;
 					}
-					if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+					if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 					{
 						REQUEST_SCRIPT("bmx");
 						while (!HAS_SCRIPT_LOADED("bmx")) WAIT(0);
@@ -261,10 +267,11 @@ void main(void)
 				if (inpcj == 0)
 				{
 					CLEAR_HELP(); // удаляем текст подсказки
-					PRINT_HELP("NEHELP2"); //Press the ~PAD_LB~ button to activate the mission
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2");//Press the ~PAD_LB~ button to activate the mission.
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2_PAD");//Press the ~PAD_LB~ + ~PAD_RB~ buttons to activate the mission.
 					inpcj = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("pcj");
 					while (!HAS_SCRIPT_LOADED("pcj")) WAIT(0);
@@ -289,10 +296,11 @@ void main(void)
 				if (intopfun == 0)
 				{
 					CLEAR_HELP(); // удаляем текст подсказки
-					PRINT_HELP("NEHELP2"); //Press the ~PAD_LB~ button to activate the mission
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2");//Press the ~PAD_LB~ button to activate the mission.
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2_PAD");//Press the ~PAD_LB~ + ~PAD_RB~ buttons to activate the mission.
 					intopfun = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("rcrace");
 					while (!HAS_SCRIPT_LOADED("rcrace")) WAIT(0);
@@ -309,10 +317,11 @@ void main(void)
 				if (intopfun == 0)
 				{
 					CLEAR_HELP(); // удаляем текст подсказки
-					PRINT_HELP("NEHELP2"); //Press the ~PAD_LB~ button to activate the mission
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2");//Press the ~PAD_LB~ button to activate the mission.
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2_PAD");//Press the ~PAD_LB~ + ~PAD_RB~ buttons to activate the mission.
 					intopfun = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("rcheli");
 					while (!HAS_SCRIPT_LOADED("rcheli")) WAIT(0);
@@ -329,10 +338,11 @@ void main(void)
 				if (intopfun == 0)
 				{
 					CLEAR_HELP(); // удаляем текст подсказки
-					PRINT_HELP("NEHELP2"); //Press the ~PAD_LB~ button to activate the mission
+                    if (IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2");//Press the ~PAD_LB~ button to activate the mission.
+					else if (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()) PRINT_HELP("NEHELP2_PAD");//Press the ~PAD_LB~ + ~PAD_RB~ buttons to activate the mission.
 					intopfun = 1;
 				}
-				if (((IS_CONTROL_PRESSED(2, 23)) && (!IS_USING_CONTROLLER())) || ((IS_BUTTON_PRESSED(0, 4)) && (IS_USING_CONTROLLER())))
+				if ((IS_CONTROL_PRESSED(2, 23) && !IS_USING_CONTROLLER()) || (IS_BUTTON_PRESSED(0, 4) && IS_BUTTON_PRESSED(0, 6) && IS_USING_CONTROLLER()))
 				{
 					REQUEST_SCRIPT("rcplne");
 					while (!HAS_SCRIPT_LOADED("rcplne")) WAIT(0);

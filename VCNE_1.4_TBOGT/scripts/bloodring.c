@@ -4,7 +4,7 @@
 #include <types.h>
 #include <consts.h>
 #include "globals.h"
-// РЅР°С‡Р°Р»Рѕ РјРёСЃСЃРёРё РјРµС‚РѕРґ mission_start_mm()
+// начало миссии метод mission_start_mm()
 
 int mm_car1, mm_car2, mm_car3, mm_car4, mm_car5, mm_car6, mm_car7, mm_car8;
 int mm_car9, mm_car10, mm_car11, mm_car12, mm_car13, mm_car14, mm_car15, mm_car16;
@@ -56,32 +56,32 @@ void texty_wexty(void) {
 
 void mission_cleanup_mm(void) {
 
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	SETTIMERA(0); //сбрасываем таймер 
 	while (true)
 	{
 		if (skip == 1)
 		{
-			SET_TEXT_COLOUR(255, 159, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.6); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-			DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// РїРёС€РµРј "РњРёСЃСЃРёСЏ РїСЂРѕРІР°Р»РµРЅР°"
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
+			DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// пишем "Миссия провалена"
 		}
 		else if (skip == 2)
 		{
-			SET_TEXT_COLOUR(0, 197, 145, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(0, 197, 145, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-			DISPLAY_TEXT(0.5, 0.45, "BLOD_10");// РїРёС€РµРј "РњРёСЃСЃРёСЏ Р·Р°РІРµСЂС€РёРЅР°"
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
+			DISPLAY_TEXT(0.5, 0.45, "BLOD_10");// пишем "Миссия завершина"
 
-			SET_TEXT_COLOUR(50, 182, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(50, 182, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
 			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "BLOD_09", 1000);// +5000$
 			if (G_BLOODRING == 0)
 			{
@@ -155,8 +155,8 @@ void mission_cleanup_mm(void) {
 
 	RELEASE_TEXTURE( fon );
 	REMOVE_TXD( textur );
-	FORWARD_TO_TIME_OF_DAY(01, 05);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
-	FORCE_WEATHER_NOW( weather );//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїРѕРіРѕРґР°
+	FORWARD_TO_TIME_OF_DAY(01, 05);//устанавливаем время
+	FORCE_WEATHER_NOW( weather );//устанавливаем погода
 	RELEASE_WEATHER();
 
 	if (!HAS_DEATHARREST_EXECUTED()) {
@@ -1199,7 +1199,7 @@ void skip_mm_initial_cutscene(void) {
 			SET_TEXT_EDGE(2, 0, 0, 0, 255);
 			SET_TEXT_DROPSHADOW(0, 0, 0, 0, 0);
 			SET_TEXT_CENTRE(1);
-			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "GO", 1); // РїРёС€РµРј "GO"
+			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "GO", 1); // пишем "GO"
 			if (bonus_time > 1)
 			{
 				set_go = 0;
@@ -1207,11 +1207,11 @@ void skip_mm_initial_cutscene(void) {
 		}
 		if (bonus_on == 1)
 		{
-			SET_TEXT_COLOUR(255, 159, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
 			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.45, "BONUS", 100);//BONUS $~1~
 			if (bonus_time > 2)
 			{
@@ -1221,7 +1221,7 @@ void skip_mm_initial_cutscene(void) {
 
 		GET_TIME_OF_DAY(&hour, &minute);
 		if ((hour > 21) && (minute > 55)) {
-			FORWARD_TO_TIME_OF_DAY(20, 25);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
+			FORWARD_TO_TIME_OF_DAY(20, 25);//устанавливаем время
 		}
 		
 		DRAW_SPRITE(fon, 0.8765625, 0.7858, 0.14322917, 0.0296, 0.0, 246, 151, 255, 155);
@@ -1896,7 +1896,7 @@ void skip_mm_initial_cutscene(void) {
 void mission_start_mm(void) {
 	GET_CURRENT_WEATHER(&weather);
 	FORCE_WEATHER_NOW(WEATHER_EXTRA_SUNNY);
-	FORWARD_TO_TIME_OF_DAY(20, 30);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
+	FORWARD_TO_TIME_OF_DAY(20, 30);//устанавливаем время
 	checkpoint1 = CREATE_CHECKPOINT( 8, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.20000000 );
 
 	REQUEST_IPL("blodring");

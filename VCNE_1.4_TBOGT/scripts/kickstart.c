@@ -4,7 +4,7 @@
 #include <types.h>
 #include <consts.h>
 #include "globals.h"
-// РЅР°С‡Р°Р»Рѕ РјРёСЃСЃРёРё РјРµС‚РѕРґ mission_start_kickstart()
+// начало миссии метод mission_start_kickstart()
 
 int player_checkpoint_kickstart, time_now_ks, time_off_bike_ks;
 int time_bailed_ks, time_left_to_find_bike_ks;
@@ -266,32 +266,32 @@ void mission_cleanup_kickstart(void) {
 	if (flag_done_checkpoint32_kickstart == 0) {
 		DELETE_CHECKPOINT(checkpoint32_obj);
 	}
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	SETTIMERA(0); //сбрасываем таймер 
 	while (true)
 	{
 		if (skip == 1)
 		{
-			SET_TEXT_COLOUR(255, 159, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.6); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-			DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// РїРёС€РµРј "РњРёСЃСЃРёСЏ РїСЂРѕРІР°Р»РµРЅР°"
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
+			DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// пишем "Миссия провалена"
 		}
 		else if (skip == 2)
 		{
-			SET_TEXT_COLOUR(255, 159, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-			DISPLAY_TEXT(0.5, 0.45, "MISSION_PASSED");// РїРёС€РµРј "РњРёСЃСЃРёСЏ Р·Р°РІРµСЂС€РёРЅР°"
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
+			DISPLAY_TEXT(0.5, 0.45, "MISSION_PASSED");// пишем "Миссия завершина"
 
-			SET_TEXT_COLOUR(255, 159, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-			SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+			SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
+			SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 			SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-			SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+			SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+			SET_TEXT_CENTRE(1); // задаём центр текста
 			DISPLAY_TEXT_WITH_NUMBER(0.5, 0.5, "CASH", add_cash);// +5000$
 		}
 		WAIT( 0 );
@@ -336,8 +336,8 @@ void mission_cleanup_kickstart(void) {
 
 	RELEASE_TEXTURE( fon );
 	REMOVE_TXD( textur );
-	FORWARD_TO_TIME_OF_DAY(01, 05);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
-	FORCE_WEATHER_NOW( weather );//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїРѕРіРѕРґР°
+	FORWARD_TO_TIME_OF_DAY(01, 05);//устанавливаем время
+	FORCE_WEATHER_NOW( weather );//устанавливаем погода
 	RELEASE_WEATHER();
 	TERMINATE_THIS_SCRIPT();
 }
@@ -415,7 +415,7 @@ void checkpoints_kickstart(void) {
 		audio_flag_ohh_kick = 0;
 	}
 	
-	DRAW_CHECKPOINT( -955.68, 1903.46, 24.0675, 1.5, 160, 116, 209);//СЃРѕР·РґР°РЅРёРµ С‡РµРєРїРѕР№РЅС‚ РЅР° РєРѕРѕСЂРґРёРЅР°С‚Р°С… Рё РµРіРѕ С†РІРµС‚
+	DRAW_CHECKPOINT( -955.68, 1903.46, 24.0675, 1.5, 160, 116, 209);//создание чекпойнт на координатах и его цвет
 	if (race_timer_kickstart >= 3600000) {
 		player_taken_too_long_kickstart = 1;
 	}
@@ -916,7 +916,7 @@ void mission_start_kickstart(void) {
 
 	GET_CURRENT_WEATHER(&weather);
 	FORCE_WEATHER_NOW(WEATHER_EXTRA_SUNNY);
-	FORWARD_TO_TIME_OF_DAY(20, 30);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
+	FORWARD_TO_TIME_OF_DAY(20, 30);//устанавливаем время
 
 	flag_bike_dead_kickstart = 0;
 	bike_check_kickstart = 0;
@@ -1139,243 +1139,243 @@ void mission_start_kickstart(void) {
 	SET_CAR_STRONG(bike_kickstart, 1);
 
 	ADD_BLIP_FOR_CAR(bike_kickstart, &bike_blip_kickstart);
-	CHANGE_BLIP_SPRITE(bike_blip_kickstart, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(bike_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(bike_blip_kickstart, "NE_CAR");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(bike_blip_kickstart, 0.57999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(bike_blip_kickstart, BLIP_OBJECTIVE);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(bike_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(bike_blip_kickstart, "NE_CAR");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(bike_blip_kickstart, 0.57999990); // масштаб иконки на радаре
 
 	//sphere_kickstart = ADD_SPHERE(-955.68, 1903.46, 24.0675, 3.0, 1);
 	ADD_BLIP_FOR_COORD(-955.68, 1903.46, 24.0675, &sphere_kickstart);
-	CHANGE_BLIP_SPRITE(sphere_kickstart, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(sphere_kickstart, 19);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	//CHANGE_BLIP_NAME_FROM_TEXT_FILE(sphere_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(sphere_kickstart, 0.57999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(sphere_kickstart, BLIP_OBJECTIVE);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(sphere_kickstart, 19);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	//CHANGE_BLIP_NAME_FROM_TEXT_FILE(sphere_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(sphere_kickstart, 0.57999990); // масштаб иконки на радаре
 
 	checkpoint1_obj = CREATE_CHECKPOINT(8, checkpoint1_x_kickstart, checkpoint1_y_kickstart, checkpoint1_z_kickstart, checkpoint1_x_kickstart, checkpoint1_y_kickstart, checkpoint1_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint1_x_kickstart, checkpoint1_y_kickstart, checkpoint1_z_kickstart, &checkpoint1_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint1_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint1_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint1_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint1_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint1_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint1_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint1_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint1_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 
 	
 	checkpoint2_obj = CREATE_CHECKPOINT(8, checkpoint2_x_kickstart, checkpoint2_y_kickstart, checkpoint2_z_kickstart, checkpoint2_x_kickstart, checkpoint2_y_kickstart, checkpoint2_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint2_x_kickstart, checkpoint2_y_kickstart, checkpoint2_z_kickstart, &checkpoint2_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint2_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint2_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint2_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint2_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint2_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint2_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint2_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint2_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 
 	
 	checkpoint3_obj = CREATE_CHECKPOINT(8, checkpoint3_x_kickstart, checkpoint3_y_kickstart, checkpoint3_z_kickstart, checkpoint3_x_kickstart, checkpoint3_y_kickstart, checkpoint3_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint3_x_kickstart, checkpoint3_y_kickstart, checkpoint3_z_kickstart, &checkpoint3_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint3_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint3_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint3_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint3_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint3_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint3_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint3_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint3_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint4_obj = CREATE_CHECKPOINT(8, checkpoint4_x_kickstart, checkpoint4_y_kickstart, checkpoint4_z_kickstart, checkpoint4_x_kickstart, checkpoint4_y_kickstart, checkpoint4_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint4_x_kickstart, checkpoint4_y_kickstart, checkpoint4_z_kickstart, &checkpoint4_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint4_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint4_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint4_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint4_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint4_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint4_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint4_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint4_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint5_obj = CREATE_CHECKPOINT(8, checkpoint5_x_kickstart, checkpoint5_y_kickstart, checkpoint5_z_kickstart, checkpoint5_x_kickstart, checkpoint5_y_kickstart, checkpoint5_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint5_x_kickstart, checkpoint5_y_kickstart, checkpoint5_z_kickstart, &checkpoint5_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint5_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint5_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint5_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint5_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint5_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint5_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint5_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint5_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint6_obj = CREATE_CHECKPOINT(8, checkpoint6_x_kickstart, checkpoint6_y_kickstart, checkpoint6_z_kickstart, checkpoint6_x_kickstart, checkpoint6_y_kickstart, checkpoint6_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint6_x_kickstart, checkpoint6_y_kickstart, checkpoint6_z_kickstart, &checkpoint6_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint6_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint6_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint6_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint6_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint6_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint6_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint6_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint6_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint7_obj = CREATE_CHECKPOINT(8, checkpoint7_x_kickstart, checkpoint7_y_kickstart, checkpoint7_z_kickstart, checkpoint7_x_kickstart, checkpoint7_y_kickstart, checkpoint7_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint7_x_kickstart, checkpoint7_y_kickstart, checkpoint7_z_kickstart, &checkpoint7_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint7_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint7_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint7_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint7_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint7_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint7_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint7_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint7_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint8_obj = CREATE_CHECKPOINT(8, checkpoint8_x_kickstart, checkpoint8_y_kickstart, checkpoint8_z_kickstart, checkpoint8_x_kickstart, checkpoint8_y_kickstart, checkpoint8_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint8_x_kickstart, checkpoint8_y_kickstart, checkpoint8_z_kickstart, &checkpoint8_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint8_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint8_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint8_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint8_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint8_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint8_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint8_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint8_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint9_obj = CREATE_CHECKPOINT(8, checkpoint9_x_kickstart, checkpoint9_y_kickstart, checkpoint9_z_kickstart, checkpoint9_x_kickstart, checkpoint9_y_kickstart, checkpoint9_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint9_x_kickstart, checkpoint9_y_kickstart, checkpoint9_z_kickstart, &checkpoint9_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint9_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint9_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint9_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint9_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint9_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint9_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint9_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint9_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint10_obj = CREATE_CHECKPOINT(8, checkpoint10_x_kickstart, checkpoint10_y_kickstart, checkpoint10_z_kickstart, checkpoint10_x_kickstart, checkpoint10_y_kickstart, checkpoint10_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint10_x_kickstart, checkpoint10_y_kickstart, checkpoint10_z_kickstart, &checkpoint10_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint10_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint10_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint10_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint10_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint10_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint10_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint10_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint10_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint11_obj = CREATE_CHECKPOINT(8, checkpoint11_x_kickstart, checkpoint11_y_kickstart, checkpoint11_z_kickstart, checkpoint11_x_kickstart, checkpoint11_y_kickstart, checkpoint11_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint11_x_kickstart, checkpoint11_y_kickstart, checkpoint11_z_kickstart, &checkpoint11_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint11_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint11_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint11_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint11_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint11_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint11_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint11_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint11_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint12_obj = CREATE_CHECKPOINT(8, checkpoint12_x_kickstart, checkpoint12_y_kickstart, checkpoint12_z_kickstart, checkpoint12_x_kickstart, checkpoint12_y_kickstart, checkpoint12_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint12_x_kickstart, checkpoint12_y_kickstart, checkpoint12_z_kickstart, &checkpoint12_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint12_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint12_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint12_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint12_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint12_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint12_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint12_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint12_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint13_obj = CREATE_CHECKPOINT(8, checkpoint13_x_kickstart, checkpoint13_y_kickstart, checkpoint13_z_kickstart, checkpoint13_x_kickstart, checkpoint13_y_kickstart, checkpoint13_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint13_x_kickstart, checkpoint13_y_kickstart, checkpoint13_z_kickstart, &checkpoint13_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint13_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint13_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint13_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint13_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint13_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint13_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint13_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint13_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint14_obj = CREATE_CHECKPOINT(8, checkpoint14_x_kickstart, checkpoint14_y_kickstart, checkpoint14_z_kickstart, checkpoint14_x_kickstart, checkpoint14_y_kickstart, checkpoint14_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint14_x_kickstart, checkpoint14_y_kickstart, checkpoint14_z_kickstart, &checkpoint14_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint14_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint14_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint14_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint14_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint14_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint14_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint14_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint14_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint15_obj = CREATE_CHECKPOINT(8, checkpoint15_x_kickstart, checkpoint15_y_kickstart, checkpoint15_z_kickstart, checkpoint15_x_kickstart, checkpoint15_y_kickstart, checkpoint15_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint15_x_kickstart, checkpoint15_y_kickstart, checkpoint15_z_kickstart, &checkpoint15_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint15_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint15_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint15_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint15_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint15_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint15_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint15_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint15_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint16_obj = CREATE_CHECKPOINT(8, checkpoint16_x_kickstart, checkpoint16_y_kickstart, checkpoint16_z_kickstart, checkpoint16_x_kickstart, checkpoint16_y_kickstart, checkpoint16_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint16_x_kickstart, checkpoint16_y_kickstart, checkpoint16_z_kickstart, &checkpoint16_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint16_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint16_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint16_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint16_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint16_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint16_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint16_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint16_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint17_obj = CREATE_CHECKPOINT(8, checkpoint17_x_kickstart, checkpoint17_y_kickstart, checkpoint17_z_kickstart, checkpoint17_x_kickstart, checkpoint17_y_kickstart, checkpoint17_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint17_x_kickstart, checkpoint17_y_kickstart, checkpoint17_z_kickstart, &checkpoint17_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint17_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint17_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint17_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint17_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint17_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint17_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint17_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint17_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint18_obj = CREATE_CHECKPOINT(8, checkpoint18_x_kickstart, checkpoint18_y_kickstart, checkpoint18_z_kickstart, checkpoint18_x_kickstart, checkpoint18_y_kickstart, checkpoint18_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint18_x_kickstart, checkpoint18_y_kickstart, checkpoint18_z_kickstart, &checkpoint18_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint18_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint18_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint18_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint18_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint18_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint18_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint18_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint18_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint19_obj = CREATE_CHECKPOINT(8, checkpoint19_x_kickstart, checkpoint19_y_kickstart, checkpoint19_z_kickstart, checkpoint19_x_kickstart, checkpoint19_y_kickstart, checkpoint19_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint19_x_kickstart, checkpoint19_y_kickstart, checkpoint19_z_kickstart, &checkpoint19_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint19_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint19_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint19_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint19_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint19_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint19_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint19_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint19_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint20_obj = CREATE_CHECKPOINT(8, checkpoint20_x_kickstart, checkpoint20_y_kickstart, checkpoint20_z_kickstart, checkpoint20_x_kickstart, checkpoint20_y_kickstart, checkpoint20_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint20_x_kickstart, checkpoint20_y_kickstart, checkpoint20_z_kickstart, &checkpoint20_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint20_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint20_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint20_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint20_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint20_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint20_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint20_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint20_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint21_obj = CREATE_CHECKPOINT(8, checkpoint21_x_kickstart, checkpoint21_y_kickstart, checkpoint21_z_kickstart, checkpoint21_x_kickstart, checkpoint21_y_kickstart, checkpoint21_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint21_x_kickstart, checkpoint21_y_kickstart, checkpoint21_z_kickstart, &checkpoint21_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint21_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint21_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint21_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint21_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint21_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint21_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint21_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint21_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint22_obj = CREATE_CHECKPOINT(8, checkpoint22_x_kickstart, checkpoint22_y_kickstart, checkpoint22_z_kickstart, checkpoint22_x_kickstart, checkpoint22_y_kickstart, checkpoint22_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint22_x_kickstart, checkpoint22_y_kickstart, checkpoint22_z_kickstart, &checkpoint22_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint22_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint22_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint22_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint22_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint22_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint22_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint22_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint22_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint23_obj = CREATE_CHECKPOINT(8, checkpoint23_x_kickstart, checkpoint23_y_kickstart, checkpoint23_z_kickstart, checkpoint23_x_kickstart, checkpoint23_y_kickstart, checkpoint23_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint23_x_kickstart, checkpoint23_y_kickstart, checkpoint23_z_kickstart, &checkpoint23_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint23_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint23_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint23_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint23_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint23_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint23_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint23_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint23_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint24_obj = CREATE_CHECKPOINT(8, checkpoint24_x_kickstart, checkpoint24_y_kickstart, checkpoint24_z_kickstart, checkpoint24_x_kickstart, checkpoint24_y_kickstart, checkpoint24_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint24_x_kickstart, checkpoint24_y_kickstart, checkpoint24_z_kickstart, &checkpoint24_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint24_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint24_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint24_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint24_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint24_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint24_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint24_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint24_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint25_obj = CREATE_CHECKPOINT(8, checkpoint25_x_kickstart, checkpoint25_y_kickstart, checkpoint25_z_kickstart, checkpoint25_x_kickstart, checkpoint25_y_kickstart, checkpoint25_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint25_x_kickstart, checkpoint25_y_kickstart, checkpoint25_z_kickstart, &checkpoint25_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint25_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint25_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint25_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint25_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint25_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint25_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint25_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint25_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint26_obj = CREATE_CHECKPOINT(8, checkpoint26_x_kickstart, checkpoint26_y_kickstart, checkpoint26_z_kickstart, checkpoint26_x_kickstart, checkpoint26_y_kickstart, checkpoint26_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint26_x_kickstart, checkpoint26_y_kickstart, checkpoint26_z_kickstart, &checkpoint26_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint26_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint26_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint26_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint26_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint26_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint26_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint26_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint26_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint27_obj = CREATE_CHECKPOINT(8, checkpoint27_x_kickstart, checkpoint27_y_kickstart, checkpoint27_z_kickstart, checkpoint27_x_kickstart, checkpoint27_y_kickstart, checkpoint27_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint27_x_kickstart, checkpoint27_y_kickstart, checkpoint27_z_kickstart, &checkpoint27_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint27_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint27_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint27_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint27_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint27_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint27_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint27_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint27_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint28_obj = CREATE_CHECKPOINT(8, checkpoint28_x_kickstart, checkpoint28_y_kickstart, checkpoint28_z_kickstart, checkpoint28_x_kickstart, checkpoint28_y_kickstart, checkpoint28_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint28_x_kickstart, checkpoint28_y_kickstart, checkpoint28_z_kickstart, &checkpoint28_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint28_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint28_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint28_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint28_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint28_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint28_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint28_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint28_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint29_obj = CREATE_CHECKPOINT(8, checkpoint29_x_kickstart, checkpoint29_y_kickstart, checkpoint29_z_kickstart, checkpoint29_x_kickstart, checkpoint29_y_kickstart, checkpoint29_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint29_x_kickstart, checkpoint29_y_kickstart, checkpoint29_z_kickstart, &checkpoint29_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint29_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint29_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint29_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint29_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint29_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint29_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint29_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint29_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint30_obj = CREATE_CHECKPOINT(8, checkpoint30_x_kickstart, checkpoint30_y_kickstart, checkpoint30_z_kickstart, checkpoint30_x_kickstart, checkpoint30_y_kickstart, checkpoint30_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint30_x_kickstart, checkpoint30_y_kickstart, checkpoint30_z_kickstart, &checkpoint30_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint30_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint30_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint30_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint30_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint30_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint30_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint30_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint30_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint31_obj = CREATE_CHECKPOINT(8, checkpoint31_x_kickstart, checkpoint31_y_kickstart, checkpoint31_z_kickstart, checkpoint31_x_kickstart, checkpoint31_y_kickstart, checkpoint31_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint31_x_kickstart, checkpoint31_y_kickstart, checkpoint31_z_kickstart, &checkpoint31_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint31_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint31_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint31_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint31_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint31_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint31_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint31_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint31_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 	
 	checkpoint32_obj = CREATE_CHECKPOINT(8, checkpoint32_x_kickstart, checkpoint32_y_kickstart, checkpoint32_z_kickstart, checkpoint32_x_kickstart, checkpoint32_y_kickstart, checkpoint32_z_kickstart, 0.2);
 	ADD_BLIP_FOR_COORD(checkpoint32_x_kickstart, checkpoint32_y_kickstart, checkpoint32_z_kickstart, &checkpoint32_blip_kickstart);
-	CHANGE_BLIP_SPRITE(checkpoint32_blip_kickstart, BLIP_DESTINATION);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-	CHANGE_BLIP_COLOUR(checkpoint32_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint32_blip_kickstart, "MO_TARGET");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-	CHANGE_BLIP_SCALE(checkpoint32_blip_kickstart, 0.77999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+	CHANGE_BLIP_SPRITE(checkpoint32_blip_kickstart, BLIP_DESTINATION);//текстура иконки на радаре
+	CHANGE_BLIP_COLOUR(checkpoint32_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+	CHANGE_BLIP_NAME_FROM_TEXT_FILE(checkpoint32_blip_kickstart, "MO_TARGET");//иконка на радаре ""
+	CHANGE_BLIP_SCALE(checkpoint32_blip_kickstart, 0.77999990); // масштаб иконки на радаре
 
 	SET_INSTANT_WIDESCREEN_BORDERS(1);
 	SET_POLICE_IGNORE_PLAYER(GetPlayerIndex(), 1);
@@ -1549,7 +1549,7 @@ void mission_start_kickstart(void) {
 
 		GET_TIME_OF_DAY(&hour, &minute);
 		if ((hour > 21) && (minute > 55)) {
-			FORWARD_TO_TIME_OF_DAY(20, 25);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
+			FORWARD_TO_TIME_OF_DAY(20, 25);//устанавливаем время
 		}
 			
 		if (bike_check_kickstart == 0) {
@@ -1627,10 +1627,10 @@ void mission_start_kickstart(void) {
 		if (!IS_CHAR_IN_MODEL(GetPlayerPed(), MODEL_SANCHEZ)) {
 			if (flag_bike_blip_on_kickstart == 0) {
 				ADD_BLIP_FOR_CAR(bike_kickstart, &bike_blip_kickstart);
-				CHANGE_BLIP_SPRITE(bike_blip_kickstart, BLIP_OBJECTIVE);//С‚РµРєСЃС‚СѓСЂР° РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
-				CHANGE_BLIP_COLOUR(bike_blip_kickstart, 5);   //С†РІРµС‚ РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ (0=Р±РµР»Р°СЏ 5=СЂРѕР·РѕРІС‹Р№ 19=Р¶С‘Р»С‚С‹Р№)
-				CHANGE_BLIP_NAME_FROM_TEXT_FILE(bike_blip_kickstart, "NE_CAR");//РёРєРѕРЅРєР° РЅР° СЂР°РґР°СЂРµ ""
-				CHANGE_BLIP_SCALE(bike_blip_kickstart, 0.57999990); // РјР°СЃС€С‚Р°Р± РёРєРѕРЅРєРё РЅР° СЂР°РґР°СЂРµ
+				CHANGE_BLIP_SPRITE(bike_blip_kickstart, BLIP_OBJECTIVE);//текстура иконки на радаре
+				CHANGE_BLIP_COLOUR(bike_blip_kickstart, 5);   //цвет иконка на радаре (0=белая 5=розовый 19=жёлтый)
+				CHANGE_BLIP_NAME_FROM_TEXT_FILE(bike_blip_kickstart, "NE_CAR");//иконка на радаре ""
+				CHANGE_BLIP_SCALE(bike_blip_kickstart, 0.57999990); // масштаб иконки на радаре
 
 				if (audio_flag_ohh_kick == 2) {
 					PLAY_SOUND_FRONTEND(sID, "DIRTRING_OOH1");

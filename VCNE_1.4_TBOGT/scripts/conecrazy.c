@@ -5,7 +5,7 @@
 #include <consts.h>
 #include "globals.h"
 
-// РІ РѕСЂРёРіРёРЅР°Р»Рµ СЌС‚Р° РїСЏС‚РµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С… СЏРІР»СЏСЋС‚СЃСЏ РіР»РѕР±Р°Р»РєР°РјРё
+// в оригинале эта пятерка переменных являются глобалками
 int flag_carpark1_passed, record_carpark1, record_temp, flag_intro_carpark1_before, flag_carpark1_trigger;
 
 int add_moany, set_moany;
@@ -221,14 +221,14 @@ void mission_carpark1_passed(void) {
 		}
 	}
 	//PRINT_WITH_NUMBER_BIG("M_PASS", add_moany, 5000, 1);
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	SETTIMERA(0); //сбрасываем таймер 
 	while (true)
 	{
-		SET_TEXT_COLOUR(30, 215, 135, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-		SET_TEXT_SCALE(0.5, 0.7); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+		SET_TEXT_COLOUR(30, 215, 135, 255); // задаём цвет текста
+		SET_TEXT_SCALE(0.5, 0.7); // размеры шрифта
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-		SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+		SET_TEXT_CENTRE(1); // задаём центр текста
 		DISPLAY_TEXT_WITH_NUMBER(0.5, 0.4, "M_PASS", add_moany);//
 		
 		WAIT( 0 );
@@ -256,15 +256,15 @@ void mission_carpark1_passed(void) {
 
 void mission_carpark1_failed(void) {
 	//PRINT_BIG ("M_FAIL", 2000, 1);
-	SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	SETTIMERA(0); //сбрасываем таймер 
 	while (true)
 	{
-		SET_TEXT_COLOUR(255, 159, 255, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-		SET_TEXT_SCALE(0.5, 0.6); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+		SET_TEXT_COLOUR(255, 159, 255, 255); // задаём цвет текста
+		SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
 		SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-		SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
-		DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// РїРёС€РµРј "РњРёСЃСЃРёСЏ РїСЂРѕРІР°Р»РµРЅР°"
+		SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+		SET_TEXT_CENTRE(1); // задаём центр текста
+		DISPLAY_TEXT(0.5, 0.45, "MISSION_FAILED");// пишем "Миссия провалена"
 
 		WAIT( 0 );
 		if ( TIMERA() > 3000 )
@@ -429,14 +429,14 @@ void cone_check(void) {
 
 void mission_start_carpark1(void) {
 	//G_ONMISSION = 1;
-	//SETTIMERA(0); //СЃР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ 
+	//SETTIMERA(0); //сбрасываем таймер 
 	//while (true)
 	//{
-	//	SET_TEXT_COLOUR(30, 215, 135, 255); // Р·Р°РґР°С‘Рј С†РІРµС‚ С‚РµРєСЃС‚Р°
-	//	SET_TEXT_SCALE(0.5, 0.6); // СЂР°Р·РјРµСЂС‹ С€СЂРёС„С‚Р°
+	//	SET_TEXT_COLOUR(30, 215, 135, 255); // задаём цвет текста
+	//	SET_TEXT_SCALE(0.5, 0.6); // размеры шрифта
 	//	SET_TEXT_EDGE(1, 0, 0, 0, 255); //
-	//	SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // Р·Р°РґР°С‘Рј С‚РµРЅСЊ С‚РµРєСЃС‚Р°
-	//	SET_TEXT_CENTRE(1); // Р·Р°РґР°С‘Рј С†РµРЅС‚СЂ С‚РµРєСЃС‚Р°
+	//	SET_TEXT_DROPSHADOW(1, 0, 0, 0, 200); // задаём тень текста
+	//	SET_TEXT_CENTRE(1); // задаём центр текста
 	//	DISPLAY_TEXT(0.5, 0.45, "MM_1");//
 
 	//	WAIT( 0 );
