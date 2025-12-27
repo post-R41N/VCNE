@@ -42,6 +42,7 @@
 #define pickups "pickups"
 #define weap_sounds "weap_sounds"
 #define side_quests "side_quests"
+#define side_quests_help "side_quests_help"
 #define cheats "cheats"
 #define packages "packages"
 #define vc_jump "vc_jump"
@@ -101,6 +102,7 @@ void main(void)
 		CheckScript(pickups, TRUE);
 		CheckScript(weap_sounds, TRUE);
 		CheckScript(side_quests, TRUE);
+        //CheckScript(side_quests_help, TRUE);
 		CheckScript(stadium, TRUE);
 		CheckScript(cheats, TRUE);
 		CheckScript(packages, TRUE);

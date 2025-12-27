@@ -10,7 +10,6 @@
 #include "globals.h"
 
 uint helpVeh, helpOnFoot, helpWanted;
-uint wanted;
 
 void SetTime(uint time)
 {
@@ -96,7 +95,7 @@ void HelpsAfterIntro(void)
             if (IS_CHAR_ON_FOOT(GetPlayerPed()))
             {
                 if (IS_USING_CONTROLLER()) PRINT_HELP_FOREVER("RUNKEY"); //Taping A/X to srpint for gamepads.
-                else PRINT_HELP_FOREVER("B3_SPRINT_PC");//Press LShift to sprint for PC.
+                if (!IS_USING_CONTROLLER()) PRINT_HELP_FOREVER("B3_SPRINT_PC");//Press LShift to sprint for PC.
                 SetTime(5000);
                 CLEAR_HELP();// удаляем текст подсказки
                 helpOnFoot = 5;
@@ -135,7 +134,7 @@ void HelpsCarControls(void)
             else if (helpVeh == 3)
             {
                 if (IS_USING_CONTROLLER()) PRINT_HELP_FOREVER("HELP5"); //Press A/X to use handbrake for gamepads.
-                else PRINT_HELP_FOREVER("HBRAKE_PC");//Press Space to use handbrake for PC.
+                if (!IS_USING_CONTROLLER()) PRINT_HELP_FOREVER("HBRAKE_PC");//Press Space to use handbrake for PC.
                 SetTime(6500);
                 CLEAR_HELP();// удаляем текст подсказки
                 helpVeh = 4;

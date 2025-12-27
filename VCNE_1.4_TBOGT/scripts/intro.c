@@ -780,7 +780,7 @@ void main(void)
     WAIT(2000);
     WAIT(2000);
 	G_LAWYER = 1; // временная херня
-    G_HELP = 1;	
+    //G_HELP = 1;	
 	load_screen(); // временная херня
 	if (G_LAWYER == 0)
 	{

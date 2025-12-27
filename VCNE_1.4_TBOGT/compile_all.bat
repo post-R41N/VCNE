@@ -52,6 +52,7 @@ scocl.exe TBOGT "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TB
 scocl.exe TBOGT "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\scripts\sa_race5.c" "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\output\"
 scocl.exe TBOGT "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\scripts\sa_race6.c" "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\output\"
 scocl.exe TBOGT "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\scripts\side_quests.c" "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\output\"
+scocl.exe TBOGT "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\scripts\side_quests_help.c" "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\output\"
 scocl.exe TBOGT "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\scripts\stadium.c" "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\output\"
 scocl.exe TBOGT "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\scripts\startup.c" "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\output\" GLOBALSEG
 scocl.exe TBOGT "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\scripts\street_phone.c" "G:\Libraries\Documents\RageScripEditorProjects\VCNE\VCNE_1.4_TBOGT\output\"
